@@ -40,9 +40,9 @@ import jmemorize.core.CardSide;
 import jmemorize.core.Category;
 import jmemorize.core.CategoryObserver;
 import jmemorize.core.FormattedText;
-import jmemorize.core.ImageRepository;
 import jmemorize.core.Main;
 import jmemorize.core.Settings;
+import jmemorize.core.media.MediaRepository;
 import jmemorize.gui.LC;
 import jmemorize.gui.Localization;
 import jmemorize.gui.swing.SelectionProvider;
@@ -435,10 +435,10 @@ public class EditCardFrame extends EscapableFrame implements CategoryObserver, S
         if (textChanged)
             return true;
         
-        if (!ImageRepository.equals(m_cardPanel.getFrontImages(), frontSide.getImages()))
+        if (!MediaRepository.equals(m_cardPanel.getFrontImages(), frontSide.getMedia()))
             return true;
         
-        if (!ImageRepository.equals(m_cardPanel.getBackImages(), backSide.getImages()))
+        if (!MediaRepository.equals(m_cardPanel.getBackImages(), backSide.getMedia()))
             return true;
 
         return false;
@@ -453,7 +453,7 @@ public class EditCardFrame extends EscapableFrame implements CategoryObserver, S
         
         // set sides
         m_cardPanel.setTextSides(frontSide.getText(), backSide.getText());
-        m_cardPanel.setImages(frontSide.getImages(), backSide.getImages());
+        m_cardPanel.setImages(frontSide.getMedia(), backSide.getMedia());
         
         highlightSearchText();
         updateActions();
@@ -545,20 +545,20 @@ public class EditCardFrame extends EscapableFrame implements CategoryObserver, S
             FormattedText frontText = m_cardPanel.getFrontText();
             FormattedText backText = m_cardPanel.getBackText();
             
-            ImageRepository repo = ImageRepository.getInstance();
+            MediaRepository repo = MediaRepository.getInstance();
             
             List<String> frontIDs = repo.addImages(m_cardPanel.getFrontImages());
             List<String> backIDs = repo.addImages(m_cardPanel.getBackImages());
             
             m_currentCard.setSides(frontText, backText);
-            m_currentCard.getFrontSide().setImages(frontIDs);
-            m_currentCard.getBackSide().setImages(backIDs);
+            m_currentCard.getFrontSide().setMedia(frontIDs);
+            m_currentCard.getBackSide().setMedia(backIDs);
             
             CategoryComboBox categoryComboBox = m_cardPanel.getCategoryComboBox();
             Category newCategory = categoryComboBox.getSelectedCategory();
             if (newCategory != m_currentCard.getCategory())
             {
-                m_currentCard.getCategory().moveCard(m_currentCard, newCategory);
+                Category.moveCard(m_currentCard, newCategory);
             }
             
             updateTitle();

@@ -23,6 +23,7 @@ import java.awt.Font;
 import java.awt.Frame;
 import java.awt.Point;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
@@ -37,6 +38,7 @@ import jmemorize.gui.swing.CardFont;
 import jmemorize.gui.swing.CardFont.FontAlignment;
 import jmemorize.gui.swing.CardFont.FontType;
 import jmemorize.gui.swing.frames.MainFrame;
+import jmemorize.gui.swing.panels.CardPanel;
 import jmemorize.util.PreferencesTool;
 
 /**
@@ -107,6 +109,7 @@ public class Settings
     private final static String CATEGORY_TREE_WIDTH = "category-tree.width"; //$NON-NLS-1$
     private final static String CATEGORY_TREE_VISIBLE = "category-tree.visible"; //$NON-NLS-1$
     private final static String MAIN_DIVIDER_LOCATION = "main-divider.location"; //$NON-NLS-1$
+    private final static String SHOW_FRONT_IN_QUIZ = "learn.show-front"; //$NON-NLS-1$
     
     
     public static void storeLocale(Locale locale)
@@ -364,6 +367,54 @@ public class Settings
         
         Settings.storeFramePosition(frameId, frame.getLocation());
         Settings.storeFrameSize(frameId, frame.getSize());
+    }
+    
+    /**
+     * Stores the kind and order of card sides currently shown in the card panel.
+     */
+    public static void storeCardSidesShown(CardPanel cardPanel, String panelId)
+    {
+        ArrayList<Integer> list = new ArrayList<Integer>();
+        for (int i=0; i<cardPanel.getCardSides().size(); i++)
+        {
+            if (cardPanel.isCardSideVisible(i))
+                list.add(i);
+            
+        }
+        
+        int[] sides = new int[list.size()]; 
+        for (int i=0; i<list.size(); i++)
+            sides[i] = list.get(i);
+        
+        PreferencesTool.putIntArray(PREFS, panelId + ".sides", sides);
+    }
+    
+    public static void loadCardSidesShown(CardPanel cardPanel, String panelId)
+    {
+        int[] sides = PreferencesTool.getIntArray(PREFS, panelId + ".sides");
+        
+        if (sides != null)
+        {
+            for (int i = 0; i < cardPanel.getCardSides().size(); i++)
+                cardPanel.setCardSideVisible(i, false);
+            
+            for (int i = 0; i < sides.length; i++)
+                cardPanel.setCardSideVisible(sides[i], true);
+        }
+    }
+    
+    /**
+     * Save if the front side should be also shown when showing the answer 
+     * during a learn session. 
+     */
+    public static void storeShowFrontSideInQuiz(boolean show)
+    {
+        PREFS.putBoolean(SHOW_FRONT_IN_QUIZ, show);
+    }
+    
+    public static boolean loadShowFrontSideInQuiz()
+    {
+        return PREFS.getBoolean(SHOW_FRONT_IN_QUIZ, false);
     }
 
     /**

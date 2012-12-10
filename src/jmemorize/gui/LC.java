@@ -53,7 +53,7 @@ public interface LC
      * @since 1.2.3
      */
     public static final String EXPIRED                                = "General.EXPIRED";
-
+    
     public static final String GENERAL                                = "General.GENERAL";
     public static final String OKAY                                   = "General.OKAY";
     public static final String APPLY                                  = "General.APPLY";
@@ -217,6 +217,7 @@ public interface LC
     public static final String PASTE                                  = "MainFrame.PASTE";
     
     public static final String FILE_FILTER_DESC                       = "MainFrame.FILE_FILTER_DESC";
+    public static final String IMG_FILTER_DESC                        = "MainFrame.IMG_FILTER_DESC";
     
     public static final String EXPORT_CLEAN                           = "MainFrame.EXPORT_CLEAN";
     public static final String EXPORT_CLEAN_DESC                      = "MainFrame.EXPORT_CLEAN_DESC";
@@ -271,6 +272,12 @@ public interface LC
     public static final String HISTORY_BY_YEAR                        = "History.BY_YEAR";
     /** @since 1.2.0 */
     public static final String HISTORY_DURATION                       = "History.SESSION_DURATION";
+    
+    // -- Time ------
+    
+    public static final String TIME_HOURS                             = "Time.HOURS";
+    public static final String TIME_MINUTES                           = "Time.MINUTES";
+    public static final String TIME_SECONDS                           = "Time.SECONDS";
     
     // -- Schedule ------
     

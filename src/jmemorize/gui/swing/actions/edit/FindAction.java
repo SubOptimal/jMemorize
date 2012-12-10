@@ -23,9 +23,9 @@ import java.awt.event.KeyEvent;
 import jmemorize.core.Category;
 import jmemorize.core.Main;
 import jmemorize.gui.Localization;
+import jmemorize.gui.swing.SelectionProvider;
 import jmemorize.gui.swing.actions.AbstractAction2;
 import jmemorize.gui.swing.frames.FindFrame;
-import jmemorize.gui.swing.frames.MainFrame;
 
 /**
  * An action that shows the search window.
@@ -34,18 +34,20 @@ import jmemorize.gui.swing.frames.MainFrame;
  */
 public class FindAction extends AbstractAction2
 {
-    public FindAction()
+    SelectionProvider m_provider;
+    
+    public FindAction(SelectionProvider provider)
     {
+        m_provider = provider;
         setValues();
     }
 
     public void actionPerformed(java.awt.event.ActionEvent e)
     {
         Main main = Main.getInstance();
-        MainFrame frame = main.getFrame();
         
         Category rootCategory = main.getLesson().getRootCategory();
-        FindFrame.getInstance().show(rootCategory, frame.getCategory());
+        FindFrame.getInstance().show(rootCategory, m_provider.getCategory());
     }
 
     private void setValues()

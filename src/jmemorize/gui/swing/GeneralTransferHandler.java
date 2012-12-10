@@ -18,16 +18,22 @@
  */
 package jmemorize.gui.swing;
 
+import java.awt.Image;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.Transferable;
 import java.awt.datatransfer.UnsupportedFlavorException;
+import java.io.File;
+import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
 
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JTextPane;
 import javax.swing.TransferHandler;
+import javax.swing.text.BadLocationException;
 import javax.swing.text.Document;
 import javax.swing.text.StyledDocument;
 
@@ -38,6 +44,7 @@ import jmemorize.core.Main;
 import jmemorize.gui.swing.panels.CardSidePanel;
 import jmemorize.gui.swing.widgets.CardTable;
 import jmemorize.gui.swing.widgets.CategoryTree;
+import jmemorize.util.ImageConverter;
 
 /**
  * Organizes datatransfers between the card table and the category tree.
@@ -245,7 +252,8 @@ public class GeneralTransferHandler extends TransferHandler
             for (int i = 0; i < transferFlavors.length; i++)
             {
                 if (transferFlavors[i] == FORMATTED_TEXT_FLAVOR || 
-                    transferFlavors[i] == DataFlavor.stringFlavor)
+                    transferFlavors[i] == DataFlavor.stringFlavor ||
+                    transferFlavors[i] == DataFlavor.imageFlavor)
                 {
                     return true;
                 }
@@ -256,6 +264,8 @@ public class GeneralTransferHandler extends TransferHandler
     }
     
     /*
+     * Imports various data formats from the clip board.
+     * 
      * @see javax.swing.TransferHandler
      */
     @SuppressWarnings("unchecked")
@@ -280,47 +290,23 @@ public class GeneralTransferHandler extends TransferHandler
                 
                 if (t.isDataFlavorSupported(FORMATTED_TEXT_FLAVOR))
                 {
-                    int start = textPane.getSelectionStart();
-                    FormattedTextSection fText = (FormattedTextSection)t.getTransferData(
-                        FORMATTED_TEXT_FLAVOR);
-                    
-                    fText.getText().insertIntoDocument(textPane.getStyledDocument(), start);
+                    if (importFormatedText(t, textPane))
+                        return true;
                 }
                 else if (t.isDataFlavorSupported(DataFlavor.imageFlavor))
                 {
                     if (t.isDataFlavorSupported(DataFlavor.stringFlavor))
                     {
-                        String link = (String)t.getTransferData(DataFlavor.stringFlavor);
-                        link = link.substring(0, link.indexOf('\n'));
-                        
-                        String lower = link.toLowerCase();
-                        if (lower.startsWith("http://"))
-                        {
-                            if (lower.endsWith(".jpg") || 
-                                lower.endsWith(".gif") ||
-                                lower.endsWith(".png") || 
-                                lower.endsWith(".jpeg") || 
-                                lower.endsWith(".bmp"))
-                            {
-                                URL url = new URL(link);
-                                ImageIcon icon = new ImageIcon(url);
-                                icon.setDescription(link);
-                                
-                                m_cardSidePanel.addImage(icon);
-                                m_cardSidePanel.getTextPane().requestFocus();
-                                
-                                return true;
-                            }
-                        }
+                        if (importImageWithURL(t))
+                            return true;
                     }
-                }
-                else if (t.isDataFlavorSupported(DataFlavor.stringFlavor))
-                {
-                    int start = textPane.getSelectionStart();
-                    String text = (String)t.getTransferData(DataFlavor.stringFlavor);
                     
-                    textPane.getDocument().insertString(start, text, null);
+                    if (importImageRaw(t))
+                        return true;
                 }
+                
+                if (t.isDataFlavorSupported(DataFlavor.stringFlavor))
+                    importString(t, textPane);
                 
                 return true;
             }
@@ -356,6 +342,79 @@ public class GeneralTransferHandler extends TransferHandler
         catch (Exception e)
         {
             Main.logThrowable("Error importing data from clipboard", e);
+        }
+        
+        return false;
+    }
+
+    private boolean importFormatedText(Transferable t, JTextPane textPane)
+        throws UnsupportedFlavorException, IOException
+    {
+        int start = textPane.getSelectionStart();
+        FormattedTextSection fText = (FormattedTextSection)t.getTransferData(
+            FORMATTED_TEXT_FLAVOR);
+        
+        fText.getText().insertIntoDocument(textPane.getStyledDocument(), start);
+        return true;
+    }
+
+    private void importString(Transferable t, JTextPane textPane)
+        throws UnsupportedFlavorException, IOException, BadLocationException
+    {
+        int start = textPane.getSelectionStart();
+        String text = (String)t.getTransferData(DataFlavor.stringFlavor);
+        
+        textPane.getDocument().insertString(start, text, null);
+    }
+
+    private boolean importImageRaw(Transferable t) throws UnsupportedFlavorException, IOException
+    {
+        ImageIcon icon = null;
+        Image image = (Image)t.getTransferData(DataFlavor.imageFlavor);
+
+        File file = File.createTempFile("jmem-image", ".jpg");
+        ImageIO.write(ImageConverter.toBufferedImage(image), "jpeg", file);
+        
+        String filename = file.getAbsolutePath();
+        icon = new ImageIcon(filename);
+        icon.setDescription(filename);
+        
+        m_cardSidePanel.addImage(icon);
+        m_cardSidePanel.getTextPane().requestFocus();
+        
+        return true;
+    }
+
+    private boolean importImageWithURL(Transferable t) throws UnsupportedFlavorException, IOException,
+        MalformedURLException
+    {
+        String link = (String)t.getTransferData(DataFlavor.stringFlavor);
+        
+        int idx = link.indexOf('\n');
+        
+        if (idx > -1)
+        {
+            link = link.substring(0, idx);
+        }
+            
+        String lower = link.toLowerCase();
+        if (lower.startsWith("http://"))
+        {
+            if (lower.endsWith(".jpg") || 
+                lower.endsWith(".gif") ||
+                lower.endsWith(".png") || 
+                lower.endsWith(".jpeg") || 
+                lower.endsWith(".bmp"))
+            {
+                URL url = new URL(link);
+                ImageIcon icon = new ImageIcon(url);
+                icon.setDescription(link);
+                
+                m_cardSidePanel.addImage(icon);
+                m_cardSidePanel.getTextPane().requestFocus();
+                
+                return true;
+            }
         }
         
         return false;

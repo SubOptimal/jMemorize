@@ -114,6 +114,8 @@ public class MainFrame extends JFrame implements CategoryObserver,
     private static final String             FRAME_ID             = "main";
     private static final String             REPEAT_CARD          = "repeatCard";
     private static final String             DECK_CARD            = "deckCard";
+    
+    public static final int                 DIVIDER_SIZE         = 4;
 
     // jmemorize swing elements
     private CategoryComboBox                m_categoryBox;
@@ -159,6 +161,12 @@ public class MainFrame extends JFrame implements CategoryObserver,
             Main.logThrowable("could not set look and feel", e);
         }
     }
+    
+    public static void beautifyDividerBorder(JSplitPane splitPane)
+    {
+        BasicSplitPaneUI ui = (BasicSplitPaneUI)splitPane.getUI();
+        ui.getDivider().setBorder(new EmptyBorder(5, 2, 5, 2));
+    }
 
     /**
      * Creates a new MainFrame.
@@ -168,6 +176,8 @@ public class MainFrame extends JFrame implements CategoryObserver,
         m_main = Main.getInstance();
         
         initComponents();
+        initAppleAdapter();
+        
         loadSettings();
         
         m_deckTablePanel.getCardTable().setStatusBar(m_statusBar);
@@ -700,8 +710,7 @@ public class MainFrame extends JFrame implements CategoryObserver,
         m_verticalSplitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT);
         m_verticalSplitPane.setPreferredSize(new Dimension(16, 500));
         m_verticalSplitPane.setBorder(null);
-        BasicSplitPaneUI ui = (BasicSplitPaneUI)m_verticalSplitPane.getUI();
-        ui.getDivider().setBorder(new EmptyBorder(5, 2, 5, 2));
+        beautifyDividerBorder(m_verticalSplitPane);
         
         m_verticalSplitPane.setTopComponent(m_deckChartPanel);
         m_verticalSplitPane.setBottomComponent(m_bottomPanel);
@@ -712,7 +721,7 @@ public class MainFrame extends JFrame implements CategoryObserver,
         // horizontal split pane
         m_horizontalSplitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
         m_horizontalSplitPane.setDividerLocation(m_categoryTreeWidth);
-        m_horizontalSplitPane.setDividerSize(4);
+        m_horizontalSplitPane.setDividerSize(DIVIDER_SIZE);
         m_horizontalSplitPane.setBorder(null);
 
         m_horizontalSplitPane.setLeftComponent(m_treeScrollPane);
@@ -735,6 +744,35 @@ public class MainFrame extends JFrame implements CategoryObserver,
         setIconImage(Toolkit.getDefaultToolkit().getImage(
             getClass().getResource("/resource/icons/main.png"))); //$NON-NLS-1$
         pack();
+    }
+
+    private void initAppleAdapter()
+    {
+        // the following code checks for apple specific classes and loads the
+        // apple event adapter
+        boolean hasAppleMenu = false;
+        try
+        {
+            // the following code is equivalent to 'new AppleAdapter();' but
+            // separates the apple code entirely from the main code
+            Class<?> appleAdapter = ClassLoader.getSystemClassLoader().loadClass(
+                "jmemorize.gui.AppleAdapter");
+            appleAdapter.newInstance();
+
+            // store that we have an apple menu
+            hasAppleMenu = true;
+        }
+
+        catch (Throwable th)
+        {
+            // we are not on a os x system
+        }
+
+        // remove normal exit item from file menu
+        if (hasAppleMenu)
+        {
+            // todo
+        }
     }
 
     private JPanel buildCategoryBar()
@@ -785,7 +823,7 @@ public class MainFrame extends JFrame implements CategoryObserver,
         operationsToolbar.add(new JButton(new RemoveAction(this)));
         
         operationsToolbar.add(new JButton(new AddCategoryAction(this)));
-        operationsToolbar.add(new JButton(new FindAction()));
+        operationsToolbar.add(new JButton(new FindAction(this)));
         operationsToolbar.add(new JButton(new LearnAction(this)));
         
         JPanel operationsPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 1, 1));

@@ -27,7 +27,7 @@ import jmemorize.core.CardSide.CardSideObserver;
  * A flash card that has a front/flip side and can be learned.
  * 
  * @author djemili
- * @version $Id: Card.java 1048 2008-01-21 21:40:00Z djemili $
+ * @version $Id: Card.java 1121 2009-03-14 13:50:15Z djemili $
  */
 public class Card implements Events, Cloneable
 {
@@ -53,6 +53,7 @@ public class Card implements Events, Cloneable
     private int      m_testsHit;    //succesfull learn repetitions
     private int      m_frontHitsCorrect;
     private int      m_backHitsCorrect;
+    private int      m_skipped;
 
     /**
      * Assumes formatted front- and backsides
@@ -195,6 +196,7 @@ public class Card implements Events, Cloneable
     {
         setLearnedAmount(true, 0);
         setLearnedAmount(false, 0);
+        setSkippedAmount(0);
     }
 
     public CardSide getFrontSide()
@@ -327,6 +329,18 @@ public class Card implements Events, Cloneable
         
         m_frontHitsCorrect = 0;
         m_backHitsCorrect = 0;
+        
+        m_skipped = 0;
+    }
+    
+    public int getSkippedAmount()
+    {
+        return m_skipped;
+    }
+    
+    public void setSkippedAmount(int skipped)
+    {
+        m_skipped = skipped;
     }
 
     public Category getCategory()

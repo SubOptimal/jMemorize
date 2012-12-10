@@ -194,6 +194,20 @@ public class Category implements Events
     }
     
     /**
+     * @return The count of cards of all decks in this category.
+     */
+    public int getCardCount()
+    {
+        int count = 0;
+        
+        // get cards from all decks
+        for (int i=0; i < m_decks.size(); i++)
+            count += getCardCount(i);
+            
+        return count;
+    }
+    
+    /**
      * @param level the deck level.
      * 
      * @return all cards in the given deck level in this category and its child
@@ -224,6 +238,34 @@ public class Category implements Events
         }
         
         return cardList;
+    }
+    
+    /**
+     * @param level the deck level.
+     * 
+     * @return the count of all cards in the given deck level in this category 
+     * and its child categories. Returns the total card count of all decks if 
+     * -1 is given as level.
+     */
+    public int getCardCount(int level)
+    {
+        if (level >= getNumberOfDecks())
+            return 0;
+        
+        if (level == -1)
+            return getCardCount();
+        
+        // get cards in this category
+        int count = m_decks.get(level).size();
+        
+        //get cards in child categories
+        for (Category child : getChildCategories())
+        {
+            if (child.getNumberOfDecks() > level)
+                count += child.getCardCount(level);
+        }
+        
+        return count;
     }
     
     /**

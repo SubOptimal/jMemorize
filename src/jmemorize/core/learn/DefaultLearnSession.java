@@ -474,6 +474,7 @@ public class DefaultLearnSession implements CategoryObserver, LearnSession
         assert m_cardsActive.contains(m_currentCardInfo);
 
         m_cardsSkipped.add(currentCard);
+        currentCard.setSkippedAmount(currentCard.getSkippedAmount() + 1);
         
         if (m_cardsReserve != null && m_cardsReserve.size() > 0) 
         {

@@ -46,6 +46,7 @@ import jmemorize.core.learn.LearnSession;
 import jmemorize.core.learn.LearnSessionObserver;
 import jmemorize.core.learn.LearnSessionProvider;
 import jmemorize.core.learn.LearnSettings;
+import jmemorize.core.media.MediaRepository;
 import jmemorize.gui.swing.frames.MainFrame;
 import jmemorize.util.RecentItems;
 
@@ -126,7 +127,7 @@ public class Main extends Observable implements LearnSessionProvider,
      */
     public void createNewLesson()
     {
-        ImageRepository.getInstance().clear();
+        MediaRepository.getInstance().clear();
         setLesson(new Lesson(false));
     }
 
@@ -158,7 +159,7 @@ public class Main extends Observable implements LearnSessionProvider,
     {
         try
         {
-            ImageRepository.getInstance().clear();
+            MediaRepository.getInstance().clear();
             
             Lesson lesson = new Lesson(false);
             XmlBuilder.loadFromXMLFile(file, lesson);

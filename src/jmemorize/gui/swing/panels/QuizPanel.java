@@ -1,6 +1,6 @@
 /*
  * jMemorize - Learning made easy (and fun) - A Leitner flashcards tool
- * Copyright(C) 2004-2008 Riad Djemili and contributors
+ * Copyright(C) 2004-2009 Riad Djemili and contributors
  * 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -44,6 +44,7 @@ import jmemorize.core.learn.LearnSession.LearnCardObserver;
 import jmemorize.gui.LC;
 import jmemorize.gui.Localization;
 import jmemorize.gui.swing.CardFont;
+import jmemorize.gui.swing.ColorConstants;
 import jmemorize.gui.swing.Quiz;
 import jmemorize.gui.swing.CardFont.FontType;
 import jmemorize.gui.swing.actions.AbstractAction2;
@@ -145,9 +146,11 @@ public class QuizPanel extends JPanel implements Events,
     //  swing elements
     private JButton           m_showButton        = new JButton(new ShowAction());
     private JButton           m_yesButton         = new JButton(new YesAction());
+    private JButton           m_skipButton        = new JButton(new SkipAction());
     
     private TwoSidesCardPanel m_questionCardPanel = new TwoSidesCardPanel(false, false);
     private Quiz              m_quiz              = new ThinkQuiz();
+    
     private JPanel            m_answerBarPanel    = buildAnswerButtonBar();
     private JPanel            m_questionBarPanel  = buildQuestionButtonBar();
     private JPanel            m_barPanel          = new JPanel();
@@ -155,7 +158,6 @@ public class QuizPanel extends JPanel implements Events,
     private LearnSession      m_session;
     private Card              m_currentCard;
     private boolean           m_showFlipped;
-    private boolean           m_frontWasVisible;
     
     private JCheckBox         m_categoryCheckBox  = new JCheckBox(
         Localization.get(LC.LEARN_SHOW_CATEGORY));
@@ -253,23 +255,31 @@ public class QuizPanel extends JPanel implements Events,
 
     private void initComponents() 
     {
+        m_answerBarPanel.setBackground(ColorConstants.QUIZ_COLOR);
+        m_questionBarPanel.setBackground(ColorConstants.QUIZ_COLOR);
+        
         m_questionCardPanel.setEditable(false);
         m_questionCardPanel.setBorder(new EmptyBorder(5, 10, 5, 10));
         m_questionCardPanel.addCardSide(Localization.get(LC.FLIPSIDE), m_quiz.getVisual());
+        m_questionCardPanel.setBackground(ColorConstants.QUIZ_COLOR);
         
         setLayout(new BorderLayout());
         
         m_barPanel.setLayout(new CardLayout());
         m_barPanel.add(m_questionBarPanel, QUESTION_CARD);
         m_barPanel.add(m_answerBarPanel,   ANSWER_CARD);
+        m_barPanel.setBackground(ColorConstants.QUIZ_COLOR);
 
         JPanel mainCardPanel = new JPanel(new BorderLayout());
         mainCardPanel.setBorder(new EtchedBorder());
         
         JPanel catPanel = buildCategoryPanel();
+        catPanel.setBackground(ColorConstants.QUIZ_COLOR);
+        
         mainCardPanel.add(catPanel, BorderLayout.NORTH);
         mainCardPanel.add(m_questionCardPanel, BorderLayout.CENTER);
         mainCardPanel.add(m_barPanel, BorderLayout.SOUTH);
+        mainCardPanel.setBackground(ColorConstants.SIDEBAR_COLOR);
 
         add(mainCardPanel, BorderLayout.CENTER);
     }
@@ -291,7 +301,7 @@ public class QuizPanel extends JPanel implements Events,
                 m_currentCard.getFrontSide();
             
             m_questionCardPanel.setTextSides(questionSide.getText(), answerSide.getText());
-            m_questionCardPanel.setImages(questionSide.getImages(), answerSide.getImages());
+            m_questionCardPanel.setImages(questionSide.getMedia(), answerSide.getMedia());
             
             m_quiz.showQuestion(answerSide);
         }
@@ -311,8 +321,9 @@ public class QuizPanel extends JPanel implements Events,
     {
         if (m_isShowAnswer)
         {
-            m_frontWasVisible = m_questionCardPanel.isCardSideVisible(0) && 
-                m_questionCardPanel.isCardSideVisible(1);
+            Settings.storeShowFrontSideInQuiz( 
+                m_questionCardPanel.isCardSideVisible(0) && 
+                m_questionCardPanel.isCardSideVisible(1));
         }
         
         m_questionCardPanel.setCardSideVisible(0, true);
@@ -324,12 +335,13 @@ public class QuizPanel extends JPanel implements Events,
         m_isShowQuestion = true;
         m_isShowAnswer = false;
         
+        m_skipButton.setEnabled(m_currentCard.getSkippedAmount() < 3);
         m_showButton.requestFocus();
     }
     
     private void showAnswer()
     {
-        m_questionCardPanel.setCardSideVisible(0, m_frontWasVisible);
+        m_questionCardPanel.setCardSideVisible(0, Settings.loadShowFrontSideInQuiz());
         m_questionCardPanel.setCardSideVisible(1, true);
         m_questionCardPanel.setCardSideEnabled(1, true);
         
@@ -358,7 +370,10 @@ public class QuizPanel extends JPanel implements Events,
                 updateCategoryField();
             }
         });
+        
+        m_categoryCheckBox.setBackground(ColorConstants.QUIZ_COLOR);
         m_categoryField.setEditable(false);
+        
         boolean showCat = Main.USER_PREFS.getBoolean(PREFS_SHOW_CARD_CATEGORY, true);
         m_categoryCheckBox.setSelected(showCat);
         
@@ -381,8 +396,6 @@ public class QuizPanel extends JPanel implements Events,
     
     private JPanel buildQuestionButtonBar()
     {
-        JButton skipButton = new JButton(new SkipAction());
-        
         // build it using forms layout
         FormLayout layout = getBottomFormLayout();
         CellConstraints cc = new CellConstraints();
@@ -392,7 +405,7 @@ public class QuizPanel extends JPanel implements Events,
         
         builder.addLabel(m_quiz.getHelpText(), cc.xy(1, 1));
         builder.add(m_showButton, cc.xy(3,1));
-        builder.add(skipButton,   cc.xy(5,1));
+        builder.add(m_skipButton, cc.xy(5,1));
         
         return builder.getPanel();
     }

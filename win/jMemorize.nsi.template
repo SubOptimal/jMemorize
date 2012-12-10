@@ -1,0 +1,115 @@
+; jMemorize.nsi
+;
+; This script is based on example1.nsi, but it remember the directory, 
+; has uninstall support and (optionally) installs start menu shortcuts.
+;
+; It will install jMemorize.nsi into a directory that the user selects,
+
+;--------------------------------
+
+; The name of the installer
+Name "jMemorize"
+
+; The file to write
+OutFile "@setupfile"
+
+; The default installation directory
+InstallDir $PROGRAMFILES\jMemorize
+
+; Registry key to check for directory (so if you install again, it will 
+; overwrite the old one automatically)
+InstallDirRegKey HKLM "Software\NSIS_jMemorize" "Install_Dir"
+
+;--------------------------------
+
+LicenseText "This software is released under the GPL license."
+LicenseData "gpl.txt"
+
+;--------------------------------
+; Pages
+Page license
+Page components
+Page directory
+Page instfiles
+
+UninstPage uninstConfirm
+UninstPage instfiles
+
+;--------------------------------
+
+; The stuff to install
+Section "jMemorize (required)"
+
+  SectionIn RO
+  
+  ; Set output path to the installation directory.
+  SetOutPath $INSTDIR
+  
+  ; Put file there
+  File "@exefile"
+  
+  ; Write the installation path into the registry
+  WriteRegStr HKLM SOFTWARE\NSIS_jMemorize "Install_Dir" "$INSTDIR"
+  
+  ; Write the uninstall keys for Windows
+  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\jMemorize" "DisplayName" "jMemorize"
+  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\jMemorize" "UninstallString" '"$INSTDIR\uninstall.exe"'
+  WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\jMemorize" "NoModify" 1
+  WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\jMemorize" "NoRepair" 1
+  WriteUninstaller "uninstall.exe"
+  
+  WriteRegStr HKCR ".jml" "" "jMemorizeLesson"
+  WriteRegStr HKCR "jMemorizeLesson" "" "jMemorize Lesson File"
+  WriteRegStr HKCR "jMemorizeLesson\shell" "" "open"
+  WriteRegStr HKCR "jMemorizeLesson\shell\open\command" "" '$INSTDIR\@exefile "%1"'  
+  System::Call 'Shell32::SHChangeNotify(i 0x8000000, i 0, i 0, i 0)'
+  
+SectionEnd
+
+; Optional section (can be disabled by the user)
+Section "Start Menu Shortcuts"
+
+  CreateDirectory "$SMPROGRAMS\jMemorize"
+  CreateShortCut "$SMPROGRAMS\jMemorize\Uninstall.lnk" "$INSTDIR\uninstall.exe" "" "$INSTDIR\uninstall.exe" 0
+  CreateShortCut "$SMPROGRAMS\jMemorize\jMemorize.lnk" "$INSTDIR\@exefile" "" "$INSTDIR\@exefile" 0
+  
+SectionEnd
+
+Section "Run after Installation"
+	StrCpy $0 "TRUE"
+SectionEnd
+
+
+Function .onInstSuccess
+  StrCmp $0 "TRUE" oisrun
+  Goto oisend
+oisrun:
+  ExecShell open "$INSTDIR\@exefile"
+oisend:
+FunctionEnd
+
+;--------------------------------
+
+; Uninstaller
+
+Section "Uninstall"
+  DeleteRegKey HKCR ".jml"
+  DeleteRegKey HKCR "jMemorizeLesson" ;Delete key with association settings
+  System::Call 'Shell32::SHChangeNotify(i 0x8000000, i 0, i 0, i 0)'
+  
+  ; Remove registry keys
+  DeleteRegKey HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\jMemorize"
+  DeleteRegKey HKLM SOFTWARE\NSIS_jMemorize
+
+  ; Remove files and uninstaller
+  Delete $INSTDIR\@exefile
+  Delete $INSTDIR\uninstall.exe
+
+  ; Remove shortcuts, if any
+  Delete "$SMPROGRAMS\jMemorize\*.*"
+
+  ; Remove directories used
+  RMDir "$SMPROGRAMS\jMemorize"
+  RMDir "$INSTDIR"
+
+SectionEnd

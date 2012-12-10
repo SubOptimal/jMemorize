@@ -78,9 +78,6 @@ public class LearnPanel extends JPanel implements SelectionProvider,
     private LearnSession      m_session;
     private Card              m_currentCard;
     
-    private TimerPanel        m_timerPanel        = new TimerPanel();
-    private CardCounterPanel  m_cardCounterPanel  = new CardCounterPanel();
-    
     private JLabel            m_flippedLabel      = new JLabel(
         Localization.get(LC.LEARN_FLIPPED),
         new ImageIcon(getClass().getResource("/resource/icons/card_flipped.gif")), //$NON-NLS-1$
@@ -109,24 +106,9 @@ public class LearnPanel extends JPanel implements SelectionProvider,
         m_session = session;
         m_session.addObserver(this);
         
-        LearnSettings settings = session.getSettings();
-        if (settings.isTimeLimitEnabled())
-        {
-            m_timerPanel.start(session, settings.getTimeLimit() * 60);
-        }
-        else
-        {
-            m_timerPanel.start(session);
-        }
         
-        // test always showing the extent progress bar
-        int targetCards = m_session.getCardsLeft().size();
-        if (session.getSettings().isCardLimitEnabled())
-        {
-            targetCards = Math.min(session.getSettings().getCardLimit(), targetCards);
-        }
-        m_cardCounterPanel.start(targetCards);
     
+        LearnSettings settings = session.getSettings();
         int sidesToTest = settings.getAmountToTest(true) + 
             settings.getAmountToTest(false);
         
@@ -144,8 +126,6 @@ public class LearnPanel extends JPanel implements SelectionProvider,
      */
     public void sessionEnded(LearnSession session)
     {
-        m_timerPanel.stop();
-        
         if (m_statusBar != null)
         {
             m_statusBar.setLeftText(""); //$NON-NLS-1$
@@ -252,6 +232,7 @@ public class LearnPanel extends JPanel implements SelectionProvider,
     private void initComponents() 
     {
         JPanel mainPanel = new JPanel(new BorderLayout());
+//        buildSidebarPanel();
         mainPanel.add(buildSidebarPanel(), BorderLayout.WEST);
         mainPanel.add(new QuizPanel(), BorderLayout.CENTER);
         
@@ -261,8 +242,9 @@ public class LearnPanel extends JPanel implements SelectionProvider,
 
     private JPanel buildSidebarPanel()
     {
-        m_timerPanel.setBackground(ColorConstants.SIDEBAR_COLOR);
-        m_timerPanel.setPreferredSize(new Dimension(140, 22));
+        TimerPanel timerPanel = new TimerPanel();
+        timerPanel.setBackground(ColorConstants.SIDEBAR_COLOR);
+        timerPanel.setPreferredSize(new Dimension(140, 22));
         
         m_currentCardProgressLabel = new JLabel(Localization.getEmpty(LC.LEARN_CARD));
         m_currentCardProgressLabel.setVisible(false);
@@ -277,6 +259,7 @@ public class LearnPanel extends JPanel implements SelectionProvider,
         m_currentCardProgressBar.setStringPainted(true);
         m_currentCardProgressBar.setPreferredSize(new Dimension(140, 22));
         
+        JComponent m_cardCounterPanel = new CardCounterPanel();
         m_cardCounterPanel.setBackground(ColorConstants.SIDEBAR_COLOR);
         JButton stopLearningButton = new JButton(new StopAction());
         
@@ -290,7 +273,7 @@ public class LearnPanel extends JPanel implements SelectionProvider,
         
         DefaultFormBuilder builder = new DefaultFormBuilder(layout);
         builder.addLabel(Localization.get(LC.LEARN_TIMER), cc.xy(1,  2));
-        builder.add(m_timerPanel,                          cc.xy(1,  4));
+        builder.add(timerPanel,                          cc.xy(1,  4));
         
         String title = Localization.get(LC.LEARN_SESSION, LC.LEARN_CARD_COUNTER);
         builder.addLabel(title,                            cc.xy(1,  6));
@@ -309,10 +292,6 @@ public class LearnPanel extends JPanel implements SelectionProvider,
     
     private void updateProgressBars() 
     {
-        int cardsLearned = m_session.getNCardsLearned();
-        int cardsPartiallyLearned = m_session.getNCardsPartiallyLearned();
-        
-        m_cardCounterPanel.setCardsPassed(cardsLearned, cardsPartiallyLearned);
         if (!m_isPartialProgressMode || m_currentCard == null)
             return;
         

@@ -26,9 +26,9 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
 import jmemorize.core.FormattedText;
-import jmemorize.core.ImageRepository;
 import jmemorize.core.Settings;
 import jmemorize.core.Settings.CardFontObserver;
+import jmemorize.core.media.MediaRepository;
 import jmemorize.gui.LC;
 import jmemorize.gui.Localization;
 import jmemorize.gui.swing.CardFont;
@@ -206,7 +206,7 @@ public class TwoSidesCardPanel extends CardPanel implements CardFontObserver
     
     private void setSideImages(CardSidePanel cardSide, List<String> ids)
     {
-        ImageRepository repo = ImageRepository.getInstance();
+        MediaRepository repo = MediaRepository.getInstance();
         List<ImageIcon> images = repo.toImageIcons(ids);
         cardSide.setImages(images);
     }

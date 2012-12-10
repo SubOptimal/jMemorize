@@ -23,10 +23,6 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.text.AttributedString;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
@@ -59,7 +55,8 @@ import org.jfree.data.general.PieDataset;
  * 
  * @author djemili
  */
-public class CardCounterPanel extends JPanel
+public class CardCounterPanel extends JPanel implements LearnSessionObserver, 
+    LearnCardObserver
 {
     private static boolean     USE_PIECHART    = false;
     private static boolean     USE_EXTENT_BAR  = false;
@@ -71,7 +68,7 @@ public class CardCounterPanel extends JPanel
     private boolean            m_showPartiallyPassed;
 
     private LearnSession       m_session;
-    private List<Card>         m_cards;
+//    private List<Card>         m_cards;
     
     private DefaultPieDataset  m_pieDataset;
     private JProgressBar       m_bar;
@@ -79,11 +76,51 @@ public class CardCounterPanel extends JPanel
 
     public CardCounterPanel()
     {
-        if (USE_PARTIAL_BAR)
-            attachPartialProgressBar();
+        Main.getInstance().addLearnSessionObserver(this);
+        
+//        if (USE_PARTIAL_BAR)
+//            attachPartialProgressBar();
     }
     
-    public void start(int target)
+    /* (non-Javadoc)
+     * @see jmemorize.core.learn.LearnSessionObserver#sessionStarted
+     */
+    public void sessionStarted(LearnSession session)
+    {
+        m_session = session;
+        session.addObserver(this);
+        
+        LearnSettings settings = session.getSettings();
+        
+        // test always showing the extent progress bar
+        int targetCards = session.getCardsLeft().size();
+        
+        if (settings.isCardLimitEnabled())
+            targetCards = Math.min(settings.getCardLimit(), targetCards);
+        
+        start(targetCards);
+    }
+
+    /* (non-Javadoc)
+     * @see jmemorize.core.learn.LearnSessionObserver#sessionEnded
+     */
+    public void sessionEnded(LearnSession session)
+    {
+        session.removeObserver(this);
+    }
+
+    /* (non-Javadoc)
+     * @see jmemorize.core.learn.LearnSession.LearnCardObserver#nextCardFetched
+     */
+    public void nextCardFetched(Card card, boolean flippedMode)
+    {
+        int cardsLearned = m_session.getNCardsLearned();
+        int cardsPartiallyLearned = m_session.getNCardsPartiallyLearned();
+        
+        setCardsPassed(cardsLearned, cardsPartiallyLearned);
+    }
+
+    private void start(int target)
     {
         m_cardsTarget = target;
         m_cardsPassed = 0;
@@ -93,12 +130,7 @@ public class CardCounterPanel extends JPanel
         initComponents(target);
     }
 
-    public void start()
-    {
-        start(-1);
-    }
-
-    public void setCardsPassed(int passed, int partiallyPassed)
+    private void setCardsPassed(int passed, int partiallyPassed)
     {
         m_cardsPassed = passed;
         m_cardsPartiallyPassed = partiallyPassed;
@@ -227,11 +259,13 @@ public class CardCounterPanel extends JPanel
         //piePlot.setLabelLinkMargin(0.0);
         plot.setCircular(true);
         plot.setLabelGenerator(new PieSectionLabelGenerator() {
+            @SuppressWarnings("unchecked")
             public String generateSectionLabel(PieDataset arg0, Comparable arg1)
             {
                 return null;
             }
             
+            @SuppressWarnings("unchecked")
             public AttributedString generateAttributedSectionLabel(
                 PieDataset arg0, Comparable arg1)
             {
@@ -258,87 +292,87 @@ public class CardCounterPanel extends JPanel
         return bar;
     }
     
-    private float[] getValues()
-    {
-        float[] vals = new float[m_cards.size()];
-        LearnSettings settings = m_session.getSettings();
-        int frontTargetAmount = settings.getAmountToTest(true);
-        int backTargetAmount = settings.getAmountToTest(false);
-        float targetAmount = frontTargetAmount + backTargetAmount;
-
-        for (int i = 0; i < m_cards.size(); i++)
-        {
-            Card card = (Card)m_cards.get(i);
-            if (m_session.getPassedCards().contains(card)  || 
-                m_session.getRelearnedCards().contains(card)) 
-            {
-                vals[i] = 1f;
-            } 
-            else 
-            {                        
-                int frontLearnedAmount = card.getLearnedAmount(true); 
-                int backLearnedAmount = card.getLearnedAmount(false);
-
-                frontLearnedAmount = Math.min(frontLearnedAmount, frontTargetAmount);
-                backLearnedAmount = Math.min(backLearnedAmount, backTargetAmount);
-                vals[i] = (frontLearnedAmount + backLearnedAmount) / targetAmount;
-            }
-        }
-        
-        //Arrays.sort(vals);
-        
-        return vals;
-    }
+//    private float[] getValues()
+//    {
+//        float[] vals = new float[m_cards.size()];
+//        LearnSettings settings = m_session.getSettings();
+//        int frontTargetAmount = settings.getAmountToTest(true);
+//        int backTargetAmount = settings.getAmountToTest(false);
+//        float targetAmount = frontTargetAmount + backTargetAmount;
+//
+//        for (int i = 0; i < m_cards.size(); i++)
+//        {
+//            Card card = (Card)m_cards.get(i);
+//            if (m_session.getPassedCards().contains(card)  || 
+//                m_session.getRelearnedCards().contains(card)) 
+//            {
+//                vals[i] = 1f;
+//            } 
+//            else 
+//            {                        
+//                int frontLearnedAmount = card.getLearnedAmount(true); 
+//                int backLearnedAmount = card.getLearnedAmount(false);
+//
+//                frontLearnedAmount = Math.min(frontLearnedAmount, frontTargetAmount);
+//                backLearnedAmount = Math.min(backLearnedAmount, backTargetAmount);
+//                vals[i] = (frontLearnedAmount + backLearnedAmount) / targetAmount;
+//            }
+//        }
+//        
+//        //Arrays.sort(vals);
+//        
+//        return vals;
+//    }
     
-    private void attachPartialProgressBar()
-    {
-        Main.getInstance().addLearnSessionObserver(new LearnSessionObserver() {
-            class LearnCardObs implements LearnCardObserver
-            {
-                public void nextCardFetched(Card nextCard, boolean flippedMode)
-                {
-                    if (m_cards == null) 
-                    {
-                        m_cards = new ArrayList<Card>();
-                        m_cards.addAll(m_session.getCardsLeft());
-                    }
-                    
-                    if (! m_cards.contains(nextCard) ) 
-                    {
-                        // if the new card is not in m_cards, then a card has been skipped and
-                        // this card added.  We have to figure out the skipped card
-                        // this is kind of inefficient, but only happens on a skipped card... 
-                        // note also that we don't necessarily see the new card immediately 
-                        // after the skip, so the card positions may not update immediately.
-                        Set<Card> cardsToRemove = new HashSet<Card>();
-                        cardsToRemove.addAll(m_session.getSkippedCards());
-                        cardsToRemove.retainAll(m_cards);
-                        m_cards.removeAll(cardsToRemove);
-                        m_cards.add(nextCard);
-                    }
-                    
-                    PartialProgressBar bar = (PartialProgressBar)m_bar;
-                    bar.setValues(getValues());
-                }
-            }
-
-            private LearnCardObserver m_obs;
-            
-            public void sessionEnded(LearnSession session)
-            {
-                session.removeObserver(m_obs);
-            }
-
-            public void sessionStarted(LearnSession session)
-            {
-                m_session = session;
-                m_cards = null;
-                
-                m_obs = new LearnCardObs();
-                session.addObserver(m_obs);
-            }
-        });
-    }
+//    private void attachPartialProgressBar()
+//    {
+//        Main.getInstance().addLearnSessionObserver(new LearnSessionObserver() {
+//            class LearnCardObs implements LearnCardObserver
+//            {
+//                public void nextCardFetched(Card nextCard, boolean flippedMode)
+//                {
+//                    if (m_cards == null) 
+//                    {
+//                        m_cards = new ArrayList<Card>();
+//                        m_cards.addAll(m_session.getCardsLeft());
+//                    }
+//                    
+//                    if (! m_cards.contains(nextCard) ) 
+//                    {
+//                        // if the new card is not in m_cards, then a card has been skipped and
+//                        // this card added.  We have to figure out the skipped card
+//                        // this is kind of inefficient, but only happens on a skipped card... 
+//                        // note also that we don't necessarily see the new card immediately 
+//                        // after the skip, so the card positions may not update immediately.
+//                        Set<Card> cardsToRemove = new HashSet<Card>();
+//                        cardsToRemove.addAll(m_session.getSkippedCards());
+//                        cardsToRemove.retainAll(m_cards);
+//                        m_cards.removeAll(cardsToRemove);
+//                        m_cards.add(nextCard);
+//                    }
+//                    
+//                    PartialProgressBar bar = (PartialProgressBar)m_bar;
+//                    bar.setValues(getValues());
+//                }
+//            }
+//
+//            private LearnCardObserver m_obs;
+//            
+//            public void sessionEnded(LearnSession session)
+//            {
+//                session.removeObserver(m_obs);
+//            }
+//
+//            public void sessionStarted(LearnSession session)
+//            {
+//                m_session = session;
+//                m_cards = null;
+//                
+//                m_obs = new LearnCardObs();
+//                session.addObserver(m_obs);
+//            }
+//        });
+//    }
     
     private PartialProgressBar buildPartialProgressBar()
     {

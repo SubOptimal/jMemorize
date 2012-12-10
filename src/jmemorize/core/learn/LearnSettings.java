@@ -325,7 +325,9 @@ public class LearnSettings
      */
     public Date getExpirationDate(Date learnDate, int currentLevel)
     {
-        int deckDelay = getSchedule()[Math.min(currentLevel, 9)];
+        int [] schedule = getSchedule();
+        
+        int deckDelay = schedule[Math.min(currentLevel, schedule.length)];
         long millis = learnDate.getTime() + 60l * 1000l * deckDelay;
     
         Date date = new Date(millis);

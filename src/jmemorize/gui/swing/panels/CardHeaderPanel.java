@@ -110,6 +110,7 @@ public class CardHeaderPanel extends JPanel
         appendTR(sb, Localization.get(LC.CREATED),   dateString(card.getDateCreated()));
         appendTR(sb, Localization.get(LC.MODIFIED),  dateString(card.getDateModified()));
         appendTR(sb, Localization.get(LC.RATIO),     ratio);
+        appendTR(sb, Localization.get(LC.SKIPPED),   Integer.toString(card.getSkippedAmount()));
         
         sb.append("</table>");  //$NON-NLS-1$
         sb.append("</html>");  //$NON-NLS-1$

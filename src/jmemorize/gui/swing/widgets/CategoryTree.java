@@ -58,6 +58,7 @@ import jmemorize.gui.swing.actions.edit.AddCardAction;
 import jmemorize.gui.swing.actions.edit.AddCategoryAction;
 import jmemorize.gui.swing.actions.edit.CopyAction;
 import jmemorize.gui.swing.actions.edit.CutAction;
+import jmemorize.gui.swing.actions.edit.FindAction;
 import jmemorize.gui.swing.actions.edit.PasteAction;
 import jmemorize.gui.swing.actions.edit.RemoveAction;
 import jmemorize.gui.swing.frames.MainFrame;
@@ -515,6 +516,8 @@ public class CategoryTree extends JTree implements CategoryObserver, SelectionPr
         menu.add(new ActionWrapper(new CopyAction(this)));
         menu.add(new ActionWrapper(new CutAction(this)));
         menu.add(new ActionWrapper(new PasteAction(this)));
+        menu.addSeparator();
+        menu.add(new ActionWrapper(new FindAction(this)));
         
         menu.addPopupMenuListener(new PopupMenuListener(){
             public void popupMenuCanceled(PopupMenuEvent e)

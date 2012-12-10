@@ -18,20 +18,29 @@
  */
 package jmemorize.gui.swing.widgets;
 
+import java.awt.BorderLayout;
 import java.awt.Component;
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
+import javax.swing.JComponent;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.plaf.basic.BasicComboBoxRenderer;
 
 import jmemorize.core.Card;
 import jmemorize.core.Category;
 import jmemorize.core.CategoryObserver;
+import jmemorize.core.Events;
+import jmemorize.gui.LC;
+import jmemorize.gui.Localization;
+import jmemorize.gui.swing.SelectionProvider;
 
 /**
  * A combobox that shows categories. The categories are indented in a way that
@@ -39,7 +48,8 @@ import jmemorize.core.CategoryObserver;
  * 
  * @author djemili
  */
-public class CategoryComboBox extends JComboBox implements CategoryObserver
+public class CategoryComboBox extends JComboBox 
+    implements CategoryObserver, SelectionProvider
 {
     private class CatergoryRenderer extends BasicComboBoxRenderer
     {
@@ -50,25 +60,43 @@ public class CategoryComboBox extends JComboBox implements CategoryObserver
             int index, boolean isSelected, boolean cellHasFocus)
         {
             Category cat = (Category)value;
-            JLabel label = (JLabel)super.getListCellRendererComponent(list, 
+            
+            JLabel leftLabel = (JLabel)super.getListCellRendererComponent(list, 
                 cat.getName(), index, isSelected, cellHasFocus);
-            label.setIcon(FOLDER_ICON);
+            
+            leftLabel.setIcon(FOLDER_ICON);
             
             // show items in combo list indented.
             int leftSpace = index >= 0 ? 20 * cat.getDepth() : 0;
-            label.setBorder(new EmptyBorder(2, leftSpace, 2, 2));
+            leftLabel.setBorder(new EmptyBorder(2, leftSpace, 2, 2));
             
             if (index < 0)
-                label.setText(cat.getPath());
+                leftLabel.setText(cat.getPath());
+            
+            JLabel rightLabel = new JLabel();
+            rightLabel.setText(String.format("%d %s    ",
+                cat.getCardCount(), Localization.get(LC.STATUS_CARDS)));
+            
+            JPanel panel = new JPanel();
+            panel.setLayout(new BorderLayout());
+            panel.add(leftLabel, BorderLayout.CENTER);
+            panel.add(rightLabel, BorderLayout.EAST);
+            
+            if (index >= 0)
+            {
+                panel.setBackground(leftLabel.getBackground());
+                panel.setForeground(leftLabel.getForeground());
+            }
 
-            return label;
+            return panel;
         }
     }
     
     private final ImageIcon     FOLDER_ICON = new ImageIcon(getClass().
         getResource("/resource/icons/folder.gif")); //$NON-NLS-1$
     
-    private Category            m_rootCategory;
+    private Category                m_rootCategory;
+    private List<SelectionObserver> m_observers = new LinkedList<SelectionObserver>();
     
     public CategoryComboBox()
     {
@@ -116,9 +144,58 @@ public class CategoryComboBox extends JComboBox implements CategoryObserver
      */
     public void onCardEvent(int type, Card card, Category category, int deck)
     {
-        // ignore
+        if (!m_rootCategory.contains(category))
+            return;
+        
+        switch (type)
+        {
+        case Events.ADDED_EVENT:
+        case Events.REMOVED_EVENT:
+        case Events.MOVED_EVENT:
+            updateModel();
+        }
     }
     
+    public void addSelectionObserver(SelectionObserver observer)
+    {
+        m_observers.add(observer);
+    }
+    
+    public void removeSelectionObserver(SelectionObserver observer)
+    {
+        m_observers.remove(observer);
+    }
+
+    public Category getCategory()
+    {
+        return getSelectedCategory();
+    }
+
+    public JComponent getDefaultFocusOwner()
+    {
+        return this;
+    }
+
+    public JFrame getFrame()
+    {
+        return null;
+    }
+
+    public List<Card> getRelatedCards()
+    {
+        return null;
+    }
+
+    public List<Card> getSelectedCards()
+    {
+        return null;
+    }
+
+    public List<Category> getSelectedCategories()
+    {
+        return null;
+    }
+
     private void updateModel()
     {
         Object selected = getModel().getSelectedItem();
@@ -130,7 +207,7 @@ public class CategoryComboBox extends JComboBox implements CategoryObserver
         {
             model.setSelectedItem(selected);
         }
-
+    
         setModel(model);
     }
 }

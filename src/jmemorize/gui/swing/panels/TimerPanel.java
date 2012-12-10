@@ -28,13 +28,17 @@ import javax.swing.JProgressBar;
 import javax.swing.JTextField;
 import javax.swing.Timer;
 
+import jmemorize.core.Main;
 import jmemorize.core.learn.LearnSession;
+import jmemorize.core.learn.LearnSessionObserver;
+import jmemorize.core.learn.LearnSettings;
+import jmemorize.gui.LC;
 import jmemorize.gui.Localization;
 
 /**
  * @author djemili
  */
-public class TimerPanel extends JPanel implements ActionListener
+public class TimerPanel extends JPanel implements ActionListener, LearnSessionObserver
 {
     // show two digits fully
     private DecimalFormat m_formater  = new DecimalFormat("##00"); //$NON-NLS-1$
@@ -48,8 +52,61 @@ public class TimerPanel extends JPanel implements ActionListener
     private JTextField    m_textField = new JTextField();
 
     private LearnSession  m_learnSession;
+    
+    public TimerPanel()
+    {
+        Main.getInstance().addLearnSessionObserver(this);
+    }
+    
+    /* (non-Javadoc)
+     * @see jmemorize.core.learn.LearnSessionObserver#sessionStarted
+     */
+    public void sessionStarted(LearnSession session)
+    {
+        LearnSettings settings = session.getSettings();
+        if (settings.isTimeLimitEnabled())
+        {
+            start(session, settings.getTimeLimit() * 60);
+        }
+        else
+        {
+            start(session, -1);
+        }
+    }
+    
+    /* (non-Javadoc)
+     * @see jmemorize.core.learn.LearnSessionObserver#sessionEnded
+     */
+    public void sessionEnded(LearnSession session)
+    {
+        m_timer.stop();
+    }
 
-    public void start(LearnSession learnSession, int seconds)
+    /**
+     * Is called every second and updates the timer representation.
+     */
+    public void actionPerformed(ActionEvent evt)
+    {
+        m_secondsPassed++;
+    
+        if (m_secondsTarget > -1)
+        {
+            m_bar.setValue((100 * m_secondsPassed) / m_secondsTarget);
+            m_bar.setString(getTimeString());
+        }
+        else
+        {
+            m_textField.setText(getTimeString());
+        }
+        
+        if (m_secondsPassed == m_secondsTarget)
+        {
+            m_timer.stop();
+            m_learnSession.onTimer();
+        }
+    }
+
+    private void start(LearnSession learnSession, int seconds)
     {
         m_learnSession = learnSession;
         m_secondsTarget = seconds;
@@ -80,43 +137,6 @@ public class TimerPanel extends JPanel implements ActionListener
         m_timer.start();
     }
     
-    public void start(LearnSession strategy)
-    {
-        start(strategy, -1);
-    }
-
-    /**
-     * Stops the timer.
-     */
-    public void stop()
-    {
-        m_timer.stop();
-    }
-
-    /**
-     * Is called every second and updates the timer representation.
-     */
-    public void actionPerformed(ActionEvent evt)
-    {
-        m_secondsPassed++;
-
-        if (m_secondsTarget > -1)
-        {
-            m_bar.setValue((100 * m_secondsPassed) / m_secondsTarget);
-            m_bar.setString(getTimeString());
-        }
-        else
-        {
-            m_textField.setText(getTimeString());
-        }
-        
-        if (m_secondsPassed == m_secondsTarget)
-        {
-            m_timer.stop();
-            m_learnSession.onTimer();
-        }
-    }
-
     /**
      * @return The string that is used to show time in progressbar.
      */
@@ -149,8 +169,9 @@ public class TimerPanel extends JPanel implements ActionListener
     {
         if (secondsTarget > 60*60) // show hours if over 60 minutes
         {
-            return (seconds/(60*60)) +":"+ m_formater.format((seconds/60)%60)  //$NON-NLS-1$
-                +":"+ m_formater.format(seconds%60); //$NON-NLS-1$
+            return (seconds/(60*60)) + 
+                ':' + m_formater.format((seconds/60)%60) +
+                ':' + m_formater.format(seconds%60);
         }
         
         if (secondsTarget > 60) // show minutes if over 60 seconds
@@ -165,14 +186,14 @@ public class TimerPanel extends JPanel implements ActionListener
     {
         if (seconds > 60*60)
         {
-            return " "+ Localization.get("Time.HOURS");    //$NON-NLS-1$ //$NON-NLS-2$
+            return " "+ Localization.get(LC.TIME_HOURS);    //$NON-NLS-1$
         }
         
         if (seconds > 60)
         {
-            return " " + Localization.get("Time.MINUTES"); //$NON-NLS-1$ //$NON-NLS-2$
+            return " " + Localization.get(LC.TIME_MINUTES); //$NON-NLS-1$
         }
             
-        return " " + Localization.get("Time.SECONDS");     //$NON-NLS-1$ //$NON-NLS-2$
+        return " " + Localization.get(LC.TIME_SECONDS);     //$NON-NLS-1$
     }
 }

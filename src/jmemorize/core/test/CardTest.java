@@ -56,15 +56,15 @@ public class CardTest extends TestCase
         List<String> images = new LinkedList<String>();
         images.add("foo.png");
         
-        m_card.getFrontSide().setImages(images);
-        assertEquals(images, m_card.getFrontSide().getImages());
+        m_card.getFrontSide().setMedia(images);
+        assertEquals(images, m_card.getFrontSide().getMedia());
         
         List<String> originalImages = new LinkedList<String>();
         originalImages.addAll(images);
         
         images.add("bar.png");
         assertEquals("image list should not be stored as reference to argument", 
-            originalImages, m_card.getFrontSide().getImages());
+            originalImages, m_card.getFrontSide().getMedia());
     }
 
     public void testCardClonesBasic()
@@ -94,32 +94,32 @@ public class CardTest extends TestCase
     {
         List<String> images = new LinkedList<String>();
         images.add("foo.png");
-        m_card.getFrontSide().setImages(images);
+        m_card.getFrontSide().setMedia(images);
         
         Card clonedCard = (Card)m_card.clone();
-        assertEquals(images, clonedCard.getFrontSide().getImages());
+        assertEquals(images, clonedCard.getFrontSide().getMedia());
         
         List<String> noImages = new LinkedList<String>();
-        m_card.getFrontSide().setImages(noImages);
+        m_card.getFrontSide().setMedia(noImages);
         
         assertEquals("clone should not reference originals image list",
-            images, clonedCard.getFrontSide().getImages());
+            images, clonedCard.getFrontSide().getMedia());
     }
     
     public void testCardWithoutProgressClonesImages()
     {
         List<String> images = new LinkedList<String>();
         images.add("foo.png");
-        m_card.getFrontSide().setImages(images);
+        m_card.getFrontSide().setMedia(images);
         
         Card clonedCard = (Card)m_card.cloneWithoutProgress();
-        assertEquals(images, clonedCard.getFrontSide().getImages());
+        assertEquals(images, clonedCard.getFrontSide().getMedia());
         
         List<String> noImages = new LinkedList<String>();
-        m_card.getFrontSide().setImages(noImages);
+        m_card.getFrontSide().setMedia(noImages);
         
         assertEquals("clone should not reference originals image list",
-            images, clonedCard.getFrontSide().getImages());
+            images, clonedCard.getFrontSide().getMedia());
     }
 
     public void testCardClonesStatss()

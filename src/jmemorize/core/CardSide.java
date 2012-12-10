@@ -1,6 +1,6 @@
 /*
  * jMemorize - Learning made easy (and fun) - A Leitner flashcards tool
- * Copyright(C) 2004-2008 Riad Djemili and contributors
+ * Copyright(C) 2004-2009 Riad Djemili and contributors
  * 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -36,7 +36,7 @@ public class CardSide implements Cloneable
     }
     
     private FormattedText          m_text;
-    private List<String>           m_imageIDs  = new LinkedList<String>();
+    private List<String>           m_mediaIDs  = new LinkedList<String>();
     private List<CardSideObserver> m_observers = new LinkedList<CardSideObserver>();
     
     public CardSide()
@@ -74,22 +74,22 @@ public class CardSide implements Cloneable
     /**
      * @return the IDs of all images of this card side.
      */
-    public List<String> getImages()
+    public List<String> getMedia()
     {
-        return m_imageIDs;
+        return m_mediaIDs;
     }
     
-    public void setImages(List<String> ids)
+    public void setMedia(List<String> ids)
     {
-        if (m_imageIDs.equals(ids))
+        if (m_mediaIDs.equals(ids))
             return;
         
-        m_imageIDs.clear();
-        m_imageIDs.addAll(ids);
+        m_mediaIDs.clear();
+        m_mediaIDs.addAll(ids);
         
         for (CardSideObserver observer : m_observers)
         {
-            observer.onImagesChanged(this, m_imageIDs);
+            observer.onImagesChanged(this, m_mediaIDs);
         }
     }
     
@@ -119,7 +119,7 @@ public class CardSide implements Cloneable
     {
         CardSide cardSide = new CardSide();
         cardSide.m_text = (FormattedText)m_text.clone();
-        cardSide.m_imageIDs.addAll(m_imageIDs);
+        cardSide.m_mediaIDs.addAll(m_mediaIDs);
         
         return cardSide;
     }

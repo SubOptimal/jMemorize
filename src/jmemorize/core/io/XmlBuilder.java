@@ -18,13 +18,16 @@
  */
 package jmemorize.core.io;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.io.StringReader;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -51,20 +54,21 @@ import javax.xml.transform.stream.StreamResult;
 import jmemorize.core.Card;
 import jmemorize.core.CardSide;
 import jmemorize.core.Category;
-import jmemorize.core.ImageRepository;
 import jmemorize.core.Lesson;
 import jmemorize.core.LessonProvider;
 import jmemorize.core.Main;
 import jmemorize.core.Settings;
-import jmemorize.core.ImageRepository.ImageItem;
 import jmemorize.core.learn.LearnHistory;
 import jmemorize.core.learn.LearnHistory.SessionSummary;
+import jmemorize.core.media.MediaRepository;
+import jmemorize.core.media.MediaRepository.ImageItem;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
 /**
@@ -85,6 +89,7 @@ public class XmlBuilder
     private static final String TESTS_TOTAL          = "TestsTotal";         //$NON-NLS-1$
     private static final String AMOUNT_LEARNED_BACK  = "AmountLearnedBack";  //$NON-NLS-1$
     private static final String AMOUNT_LEARNED_FRONT = "AmountLearnedFront"; //$NON-NLS-1$
+    private static final String AMOUNT_SKIPPED       = "AmountSkipped";      //$NON-NLS-1$
     private static final String DATE_EXPIRED         = "DateExpired";        //$NON-NLS-1$
     private static final String DATE_TESTED          = "DateTested";         //$NON-NLS-1$
     private static final String DATE_TOUCHED         = "DateTouched";        //$NON-NLS-1$
@@ -221,10 +226,33 @@ public class XmlBuilder
             }
         }
         
+        
+//        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(in));
+//        StringBuilder stringBuilder = new StringBuilder();
+//        String line = null;
+//
+//        while ((line = bufferedReader.readLine()) != null) 
+//        {
+//            stringBuilder.append(line + "\n");
+//        }
+//
+//        bufferedReader.close();
+//        
+//        String text = stringBuilder.toString();
+//        
+//        String sanitized = stripNonValidXMLCharacters(text);
+        
+        // TODO if this works recode this by wrapping inputstream with 
+        // sanitizingInputStream and give that to the other method
+        
+        
+//        StringReader reader =  new StringReader(sanitized);
+        
         // get lesson tag
         try
         {
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+//            Document doc = factory.newDocumentBuilder().parse(new InputSource(reader));
             Document doc = factory.newDocumentBuilder().parse(in);
     
             // there must be a root category
@@ -335,7 +363,7 @@ public class XmlBuilder
      */
     public static File writeImageRepositoryToDisk(File dir) throws IOException
     {
-        ImageRepository repository = ImageRepository.getInstance();
+        MediaRepository repository = MediaRepository.getInstance();
         
         File imgDir = new File(dir + File.separator + IMAGE_FOLDER);
         imgDir.mkdirs();
@@ -358,8 +386,47 @@ public class XmlBuilder
         
         return imgDir;
     }
+    
+    /**
+     * This method ensures that the output String has only
+     * valid XML unicode characters as specified by the
+     * XML 1.0 standard. For reference, please see
+     * <a href="http://www.w3.org/TR/2000/REC-xml-20001006#NT-Char">the
+     * standard</a>. This method will return an empty
+     * String if the input is null or empty.
+     *
+     * @param in The String whose non-valid characters we want to remove.
+     * @return The in String, stripped of non-valid characters.
+     */
+    private static String stripNonValidXMLCharacters(String in)
+    {
+        StringBuffer out = new StringBuffer(); // Used to hold the output.
+        char current; // Used to reference the current character.
 
-    private static void removeUnusedImages(ImageRepository repository, File imgDir)
+        if (in == null || ("".equals(in)))
+            return ""; // vacancy test.
+        
+        for (int i = 0; i < in.length(); i++)
+        {
+            // NOTE: No IndexOutOfBoundsException caught here; it should not happen.
+            current = in.charAt(i); 
+            if ((current == 0x9) || (current == 0xA) || (current == 0xD)
+                || ((current >= 0x20) && (current <= 0xD7FF))
+                || ((current >= 0xE000) && (current <= 0xFFFD))
+                || ((current >= 0x10000) && (current <= 0x10FFFF)))
+            {
+                out.append(current);
+            }
+            else
+            {
+                System.out.println("found invalid char");
+            }
+        }
+        
+        return out.toString();
+    }    
+
+    private static void removeUnusedImages(MediaRepository repository, File imgDir)
     {
         Set<File> unusedFiles = new HashSet<File>(Arrays.asList(imgDir.listFiles()));
         
@@ -431,6 +498,9 @@ public class XmlBuilder
         cardTag.setAttribute(AMOUNT_LEARNED_BACK, 
             Integer.toString(card.getLearnedAmount(false)));
         
+        cardTag.setAttribute(AMOUNT_SKIPPED, 
+            Integer.toString(card.getSkippedAmount()));
+        
         // save stats
         cardTag.setAttribute(TESTS_TOTAL, Integer.toString(card.getTestsTotal()));
         cardTag.setAttribute(TESTS_HIT, Integer.toString(card.getTestsPassed()));
@@ -446,7 +516,7 @@ public class XmlBuilder
     {
         Element sideElement = doc.createElement(SIDE);
         
-        for (String imgID : cardSide.getImages())
+        for (String imgID : cardSide.getMedia())
         {
             Element imgElement = doc.createElement(IMG);
             imgElement.setAttribute(IMG_ID, imgID);
@@ -460,7 +530,7 @@ public class XmlBuilder
     private static void writeImageRepositoryToZip(ZipOutputStream zipOut) 
         throws IOException
     {
-        ImageRepository repository = ImageRepository.getInstance();
+        MediaRepository repository = MediaRepository.getInstance();
         
         for (ImageItem item : repository.getImageItems())
         {
@@ -545,6 +615,7 @@ public class XmlBuilder
         // read amount learned
         int frontAmountLearned = readInt(attributes, AMOUNT_LEARNED_FRONT);
         int backAmountLearned = readInt(attributes, AMOUNT_LEARNED_BACK);
+        int skippedAmount = readInt(attributes, AMOUNT_SKIPPED);
         
         // read stats
         int testsTotal = readInt(attributes, TESTS_TOTAL);
@@ -563,9 +634,11 @@ public class XmlBuilder
         card.setLearnedAmount(false, backAmountLearned);
         card.incStats(testsHit, testsTotal);
         
+        card.setSkippedAmount(skippedAmount);
+        
         // load images
-        card.getFrontSide().setImages(loadImages(cardTag, 0));
-        card.getBackSide().setImages(loadImages(cardTag, 1));
+        card.getFrontSide().setMedia(loadImages(cardTag, 0));
+        card.getBackSide().setMedia(loadImages(cardTag, 1));
         
         return card;
     }
@@ -611,7 +684,7 @@ public class XmlBuilder
     
     private static void loadImageRepositoryFromDisk(File dir)
     {
-        ImageRepository repository = ImageRepository.getInstance();
+        MediaRepository repository = MediaRepository.getInstance();
         
         File imgDir = new File(dir.getParent() + File.separator + IMAGE_FOLDER);
         File[] files = imgDir.listFiles();
@@ -640,7 +713,7 @@ public class XmlBuilder
     private static void loadImageFromZipEntry(InputStream in, ZipEntry entry) 
         throws IOException
     {
-        ImageRepository repository = ImageRepository.getInstance();
+        MediaRepository repository = MediaRepository.getInstance();
         
         String name = entry.getName();
         if (!name.startsWith(IMAGE_FOLDER))
@@ -656,11 +729,11 @@ public class XmlBuilder
         List<Card> allCards = lesson.getRootCategory().getCards();
         for (Card card : allCards)
         {
-            usedImageIDs.addAll(card.getFrontSide().getImages());
-            usedImageIDs.addAll(card.getBackSide().getImages());
+            usedImageIDs.addAll(card.getFrontSide().getMedia());
+            usedImageIDs.addAll(card.getBackSide().getMedia());
         }
     
-        ImageRepository.getInstance().retain(usedImageIDs);
+        MediaRepository.getInstance().retain(usedImageIDs);
     }
 
     private static String toInteger(float num)

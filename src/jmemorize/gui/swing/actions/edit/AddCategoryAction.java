@@ -25,6 +25,7 @@ import jmemorize.gui.LC;
 import jmemorize.gui.Localization;
 import jmemorize.gui.swing.SelectionProvider;
 import jmemorize.gui.swing.actions.AbstractSessionDisabledAction;
+import jmemorize.gui.swing.widgets.CategoryComboBox;
 
 /**
  * An action for adding new categories.
@@ -33,11 +34,11 @@ import jmemorize.gui.swing.actions.AbstractSessionDisabledAction;
  */
 public class AddCategoryAction extends AbstractSessionDisabledAction
 {
-    private SelectionProvider m_selectionProvider;
+    private SelectionProvider m_provider;
     
     public AddCategoryAction(SelectionProvider provider)
     {
-        m_selectionProvider = provider;
+        m_provider = provider;
         setValues();        
     }
 
@@ -47,7 +48,7 @@ public class AddCategoryAction extends AbstractSessionDisabledAction
     public void actionPerformed(java.awt.event.ActionEvent e)
     {
         String name = JOptionPane.showInputDialog(
-            m_selectionProvider.getFrame(),
+            m_provider.getFrame(),
             Localization.get(LC.ACTION_ADD_CATEGORY_INPUT),
             Localization.get(LC.ACTION_ADD_CATEGORY),
             JOptionPane.INFORMATION_MESSAGE
@@ -55,8 +56,13 @@ public class AddCategoryAction extends AbstractSessionDisabledAction
 
         if (name != null && name.trim().length() > 0)
         {
-            Category category = m_selectionProvider.getCategory();
-            category.addCategoryChild(new Category(name.trim()));
+            Category parentCategory = m_provider.getCategory();
+            Category newCategory = new Category(name.trim());
+            
+            parentCategory.addCategoryChild(newCategory);
+            
+            if (m_provider instanceof CategoryComboBox)
+                ((CategoryComboBox)m_provider).setSelectedCategory(newCategory);
         }
     }
     

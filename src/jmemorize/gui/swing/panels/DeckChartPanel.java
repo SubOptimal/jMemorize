@@ -150,6 +150,7 @@ public class DeckChartPanel extends JPanel implements CategoryObserver
          * that are zero width. Here, we intercept the draw call to remove any
          * zero width blocks in the stack before drawing
          */
+        @SuppressWarnings("unchecked")
         protected void drawStackVertical(List values, Comparable category, 
             Graphics2D g2, CategoryItemRendererState state, Rectangle2D dataArea, 
             CategoryPlot plot, CategoryAxis domainAxis, ValueAxis rangeAxis, 

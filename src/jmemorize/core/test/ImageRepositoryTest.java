@@ -24,16 +24,16 @@ import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 
-import jmemorize.core.ImageRepository;
 import jmemorize.core.Main;
 import jmemorize.core.io.XmlBuilder;
+import jmemorize.core.media.MediaRepository;
 import junit.framework.TestCase;
 
 public class ImageRepositoryTest extends TestCase
 {
     private final static File TEST_DIR = new File("./images-test");
     
-    private ImageRepository m_ir = ImageRepository.getInstance();
+    private MediaRepository m_ir = MediaRepository.getInstance();
     
     @Override
     protected void setUp() throws Exception

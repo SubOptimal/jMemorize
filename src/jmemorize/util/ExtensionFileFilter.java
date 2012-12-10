@@ -19,6 +19,8 @@
 package jmemorize.util;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.filechooser.FileFilter;
 
@@ -29,12 +31,15 @@ import javax.swing.filechooser.FileFilter;
  */
 public class ExtensionFileFilter extends FileFilter
 {
-    private String m_extension;
-    private String m_description;
+    private List<String> m_extensions = new ArrayList<String>();
+    private String       m_description;
 
-    public ExtensionFileFilter(String extension, String description)
+    public ExtensionFileFilter(String extensions, String description)
     {
-        m_extension = extension;
+        String[] exts = extensions.split(" ");
+        for (String ext : exts)
+            m_extensions.add(ext);
+        
         m_description = description;
     }
 
@@ -43,7 +48,16 @@ public class ExtensionFileFilter extends FileFilter
      */
     public boolean accept(File f)
     {
-        return f.isDirectory() || f.getName().endsWith(m_extension);
+        if (f.isDirectory())
+            return true;
+        
+        for (String extension : m_extensions)
+        {
+             if (f.getName().endsWith(extension))
+                 return true;
+        }
+        
+        return false;
     }
 
     /*
@@ -53,9 +67,9 @@ public class ExtensionFileFilter extends FileFilter
     {
         return m_description;
     }
-
+    
     public String getExtension()
     {
-        return m_extension;
+        return m_extensions.get(0);
     }
 }

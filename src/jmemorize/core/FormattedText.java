@@ -73,9 +73,6 @@ public class FormattedText implements Cloneable
     private static final Pattern TEXT_PATTERN = Pattern.compile(
         "(.*?)<(/?(b|i|u|sub|sup)?)>", Pattern.DOTALL);
     
-//    private static final Pattern IMG_PATTERN = Pattern.compile(
-//        "<img id=\"(.*?)\"/>", Pattern.DOTALL);
-    
     private static final String CONTENT_ELEMENT_NAME = "content";
     
     private String                     m_formattedText;
@@ -279,37 +276,6 @@ public class FormattedText implements Cloneable
                 Main.logThrowable("Error formatting text", e1);
             }
         } 
-//        else if (e.getName().equals(StyleConstants.ParagraphConstants.ComponentElementName))
-//        {
-//            AttributeSet attr = e.getAttributes();
-//            JLabel label = (JLabel)attr.getAttribute(
-//                StyleConstants.ParagraphConstants.ComponentAttribute);
-//            
-//            ImageIcon icon = (ImageIcon)label.getIcon();
-//            String description = icon.getDescription();
-//            
-//            try
-//            {
-//                String id = "";
-//                if (description.startsWith(ImageRepository.IMG_ID_PREFIX))
-//                {
-//                    id = description.substring(2);
-//                }
-//                else
-//                {
-//                    File file = new File(description);
-//                    FileInputStream in = new FileInputStream(file);
-//                    id = ImageRepository.getInstance().addImage(in, file.getName());
-//                }
-//                
-//                sb.insert(0, "<img id=\""+ id +"\"/>");
-//            }
-//            catch (IOException e1)
-//            {
-//                e1.printStackTrace();
-//                Main.logThrowable("Error formatting image", e1);
-//            }
-//        }
         else
         {
             for (int i = 0; i < e.getElementCount(); i++)
@@ -357,15 +323,6 @@ public class FormattedText implements Cloneable
     {
         StringBuffer sb = new StringBuffer(text);
         
-//        Map<Integer, ImageIcon> images = decodeImages(doc, sb);
-        
-        /*
-         * problem we need to decode the images first and remove the strings
-         * from the overall string, because pattern searching takes too long.
-         * this is problematic though, because decodeImages expects to be called
-         * afterwards.
-         */
-        
         Matcher m = TEXT_PATTERN.matcher(sb);
         int end = 0;
         
@@ -394,40 +351,7 @@ public class FormattedText implements Cloneable
         
         String restText = unescape(sb.substring(end));
         doc.insertString(offset, restText, new SimpleAttributeSet());
-        
-//        for (Entry<Integer, ImageIcon> entry : images.entrySet())
-//        {            
-//            ImageIcon icon = entry.getValue();
-//            Integer iconOffset = entry.getKey();
-//            insertImage(doc, icon, iconOffset);
-//        }
     }
-
-    // TODO move this back into decode
-//    private Map<Integer, ImageIcon> decodeImages(StyledDocument doc, StringBuffer text) 
-//        throws BadLocationException, ParseException
-//    {
-//        Map<Integer, ImageIcon> images = new HashMap<Integer, ImageIcon>();
-//        
-//        Matcher m = IMG_PATTERN.matcher(text);
-//
-//        while (m.find())
-//        {
-//            String id = m.group(1);
-//            
-//            int offset = m.start(0);
-//            text.replace(offset, m.end(0), "");
-//            
-//            ImageIcon img = ImageRepository.getInstance().getImage(id);
-//            
-//            if (img == null)
-//                throw new ParseException("Image with id "+id+" wasn't found in image repository.");
-//            
-//            images.put(offset, img);
-//        }
-//        
-//        return images;
-//    }
     
     private static boolean hasStyle(AttributeSet attr, Object styleId)
     {

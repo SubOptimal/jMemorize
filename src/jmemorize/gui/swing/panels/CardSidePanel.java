@@ -509,6 +509,7 @@ public class CardSidePanel extends JPanel
 
         int shortcutKey = Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
         KeyStroke ctrlTab = KeyStroke.getKeyStroke(KeyEvent.VK_TAB, shortcutKey);
+        
         // insert tab with CTRL+TAB instead of TAB
         m_textPane.getInputMap(JComponent.WHEN_FOCUSED).put(ctrlTab,
             DefaultEditorKit.insertTabAction);

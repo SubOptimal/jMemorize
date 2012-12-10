@@ -117,7 +117,7 @@ public class MainMenu extends JMenuBar implements RecentItemsObserver
         
         editMenu.add(new JMenuItem(new ResetCardAction(provider)));
         editMenu.addSeparator();
-        editMenu.add(new JMenuItem(new FindAction()));
+        editMenu.add(new JMenuItem(new FindAction(provider)));
         return editMenu;
     }
 

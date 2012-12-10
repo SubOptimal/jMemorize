@@ -4,7 +4,10 @@ de
 en
 es
 eo
+el
 fr
+it
+ko
 nl
 no
 sv

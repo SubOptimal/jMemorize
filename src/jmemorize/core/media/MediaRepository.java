@@ -1,6 +1,6 @@
 /*
  * jMemorize - Learning made easy (and fun) - A Leitner flashcards tool
- * Copyright(C) 2004-2008 Riad Djemili and contributors
+ * Copyright(C) 2004-2009 Riad Djemili and contributors
  * 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,7 +16,7 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
-package jmemorize.core;
+package jmemorize.core.media;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -37,26 +37,31 @@ import java.util.regex.Pattern;
 
 import javax.swing.ImageIcon;
 
-public class ImageRepository
+import jmemorize.core.Main;
+
+public class MediaRepository
 {
     private static final int MAX_CACHED_IMAGES = 10;
 
-    public static final String IMG_ID_PREFIX = "::";    
+    public static final String MEDIA_ID_PREFIX = "::";    
     
-    private static ImageRepository m_instance;
+    private static MediaRepository m_instance;
 
-    private Map<String, ImageItem> m_imageMap    = new HashMap<String, ImageItem>();
+    private Map<String, ImageItem> m_mediaMap    = new HashMap<String, ImageItem>();
     private LinkedList<ImageIcon>  m_imageCache  = new LinkedList<ImageIcon>();
 
     private static final Pattern   FILE_PATTERN = Pattern.compile("(.*)_(\\d+)");
     
-    public class ImageItem
+    /**
+     * The base class for all media types that can be associated with a card.
+     */
+    public class MediaItem
     {
         private String    m_sourceFile;
         private byte[]    m_bytes;
         private String    m_id;  
  
-        public ImageItem(InputStream in, String filename) 
+        public MediaItem(InputStream in, String filename) 
             throws IOException
         {
             m_sourceFile = filename;
@@ -64,14 +69,6 @@ public class ImageRepository
             m_bytes = readFile(in);
         }
         
-        public ImageIcon getImage()
-        {
-            ImageIcon image = new ImageIcon(m_bytes);
-            image.setDescription(IMG_ID_PREFIX + m_id);
-            
-            return image;
-        }
-
         public String getId()
         {
             return m_id;
@@ -134,24 +131,40 @@ public class ImageRepository
         }
     }
     
+    public class ImageItem extends MediaItem
+    {
+        public ImageItem(InputStream in, String filename) throws IOException
+        {
+            super(in, filename);
+        }
+
+        public ImageIcon getImage()
+        {
+            ImageIcon image = new ImageIcon(getBytes());
+            image.setDescription(MEDIA_ID_PREFIX + getId());
+            
+            return image;
+        }
+    }
+    
  // TODO remove singleton pattern and make this referenced from lesson
   
-    public static ImageRepository getInstance() 
+    public static MediaRepository getInstance() 
     {
         if (m_instance == null)
-            m_instance = new ImageRepository();
+            m_instance = new MediaRepository();
 
         return m_instance;
     }
     
     public Set<String> getKeys()
     {
-        return m_imageMap.keySet();
+        return m_mediaMap.keySet();
     }
     
     public Collection<ImageItem> getImageItems() // TODO dont give imageItem to outside
     {
-        return m_imageMap.values();
+        return m_mediaMap.values();
     }
     
     public ImageIcon getImage(String imageId)
@@ -167,7 +180,7 @@ public class ImageRepository
             }
         }
         
-        ImageItem imageItem = m_imageMap.get(imageId);
+        ImageItem imageItem = m_mediaMap.get(imageId);
         
         if (imageItem == null)
             return null;
@@ -192,7 +205,7 @@ public class ImageRepository
         
         ImageItem item = new ImageItem(in, filename);
         String id = item.getId();
-        m_imageMap.put(id, item);
+        m_mediaMap.put(id, item);
         
         return id;
     }
@@ -202,9 +215,9 @@ public class ImageRepository
         String description = icon.getDescription();
         
         String id = "";
-        if (description.startsWith(IMG_ID_PREFIX))
+        if (description.startsWith(MEDIA_ID_PREFIX))
         {
-            id = description.substring(IMG_ID_PREFIX.length());
+            id = description.substring(MEDIA_ID_PREFIX.length());
         }
         else
         {
@@ -226,7 +239,7 @@ public class ImageRepository
             }
             
             id = addImage(in, name);
-            icon.setDescription(IMG_ID_PREFIX + id);
+            icon.setDescription(MEDIA_ID_PREFIX + id);
         }
         
         return id;
@@ -262,20 +275,20 @@ public class ImageRepository
      */
     public void retain(Set<String> retainIDs)
     {
-        Set<String> toBeRemoved = new HashSet<String>(m_imageMap.keySet());
+        Set<String> toBeRemoved = new HashSet<String>(m_mediaMap.keySet());
         
         for (String id : retainIDs)
             toBeRemoved.remove(id);
         
         for (String id : toBeRemoved)
-            m_imageMap.remove(id);
+            m_mediaMap.remove(id);
     }
     
     public static boolean equals(ImageIcon image, String id)
     {
         String description = image.getDescription();
-        return (description.startsWith(IMG_ID_PREFIX) && 
-            description.substring(IMG_ID_PREFIX.length()).equals(id));
+        return (description.startsWith(MEDIA_ID_PREFIX) && 
+            description.substring(MEDIA_ID_PREFIX.length()).equals(id));
     }
     
     public static boolean equals(List<ImageIcon> images, List<String> ids)
@@ -288,9 +301,9 @@ public class ImageRepository
             String id = "";
             String description = icon.getDescription();
             
-            if (description.startsWith(IMG_ID_PREFIX))
+            if (description.startsWith(MEDIA_ID_PREFIX))
             {
-                id = description.substring(IMG_ID_PREFIX.length());
+                id = description.substring(MEDIA_ID_PREFIX.length());
                 
                 if (!ids.contains(id))
                     return false;
@@ -323,10 +336,10 @@ public class ImageRepository
     
     public void clear()
     {
-        m_imageMap.clear();        
+        m_mediaMap.clear();        
     }
     
-    private ImageRepository() // singleton
+    private MediaRepository() // singleton
     {        
     }
 }

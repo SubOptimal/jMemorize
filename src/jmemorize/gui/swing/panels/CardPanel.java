@@ -1,6 +1,6 @@
 /*
  * jMemorize - Learning made easy (and fun) - A Leitner flashcards tool
- * Copyright(C) 2004-2008 Riad Djemili and contributors
+ * Copyright(C) 2004-2009 Riad Djemili and contributors
  * 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,6 +19,7 @@
 package jmemorize.gui.swing.panels;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -40,10 +41,10 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JEditorPane;
-import javax.swing.JFileChooser;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
+import javax.swing.JSplitPane;
 import javax.swing.JTextPane;
 import javax.swing.JToolBar;
 import javax.swing.KeyStroke;
@@ -60,14 +61,15 @@ import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledEditorKit;
 import javax.swing.text.StyledEditorKit.StyledTextAction;
 
-import jmemorize.core.Settings;
 import jmemorize.gui.LC;
 import jmemorize.gui.Localization;
-import jmemorize.gui.swing.GeneralTransferHandler;
 import jmemorize.gui.swing.ColorConstants;
+import jmemorize.gui.swing.GeneralTransferHandler;
 import jmemorize.gui.swing.actions.file.AbstractImportAction;
+import jmemorize.gui.swing.frames.MainFrame;
 import jmemorize.gui.swing.panels.CardSidePanel.CardImageObserver;
 import jmemorize.gui.swing.widgets.CategoryComboBox;
+import jmemorize.util.ExtensionFileFilter;
 
 import com.jgoodies.forms.builder.DefaultFormBuilder;
 import com.jgoodies.forms.layout.CellConstraints;
@@ -92,6 +94,9 @@ public class CardPanel extends JPanel
         public void onImageChanged();
     }
     
+    private final static ExtensionFileFilter IMAGE_FILTER = new ExtensionFileFilter(
+        "jpg jpeg png gif", Localization.get(LC.IMG_FILTER_DESC));
+    
     private class InsertImageAction extends StyledTextAction
     {
         public InsertImageAction()
@@ -104,15 +109,18 @@ public class CardPanel extends JPanel
             JEditorPane editor = getEditor(e);
             if (editor != null && editor instanceof JTextPane)
             {
-                for (CardSidePanel cardSidePanel : m_cardSides)
+                for (Component comp : m_cardSides)
                 {
+                    if (!(comp instanceof CardSidePanel))
+                        continue;
+                    
+                    CardSidePanel cardSidePanel = (CardSidePanel)comp;
+                    
                     if (cardSidePanel.getTextPane() != editor)
                         continue;
                     
-                    JFileChooser chooser = new JFileChooser();
-                    chooser.setCurrentDirectory(Settings.loadLastDirectory());
-                    File file = AbstractImportAction.showOpenDialog(null, null);
-
+                    File file = AbstractImportAction.showOpenDialog(null, IMAGE_FILTER);
+                    
                     if (file == null)
                         return;
                     
@@ -138,8 +146,13 @@ public class CardPanel extends JPanel
             JEditorPane editor = getEditor(e);
             if (editor != null && editor instanceof JTextPane)
             {
-                for (CardSidePanel cardSidePanel : m_cardSides)
+                for (Component comp : m_cardSides)
                 {
+                    if (!(comp instanceof CardSidePanel))
+                        continue;
+                    
+                    CardSidePanel cardSidePanel = (CardSidePanel)comp;
+                    
                     if (cardSidePanel.getTextPane() != editor)
                         continue;
                     
@@ -362,7 +375,7 @@ public class CardPanel extends JPanel
         
         public void actionPerformed(ActionEvent e)
         {
-            for (int i = 0; i < m_cardSidesPanel.getComponentCount(); i++)
+            for (int i = 0; i < m_cardSides.size(); i++)
                 setCardSideVisible(i, hasSide(i));
             
             updateCardSideButtons();
@@ -382,7 +395,7 @@ public class CardPanel extends JPanel
         private void updateText()
         {
             boolean highlight = true;
-            for (int i = 0; i < m_cardSidesPanel.getComponentCount(); i++)
+            for (int i = 0; i < m_cardSides.size(); i++)
                 highlight &= hasSide(i) == isCardSideVisible(i);
             
             String name = highlight ? "["+m_text+"]" : m_text;
@@ -398,10 +411,10 @@ public class CardPanel extends JPanel
     protected boolean                      m_flippedCardSides = false;
     private boolean                        m_verticalLayout   = true;
     
-    private CategoryComboBox               m_categoryBox      = new CategoryComboBox();
+    private CategoryBoxPanel               m_categoryPanel    = new CategoryBoxPanel(true);
     
     private List<CardPanelObserver>        m_observers        = new LinkedList<CardPanelObserver>();
-    private List<CardSidePanel>            m_cardSides        = new LinkedList<CardSidePanel>();
+    private List<JComponent>               m_cardSides        = new LinkedList<JComponent>();
     private List<AbstractStyledTextAction> m_textActions      = new LinkedList<AbstractStyledTextAction>();
     private List<ShowCardSideButton>       m_showSideButtons  = new LinkedList<ShowCardSideButton>();
     
@@ -410,6 +423,8 @@ public class CardPanel extends JPanel
     private MouseAdapter                   m_menuAdapter;
     
     private CardImageObserver              m_imageObserver;
+    
+    private List<Integer>                  m_dividerLocations = new ArrayList<Integer>();
 
     /**
      * Creates new form EditCardPanel
@@ -443,47 +458,31 @@ public class CardPanel extends JPanel
         };
     }
     
+    /* We use stacked split panes.
+     * 
+     * JSplitPane(side1, JSplitPane(side2, JSplitPane(..., null)))
+     */
+    
     public void addCardSide(String title, JComponent component)
     {
-        JPanel cardSideWithTitle = wrapCardSide(title, component);
+        m_cardSides.add(component);
         
         if (component instanceof CardSidePanel)
-        {
-            CardSidePanel cardSide = (CardSidePanel)component;
-            
-            m_cardSides.add(cardSide);
-            
-            for (AbstractStyledTextAction textAction : m_textActions)
-            {
-                textAction.attachTextPane(cardSide);
-            }
-            
-            cardSide.getTextPane().addMouseListener(m_menuAdapter);
-            GeneralTransferHandler handler = new GeneralTransferHandler(cardSide);
-            cardSide.getTextPane().setTransferHandler(handler);
-            
-            cardSide.addImageListener(m_imageObserver);
-        }
+            registerCardSidePanel((CardSidePanel)component);
         
-        m_cardSidesPanel.add(cardSideWithTitle);
-        
+        updateCardSidesSplitPanes();
         updateCardSideButtons();
         updateCardSideBorders();
     }
-    
-    public void removeCardSide(int index)
-    {
-        m_cardSidesPanel.getComponent(index);
-        
-        m_cardSidesPanel.remove(index);
-        
-        // TODO
-    }
-    
+
     public void setCardSideVisible(int index, boolean visible)
     {
-        m_cardSidesPanel.getComponent(index).setVisible(visible);
+        saveDividerLocations();
         
+        Component sidePanel = m_cardSides.get(index);
+        sidePanel.setVisible(visible);
+        
+        updateCardSidesSplitPanes();
         updateCardSideBorders();
         updateCardSideButtons();
     }
@@ -495,16 +494,14 @@ public class CardPanel extends JPanel
             if (button.hasSide(index))
                 button.setEnabled(enabled);
         }
-        
-//        m_showSideButtons.get(index).setEnabled(enabled);
     }
     
     public boolean isCardSideVisible(int index)
     {
-        if (index >= m_cardSidesPanel.getComponentCount())
+        if (index >= m_cardSides.size())
             return false;
         
-        return m_cardSidesPanel.getComponent(index).isVisible();
+        return m_cardSides.get(index).isVisible();
     }
 
     /**
@@ -513,20 +510,24 @@ public class CardPanel extends JPanel
      */
     public void setEditable(boolean editable)
     {
-        for (CardSidePanel cardSide : m_cardSides)
+        for (Component comp : m_cardSides)
         {
-            cardSide.setEditable(editable);
+            if (comp instanceof CardSidePanel)
+            {
+                CardSidePanel cardSide = (CardSidePanel)comp;
+                cardSide.setEditable(editable);
+            }
         }
     }
 
-    public List<CardSidePanel> getCardSides()
+    public List<JComponent> getCardSides()
     {
         return Collections.unmodifiableList(m_cardSides);
     }
 
     public CategoryComboBox getCategoryComboBox()
     {
-        return m_categoryBox;
+        return m_categoryPanel.getComboBox();
     }
 
     /**
@@ -539,6 +540,100 @@ public class CardPanel extends JPanel
     public void addObserver(CardPanelObserver observer)
     {
         m_observers.add(observer);
+    }
+    
+    private void updateCardSidesSplitPanes()
+    {
+        JSplitPane lastSplitPane = null;
+        
+        m_cardSidesPanel.removeAll();
+        
+        for (JComponent comp : m_cardSides)
+        {
+            if (!comp.isVisible()) // if not visible, don't include in layout!
+                continue;
+            
+            JPanel cardSideWithTitle = wrapCardSide(comp);
+            
+            if (lastSplitPane == null)
+            {
+                lastSplitPane = new JSplitPane();
+                lastSplitPane.setTopComponent(cardSideWithTitle);
+                lastSplitPane.setDividerLocation(1.0);
+                m_cardSidesPanel.add(lastSplitPane);
+            }
+            else
+            {
+                JSplitPane newSplitPane = new JSplitPane();
+                lastSplitPane.setBottomComponent(newSplitPane);
+                lastSplitPane.setDividerSize(MainFrame.DIVIDER_SIZE);
+                lastSplitPane.setResizeWeight(0.5);
+                lastSplitPane.setDividerLocation(0.5);
+                
+                newSplitPane.setTopComponent(cardSideWithTitle);            
+                lastSplitPane = newSplitPane;
+            }
+            
+            lastSplitPane.setBottomComponent(null);
+            lastSplitPane.setDividerSize(0);
+            lastSplitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
+            lastSplitPane.setBorder(null);
+            MainFrame.beautifyDividerBorder(lastSplitPane);
+        }
+        
+        restoreDividerLocations();
+    }
+    
+    private void registerCardSidePanel(CardSidePanel component)
+    {
+        CardSidePanel cardSide = (CardSidePanel)component;
+        
+        for (AbstractStyledTextAction textAction : m_textActions)
+        {
+            textAction.attachTextPane(cardSide);
+        }
+        
+        cardSide.getTextPane().addMouseListener(m_menuAdapter);
+        GeneralTransferHandler handler = new GeneralTransferHandler(cardSide);
+        cardSide.getTextPane().setTransferHandler(handler);
+        
+        cardSide.addImageListener(m_imageObserver);
+    }
+
+    private void saveDividerLocations()
+    {
+        if (m_cardSidesPanel.getComponentCount() == 0)
+            return;
+        
+        m_dividerLocations.clear();
+        JSplitPane splitPane = (JSplitPane)m_cardSidesPanel.getComponent(0);
+        
+        do
+        {
+            m_dividerLocations.add(splitPane.getDividerLocation());
+            splitPane = (JSplitPane)splitPane.getBottomComponent();
+        }
+        while (splitPane != null);
+    }
+    
+    private void restoreDividerLocations()
+    {
+        if (m_cardSidesPanel.getComponentCount() == 0)
+            return;
+        
+        JSplitPane splitPane = (JSplitPane)m_cardSidesPanel.getComponent(0);
+        int idx = 0;
+        do
+        {
+            if (m_dividerLocations.size() > idx) 
+                splitPane.setDividerLocation(m_dividerLocations.get(idx));
+            else
+                splitPane.setDividerLocation(0.5);
+            
+            splitPane = (JSplitPane)splitPane.getBottomComponent();
+            idx++;
+        }
+        while (splitPane != null);
     }
     
     /**
@@ -597,26 +692,17 @@ public class CardPanel extends JPanel
             if (sidePanel.isVisible())
                 addBorder = true;
         }
-        
-//        if (m_cardSides.size() > 0)
-//        {
-//            int px = Sizes.dialogUnitYAsPixel(3, this); 
-//            cardSideWithTitle.setBorder(new EmptyBorder(px, 0, 0, 0));
-//        }
     }
 
-    private JPanel wrapCardSide(String title, JComponent cardSide)
+    private JPanel wrapCardSide(JComponent cardSide)
     {
         FormLayout layout = new FormLayout(
-//            "38dlu, 3dlu, d:grow", // columns //$NON-NLS-1$
             "d:grow", // columns //$NON-NLS-1$
             "fill:20dlu:grow"); // rows //$NON-NLS-1$
     
         CellConstraints cc = new CellConstraints();
         DefaultFormBuilder builder = new DefaultFormBuilder(layout);
         
-//        builder.addLabel(title, cc.xy(1, 1, "left, top")); //$NON-NLS-1$
-//        builder.add(cardSide, cc.xy(3, 1 ));
         builder.add(cardSide, cc.xy(1, 1 ));
         
         return builder.getPanel();
@@ -641,16 +727,34 @@ public class CardPanel extends JPanel
         
         m_cardSidesPanel = new JPanel();
         m_cardSidesPanel.setLayout(new BoxLayout(m_cardSidesPanel, BoxLayout.Y_AXIS));
+        
         add(m_cardSidesPanel, BorderLayout.CENTER);
+    }
+    
+    public void setBackground(Color color)
+    {
+        super.setBackground(color);
+        
+        if (getComponentCount() > 0)
+        {
+            JPanel topPanel = (JPanel)getComponent(0);
+            for (int i = 0; i < topPanel.getComponentCount(); i++)
+            {
+                topPanel.getComponent(i).setBackground(color);
+            }
+        }
     }
     
     private JToolBar buildSetSidesToolbar()
     {
         JToolBar toolBar = new JToolBar();
         
-        toolBar.add(new ShowCardSideButton("Frontside/Flipside", 0, 1));
-        toolBar.add(new ShowCardSideButton("Frontside", 0));
-        toolBar.add(new ShowCardSideButton("Flipside", 1));
+        String frontSide = Localization.get(LC.FRONTSIDE);
+        String flipSide = Localization.get(LC.FLIPSIDE);
+        
+        toolBar.add(new ShowCardSideButton(frontSide + '/' + flipSide, 0, 1));
+        toolBar.add(new ShowCardSideButton(frontSide, 0));
+        toolBar.add(new ShowCardSideButton(flipSide, 1));
         
         toolBar.setBorder(new EtchedBorder());
         toolBar.setBackground(ColorConstants.CARD_SIDE_BAR_COLOR);
@@ -745,7 +849,9 @@ public class CardPanel extends JPanel
         builder = new DefaultFormBuilder(layout);
 //        builder.addLabel(Localization.get(LC.CATEGORY), cc.xy ( 1, 1));
 //        builder.add(m_categoryBox, cc.xy(3, 1));
-        builder.add(m_categoryBox, cc.xy(1, 1));
+        
+//        builder.add(m_categoryBox, cc.xy(1, 1));
+        builder.add(m_categoryPanel, cc.xy(1, 1));
         
         return builder.getPanel();
     }
