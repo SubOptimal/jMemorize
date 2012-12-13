@@ -1,0 +1,335 @@
+#
+# This is a translation file for jMemorize (http://www.riad.de/jmemorize)
+#
+#
+# ------------------------------------------------------------------------------
+# Author:             Lukas Rypl (Lukas.Rypl@atlas.cz)
+# Language:           Czech (cs)
+# jMemorize-Version:  1.2
+# ------------------------------------------------------------------------------
+#
+# Notes:
+#   DESC is the text that will show up as tooltip.
+#   TITLE is the title of the new window / dialog.
+
+# general
+
+General.CATEGORY          = Kategorie
+General.CREATED           = Vytvořeno
+General.MODIFIED          = Upraveno
+General.EXPIRES           = Opakování
+General.LAST_TEST         = Poslední test
+General.DECK              = Balíček
+General.DECKS             = Balíčky
+General.FRONTSIDE         = Líc (Otázka)
+General.FLIPSIDE          = Rub (Odpověď)
+General.OKAY              = OK
+General.APPLY             = Použít
+General.CANCEL            = Storno
+General.ROOT_CATEGORY     = Vše
+General.GENERAL           = Obecné
+General.PASSED            = Hotovo
+
+General.EMPTY_SIDES_ALERT       = Musí být zadány obě strany.
+General.EMPTY_SIDES_ALERT_TITLE = Chyba zadání karty
+
+General.EXPIRED = K opakování
+General.UNLEARNED = Nenaučené
+
+# main frame
+
+MainFrame.ABOUT              = Informace
+MainFrame.ABOUT_DESC         = O probramu
+
+MainFrame.ADD_CARD           = Přidat kartu
+MainFrame.ADD_CARD_DESC      = Vytvořit novou kartu
+
+MainFrame.ADD_CATEGORY       = Vytvořit kategorii
+MainFrame.ADD_CATEGORY_DESC  = Přidá novou kategorii
+MainFrame.ADD_CATEGORY_INPUT = Zadejte označení nové kategorie.
+
+MainFrame.CATEGORY_TREE      = Strom
+MainFrame.CATEGORY_TREE_DESC = Zobrazit/skrýt stromovou strukturu kategorií
+
+MainFrame.COPY               = Kopírovat
+MainFrame.CUT                = Vyjmout
+MainFrame.PASTE              = Vložit
+MainFrame.DELETE             = Odstranit
+
+MainFrame.DELETE_CARDS_WARN       = Opravdu chcete odstranit {0} karet?
+MainFrame.DELETE_CARDS_WARN_TITLE = Odstranění karet
+MainFrame.DELETE_CATEGORY_WARN  = S odstraněním kategorie {0} bude vymazáno {1} karet. Chcete opravdu provést odstranění?
+
+MainFrame.EDIT_CARD             = Upravit kartu
+MainFrame.EDIT_CARD_DESC        = Upravit/zobrazit obsah karty
+
+MainFrame.ERROR_TITLE           = Chyba
+MainFrame.ERROR_LOAD            = Při otvírání souboru {0} došlo k chybě.
+MainFrame.ERROR_SAVE            = Při ukládání souboru {0} došlo k chybě. Data nebyla uložena.
+
+MainFrame.EXIT                  = Konec
+MainFrame.EXIT_DESC             = Ukončit aplikaci
+
+MainFrame.FILE_FILTER_DESC      = soubory jMemorize
+MainFrame.PDF_FILE_FILTER_DESC  = PDF - Portable Document Format (.pdf)
+
+MainFrame.FIND                  = Hledat
+MainFrame.FIND_DESC             = Vyhledávání karet
+
+MainFrame.LEARN                 = Učit se
+MainFrame.LEARN_DESC            = Začít učení se všemi neprostudovanými kartami a kartami určenými k opakování.
+
+MainFrame.MENU_FILE             = Soubor
+MainFrame.MENU_EDIT             = Upravit
+MainFrame.MENU_HELP             = Nápověda
+MainFrame.MENU_LESSON           = Lekce
+
+MainFrame.NEW                   = Nový
+MainFrame.NEW_DESC              = Vytvořit novou lekci
+
+MainFrame.UNNAMED_LESSON        = Nová lekce
+
+MainFrame.OPEN                  = Otevřít
+MainFrame.OPEN_DESC             = Otevřít soubor s lekcí
+
+MainFrame.REMOVE_CATEGORY_TITLE = Odstranit kategorii
+MainFrame.REMOVE_DESC           = Odstranění označených položek
+
+MainFrame.RESET         = Reset karty
+MainFrame.RESET_TITLE           = Reset karty
+MainFrame.RESET_DESC            = Označení karty jako nenaučená
+MainFrame.RESET_WARN            = Po resetu bude karta označena jako nenaučená. Opravdu si přejete provést reset? (počet karet: {0})
+
+MainFrame.SAVE                  = Uložit
+MainFrame.SAVE_DESC             = Uložit lekci
+MainFrame.SAVE_AS               = Uložit jako..
+MainFrame.SAVE_AS_DESC          = Uložit lekci jako..
+MainFrame.SAVE_MODIFIED         = Lekce byla změněna. Chcete jí uložit?
+
+MainFrame.IMPORT                = Import
+
+MainFrame.EXPORT                = Export
+MainFrame.EXPORT_PDF            = Portable Document Format (*.pdf)
+MainFrame.EXPORT_RTF            = Rich Text Format (*.rtf)
+MainFrame.EXPORT_PDF_DESC       = Export do *.pdf
+MainFrame.EXPORT_RTF_DESC       = Export do *.rtf
+MainFrame.EXPORT_CLEAN          = Lekce bez osobních dat
+
+MainFrame.PREFERENCES           = Nastavení
+MainFrame.PREFERENCES_DESC      = Nastavení
+
+MainFrame.CONFIRM_OVERWRITE_TITLE = Přepsat soubor?
+MainFrame.CONFIRM_OVERWRITE = Soubor již existuje. Přejete si ho přepsat?
+
+MainFrame.SELECT_CHARACTER_SET  = Vyberte kódovou sadu.
+MainFrame.CHARACTER_SET         = Znaková sada
+
+# files
+
+File.CSV                     = Čárkou oddělené hodnoty - Comma Separated Values (*.csv)
+File.TSV                     = Tabulátorem oddělené hodnoty - Tabular Separated Values (*.tsv)
+
+# web sites
+
+URL.HOMEPAGE                 = Domovská stránka
+URL.MANUAL                   = Uživatelský manuál
+URL.FEATURE_TRACKER          = Feature tracker
+URL.BUG_TRACKER              = Bug tracker
+
+# preferences
+
+Preferences.USE_GZIP            = Ukládat lekce s kompresí GZIP.
+Preferences.LANGUAGE            = Jazyk
+Preferences.RESTART             = Změna nastavení jazyka se projeví až při dalším spuštění aplikace.
+
+Preferences.FONT_SETTINGS       = Nastavení písma
+Preferences.FONT                = Font
+Preferences.SIZE                = Velikost
+Preferences.PREVIEW             = Náhled
+
+# card table
+
+CardTable.COLUMNS               = Sloupce
+CardTable.NO_DATE_DESC          = Tato karta nebyla zkoušena.
+CardTable.NOT_LEARNED           = nenaučeno
+CardTable.PATH                  = Cesta
+CardTable.SELECTED_CARDS        = Vybrané karty
+
+# deck chart
+
+DeckChart.CARDS              = Karty
+DeckChart.START_DECK         = Začáteční balíček
+DeckChart.SUMMARY            = Souhrn
+DeckChart.EXPIRED_CARDS      = Opakovat
+DeckChart.LEARNED_CARDS      = Naučené karty
+DeckChart.UNLEARNED_CARDS    = Nenaučené karty
+
+Summary.LEARNED              = Naučené
+Summary.FAILED               = Chybné
+Summary.RELEARNED            = Znovu naučené
+Summary.SKIPPED              = Přeskočené
+
+# deck table
+
+DeckTable.NEXT_DECK          = Další balíček
+DeckTable.NEXT_DECK_DESC     = Zobrazit další balíček.
+DeckTable.PREV_DECK          = Předchozí balíček
+DeckTable.PREV_DECK_DESC     = Zobrazit předchozí balíček.
+
+# card editting
+
+EditCard.DETAILS_RATIO       = Míra úspěchu
+EditCard.DETAILS_HISTORY     = Historie učení
+
+EditCard.MODIFIED_WARN       = Karty byly upraveny. Mají se zaznamenat změny?
+EditCard.MODIFIED_WARN_TITLE = Došlo k úpravě karet.
+
+EditCard.NEXT_CARD         = Další karta
+EditCard.NEXT_CARD_DESC    = Zobrazit další kartu
+
+EditCard.PREV_CARD         = Předchozí karta
+EditCard.PREV_CARD_DESC    = Zobrazit předchozí kartu
+
+EditCard.REMOVE_CARD       = Odstranit kartu
+EditCard.REMOVE_CARD_DESC  = Odstranit aktuální kartu
+
+EditCard.REMOVE_CARD_WARN  = Opravdu chcete odstranit tuto kartu?
+EditCard.REMOVE_CARD_WARN_TITLE = Odstranění karty
+
+EditCard.RESET_CARD        = Reset karty
+EditCard.RESET_CARD_DESC   = Reset karty
+EditCard.RESET_CARD_WARN   = Resetnutím karty dojde k jejímu přesunutí zpět do prvního balíčku\nOpravdu chcete provést tuto operaci?
+
+EditCard.TAB_SIDES         = Strany
+EditCard.TAB_PROPERTIES    = Vlastnosti
+
+# find tool
+
+FindTool.FIND          = Hledat
+FindTool.BOTH_SIDES    = Obě strany
+FindTool.MATCH_CASE    = Rozlišovat VELKÁ/malá písmena
+FindTool.RESULTS       = Výsledky
+FindTool.SEARCH_TEXT   = Hledaný text
+FindTool.SETTINGS      = Nastavení
+
+# learn
+
+
+Learn.REMEMBER_THE_ANSWER    = Jaká je odpověď na tuto otázku?
+Learn.DID_YOU_KNOW_ANSWER    = Byla odpověď správná?
+Learn.YES                    = Ano
+Learn.NO                     = Ne
+
+Learn.CARD_COUNTER           = Počet karet
+Learn.FLIPPED_CARD_SIDES     = Zaměněné strany
+Learn.SHOW_ANSWER            = Zobrazit odpověď
+Learn.SHOW_CATEGORY          = Zobrazit kategorii
+Learn.SKIP_CARD              = Přeskočit kartu
+Learn.STOP                   = Zastavit učení
+Learn.TIMER                  = Čas
+
+Learn.SESSION_RESULTS        = Výsledky
+Learn.CARD_PROGRESS          = Vývoj karet
+Learn.SESSION_PROGRESS       = Vývoj relace
+
+# learn settings
+
+LearnSettings.ADVANCED          = Pokročilé
+LearnSettings.SCHEDULING        = Rozvrh
+
+LearnSettings.CARDS_TO_LEARN    = Výběr karet k učení
+LearnSettings.LEARN_UNLEARNED_EXPIRED = Z karet doposud nenaučených a z karet určených k opakování
+LearnSettings.LEARN_UNLEARNED   = Z doposud nenaučených karet
+LearnSettings.LEARN_EXPIRED     = Pouze z karet určených k opakování
+
+LearnSettings.CARDS_ORDER       = Pořadí karet
+LearnSettings.SHUFFLE_CARDS     = Promíchat karty ze všech hromádek a kategorií.
+LearnSettings.GROUP_CARDS       = Seskupovat karty podle kategorií.
+LearnSettings.NATURAL_CATEGORY_ORDER = Zobrazovat kategorie v zadaném pořadí.
+LearnSettings.RANDOM_CATEGORY_ORDER = Zobrazovat kategorie v náhodném pořadí.
+
+LearnSettings.DELIMITERS          = Omezení
+LearnSettings.CARD_LIMIT          = Omezení počtu karet
+LearnSettings.CARD_LIMIT_TEXT     = Omezení počtu testovaných karet během jedné relace.
+LearnSettings.TIME_LIMIT          = Minutový limit
+LearnSettings.TIME_LIMIT_TEXT     = Ukonči učení po uplynutí zadané doby.
+LearnSettings.DONT_RETEST_FAILED  = Nezkoušet z karet, které byly špatně zodpovězeny během této relace.
+
+LearnSettings.SCHEDULE_PRESETS    = Přednastavení časového rozvrhu
+LearnSettings.DELAY_AFTER_LEVEL   = Pauza po úrovni {0}
+LearnSettings.DAYS                = Dní
+LearnSettings.HOURS               = Hodin
+LearnSettings.MINUTES             = Minut
+
+LearnSettings.SIDE_MODE           = Strany
+LearnSettings.NORMAL_MODE         = Zkoušet v běžném nastavení
+LearnSettings.FLIP_MODE           = Zkoušet s obráceným nastavením stran.
+LearnSettings.RANDOM_MODE         = Zkoušet z náhodně vybíraných karet s náhodně vybranou stranou.
+LearnSettings.BOTH_MODE           = Zkoušet každou stranu podle nastavení.
+
+LearnSettings.START         = Zahájit relaci
+LearnSettings.TITLE         = Nastavení
+
+# new card
+
+NewCard.ADD                 = Přidat
+NewCard.ADD_AND_NEXT        = Přidat a vytvořit další
+
+NewCard.EDIT_RECENTLY       = Upravit nedávné
+NewCard.EDIT_RECENTLY_DESC  = Upravit nedávno vytvořené karty
+
+NewCard.NEW_WINDOW          = Nové okno
+NewCard.NEW_WINDOW_DESC     = Otevřít nové okno pro přidání karty
+
+NewCard.TITLE               = Vytvořit kartu
+
+NewCard.CLOSE_WARN          = Upozornění
+NewCardManager.DISMISSED_WARN = Chcete vytvořit kartu, aby nedošlo ke ztrátě zadaných informací při zavření okna?
+
+# status bar
+
+StatusBar.CARDS             = Karty
+StatusBar.EXPIRED           = K opakování
+StatusBar.LEARNED           = Naučené
+StatusBar.UNLEARNED         = Nenaučené
+StatusBar.PARTIAL           = Částečně naučené
+
+StatusBar.LEARNING_CATEGORY = Kategorie
+StatusBar.CARDS_LEFT        = Zbývajících karet
+
+# strategy
+
+Strategy.LINEAR_DEFAULT_SCHEDULE  = Linearní (implicitní)
+Strategy.CONSTANT_SCHEDULE        = Konstantní
+Strategy.EXPONENTIAL_SCHEDULE     = Exponenciální
+Strategy.QUADRATIC_SCHEDULE       = Kvadratická
+Strategy.CRAM_SCHEDULE            = Biflovací
+Strategy.CUSTOM_SCHEDULE          = Volitelná
+
+# time related
+
+Time.DAYS               = dní
+Time.ONE_DAY            = jeden den
+Time.HOURS              = hodin
+Time.ONE_HOUR           = jedna hodina
+Time.MINUTES            = minut
+Time.ONE_MINUTE         = jedna minuta
+Time.SECONDS            = sekund
+
+Time.PASSED             = uplynulo
+
+Time.IN                 = zbývá: {0}
+Time.AGO                = uplynulo: {0}
+
+# learn history
+
+History.RECENT = Nedávné relace
+History.BY_DATE = Relace podle data
+History.BY_WEEK = Relace podle týdnů
+History.BY_MONTH = Relace podle měsíců
+History.BY_YEAR = Relace podle let
+History.SESSION_DURATION = Délka relací
+History.ACTION = Zobrazit historii
+History.TITLE = Historie
+
+

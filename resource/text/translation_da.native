@@ -1,0 +1,290 @@
+#
+# This is a translation file for jMemorize (http://www.riad.de/jmemorize)
+#
+# ------------------------------------------------------------------------------
+# Author:             Adam Ehlers Nyholm Thomsen <adament@gmail.com>
+# Language:           Danish (da)
+# jMemorize-Version:  1.0rc2
+# ------------------------------------------------------------------------------
+#
+# Notes:
+#   DESC is the text that will show up as tooltip.
+#   TITLE is the title of the new window / dialog.
+
+# general
+
+General.CATEGORY          = Kategori
+General.CREATED           = Oprettet
+General.EXPIRES           = Udløber
+General.LAST_TEST         = Sidste Test
+General.DECK              = Sæt
+General.DECKS             = Sæt
+General.FRONTSIDE         = Forside
+General.FLIPSIDE          = Bagside
+General.OKAY              = OK
+General.APPLY             = Anvend
+General.CANCEL            = Annuller
+General.ROOT_CATEGORY     = Alle
+General.GENERAL           = Generelt
+
+General.EMPTY_SIDES_ALERT       = Du skal skrive noget på begge side.
+General.EMPTY_SIDES_ALERT_TITLE = Kort sider ikke udfyldt
+
+# main frame
+
+MainFrame.ABOUT              = Om
+MainFrame.ABOUT_DESC         = Om dette program
+
+MainFrame.ADD_CARD           = Tilføj kort
+MainFrame.ADD_CARD_DESC      = Tilføj nyt kort
+
+MainFrame.ADD_CATEGORY       = Tilføj kategori
+MainFrame.ADD_CATEGORY_DESC  = Tilføj ny kategori
+MainFrame.ADD_CATEGORY_INPUT = Indtast navnet på den nye kategori som du ønsker at oprette.
+
+MainFrame.CATEGORY_TREE      = Kategori træ
+MainFrame.CATEGORY_TREE_DESC = Vis/Skjul kategori træet
+
+MainFrame.COPY               = Kopier
+MainFrame.CUT                = Klip
+MainFrame.PASTE              = Indsæt
+MainFrame.DELETE             = Slet
+
+MainFrame.DELETE_CARDS_WARN       = Du er ved at slette {0} kort. Ønsker du at fortsætte?
+MainFrame.DELETE_CARDS_WARN_TITLE = Kort sletning
+
+MainFrame.DELETE_CATEGORY_WARN  = Hvis du sletter kategori {0} vil det slette {1} kort. Ønsker du at fortsætte?
+
+MainFrame.EDIT_CARD             = Rediger kort
+MainFrame.EDIT_CARD_DESC        = Se og rediger kort detaljerne
+
+MainFrame.ERROR_TITLE           = Fejl
+MainFrame.ERROR_LOAD            = Der opstod en fejl under forsøget på at åbne filen: {0}.
+MainFrame.ERROR_SAVE            = Der opstod en fejl under forsøget på at gemme filen {0}. Lektionen er ikke blevet gemt.
+
+MainFrame.EXIT                  = Afslut
+MainFrame.EXIT_DESC             = Afslut programmet
+
+MainFrame.FILE_FILTER_DESC      = jMemorize Lektioner
+
+MainFrame.FIND                  = Søg
+MainFrame.FIND_DESC             = Søg efter kort
+
+MainFrame.LEARN                 = Lær
+MainFrame.LEARN_DESC            = Begynd indlæring med alle nye og udløbne kort
+
+MainFrame.MENU_FILE             = Fil
+MainFrame.MENU_EDIT             = Rediger
+MainFrame.MENU_HELP             = Hjælp
+MainFrame.MENU_LESSON           = Lektion
+
+MainFrame.NEW                   = Ny
+MainFrame.NEW_DESC              = Opret tom lektion
+
+MainFrame.UNNAMED_LESSON        = Ny Lektion
+
+MainFrame.OPEN                  = Åben
+MainFrame.OPEN_DESC             = Åben lektions fil
+
+MainFrame.REMOVE_CATEGORY_TITLE = Sletning af kategori
+MainFrame.REMOVE_DESC           = Slet markerede kategorier
+
+MainFrame.RESET                 = Reset kort
+MainFrame.RESET_DESC            = Reset kort statistik
+MainFrame.RESET_WARN            = Du er ved at resette {0} kort. Ønsker du at fortsætte?
+
+MainFrame.SAVE                  = Gem
+MainFrame.SAVE_DESC             = Gem lektion
+MainFrame.SAVE_AS               = Gem som...
+MainFrame.SAVE_AS_DESC          = Gem lektion som...
+MainFrame.SAVE_MODIFIED         = Lektionen er blevet ændret. Ønsker du at gemme før afslutning?
+
+MainFrame.EXPORT                = Eksporter til ...
+MainFrame.EXPORT_DESC           = Eksporter lektion
+MainFrame.EXPORT_PDF            = Portable Document Format (*.pdf)
+MainFrame.EXPORT_RTF            = Rich Text Format (*.rtf)
+MainFrame.EXPORT_PDF_DESC       = Eksporter til *.pdf
+MainFrame.EXPORT_RTF_DESC       = Eksporter til *.rtf
+MainFrame.EXPORT_CLEAN          = Eksporter til lektion uden personlige indlærings oplysninger
+
+MainFrame.PREFERENCES           = Indstillinger
+MainFrame.PREFERENCES_DESC      = Ret dine indstillinger
+
+MainFrame.CONFIRM_OVERWRITE_TITLE = Overskriv fil?
+MainFrame.CONFIRM_OVERWRITE = Filen eksisterer allerede. Ønsker du at overskrive den?
+
+# preferences
+
+Preferences.USE_GZIP            = Komprimer dine lektioner i GZIP format.
+Preferences.LANGUAGE            = Sprog
+Preferences.RESTART             = Dit nye sprogvalg vil træde i kraft næste gang du starter programmet.
+
+Preferences.FONT_SETTINGS       = Skrifttype indstillinger
+Preferences.FONT                = Skrifttype
+Preferences.SIZE                = Størrelse
+Preferences.PREVIEW             = Forvisning
+
+# card table
+
+CardTable.COLUMNS               = Kolonner
+CardTable.NO_DATE_DESC          = Dette kort er ikke blevet testet.
+CardTable.NOT_LEARNED           = ikke lært
+CardTable.PATH                  = Sti
+CardTable.SELECTED_CARDS        = Valgte Kort
+
+# deck chart
+
+DeckChart.CARDS              = Kort
+DeckChart.START_DECK         = Start Sæt
+DeckChart.SUMMARY            = Oversigt
+DeckChart.EXPIRED_CARDS      = Udløbne Kort
+DeckChart.LEARNED_CARDS      = Indlærte Kort
+DeckChart.UNLEARNED_CARDS    = Ulærte Kort
+
+# deck table
+
+DeckTable.NEXT_DECK          = Næste Sæt
+DeckTable.NEXT_DECK_DESC     = Vis næste sæt
+DeckTable.PREV_DECK          = Forrige Sæt
+DeckTable.PREV_DECK_DESC     = Vis forrige sæt
+
+# card editting
+
+EditCard.DETAILS_RATIO       = Success rate
+EditCard.DETAILS_HISTORY     = Indlærings historie
+
+EditCard.MODIFIED_WARN       = Kortet er blevet ændret, ønsker du at anvede disse ændringer før du fortsætter?
+EditCard.MODIFIED_WARN_TITLE = Kortet er blevet ændret.
+
+EditCard.NEXT_CARD         = Næste Kort
+EditCard.NEXT_CARD_DESC    = Vis næste kort
+
+EditCard.PREV_CARD         = Forrige kort
+EditCard.PREV_CARD_DESC    = Vis forrige kort
+
+EditCard.REMOVE_CARD       = Slet kort
+EditCard.REMOVE_CARD_DESC  = Slet nuværende kort
+
+EditCard.REMOVE_CARD_WARN  = Er du sikker på du ønsker at slette dette kort?
+EditCard.REMOVE_CARD_WARN_TITLE = Sletning af Kort
+
+EditCard.RESET_CARD        = Reset kort
+EditCard.RESET_CARD_DESC   = Resetter det nuværende kort
+EditCard.RESET_CARD_WARN   = At resette dette kort vil flytte det tilbage til første sæt.\nEr du sikker?
+
+EditCard.TAB_SIDES         = Sider
+EditCard.TAB_PROPERTIES    = Egenskaber
+
+# find tool
+
+FindTool.FIND          = Søg
+FindTool.BOTH_SIDES    = Begge sider
+FindTool.MATCH_CASE    = Tag hensyn til store og små bogstaver
+FindTool.RESULTS       = Resultater
+FindTool.SEARCH_TEXT   = Søgetekst
+FindTool.SETTINGS      = Indstillinger
+
+# learn
+
+
+Learn.REMEMBER_THE_ANSWER    = Prøv at huske svaret
+Learn.DID_YOU_KNOW_ANSWER    = Kendte du svaret?
+Learn.YES                    = Ja
+Learn.NO                     = Nej
+
+Learn.CARD_COUNTER           = Kort tæller
+Learn.FLIPPED_CARD_SIDES     = Omvendte kort sider
+Learn.SHOW_ANSWER            = Vis svar
+Learn.SHOW_CATEGORY          = Vis kategori
+Learn.SKIP_CARD              = Spring kortet over
+Learn.STOP                   = Stop indlæring
+Learn.TIMER                  = Tidstæller
+
+# learn settings
+
+LearnSettings.ADVANCED          = Avanceret
+LearnSettings.SCHEDULING        = Kalender
+
+LearnSettings.CARDS_TO_LEARN    = Kort som skal læres
+LearnSettings.LEARN_UNLEARNED_EXPIRED = Lær alle ulærte og udløbne kort.
+LearnSettings.LEARN_UNLEARNED   = Lær kun ulærte kort.
+LearnSettings.LEARN_EXPIRED     = Lær kun udløbne kort.
+
+LearnSettings.CARDS_ORDER       = Kort rækkefølge
+LearnSettings.SHUFFLE_CARDS     = Bland kort fra alle sæt og kategorier.
+LearnSettings.GROUP_CARDS       = Grupper kortene ved kategorier mens du lærer.
+LearnSettings.NATURAL_CATEGORY_ORDER = Vis kategorierne i forhåndsbestemt rækkefølge.
+LearnSettings.RANDOM_CATEGORY_ORDER = Vis kategorierne i tilfældig rækkefølge.
+
+LearnSettings.DELIMITERS          = Afslutnings Kriterier
+LearnSettings.CARD_LIMIT          = Kort grænse
+LearnSettings.CARD_LIMIT_TEXT     = Stop indlæring efter en vis kort grænse er nået.
+LearnSettings.TIME_LIMIT          = Minut grænse
+LearnSettings.TIME_LIMIT_TEXT     = Stop indlæring når en vis tidsgrænse er nået.
+LearnSettings.DONT_RETEST_FAILED  = Gentest ikke kort som mislykkedes i denne indlæringsrunde.
+
+LearnSettings.SCHEDULE_PRESETS    = Kalender Forvalg
+LearnSettings.DELAY_AFTER_LEVEL   = Forsinkelse efter niveau {0}
+LearnSettings.DAYS                = Dage
+LearnSettings.HOURS               = Timer
+LearnSettings.MINUTES             = Minutter
+
+LearnSettings.SIDE_MODE           = Side indstilling
+LearnSettings.NORMAL_MODE         = Indlæring som normalt.
+LearnSettings.FLIP_MODE           = Indlæring med omvendte kort sider.
+LearnSettings.RANDOM_MODE         = Indlæring med tilfældig indstilling, hvor nogle kort har omvendte sider mens andre ikke har.
+LearnSettings.BOTH_MODE           = Lær hvert kort side så ofte som specificeret.
+
+
+LearnSettings.START         = Start Indlæring\!
+LearnSettings.TITLE         = Indlærings Indstillinger
+
+# new card
+
+NewCard.ADD                 = Tilføj
+NewCard.ADD_AND_NEXT        = Tilføj og opret næste
+
+NewCard.EDIT_RECENTLY       = Rediger nylig
+NewCard.EDIT_RECENTLY_DESC  = Rediger nyligt oprettede kort
+
+NewCard.NEW_WINDOW          = Nyt vindue
+NewCard.NEW_WINDOW_DESC     = Åben et andet vindue
+
+NewCard.TITLE               = Opret Kort
+
+NewCard.CLOSE_WARN          = Advarsel
+NewCardManager.DISMISSED_WARN = Kort data er ved at blive slette.\nØnsker du at oprette kortet før vinduet bliver lukket?
+
+# status bar
+
+StatusBar.CARDS             = Kort
+StatusBar.EXPIRED           = Udløbet
+StatusBar.LEARNED           = Indlært
+StatusBar.UNLEARNED         = Ulært
+
+StatusBar.LEARNING_CATEGORY = Indlærings kategori
+StatusBar.CARDS_LEFT        = Kort tilbage
+
+# strategy
+
+Strategy.LINEAR_DEFAULT_SCHEDULE  = Lineær (Standard)
+Strategy.CONSTANT_SCHEDULE        = Konstant
+Strategy.EXPONENTIAL_SCHEDULE     = Eksponentiel
+Strategy.QUADRATIC_SCHEDULE       = Kvadratisk
+Strategy.INTENSIVE_SCHEDULE       = Intensiv
+Strategy.CUSTOM_SCHEDULE          = Personlig
+
+# time related
+
+Time.DAYS               = dage
+Time.ONE_DAY            = en dag
+Time.HOURS              = timer
+Time.ONE_HOUR           = en time
+Time.MINUTES            = minutter
+Time.ONE_MINUTE         = et minut
+Time.SECONDS            = sekunder
+
+Time.PASSED             = passeret
+
+Time.IN                 = i {0}
+Time.AGO                = {0} siden

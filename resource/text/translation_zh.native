@@ -1,0 +1,331 @@
+#
+# This is a translation file for jMemorize (http://www.riad.de/jmemorize)
+#
+# ------------------------------------------------------------------------------
+# Author:             Tianyi Cui (tianyicui at gmail.com)
+# Language:           Simplified Chinese (zh)
+# jMemorize-Version:  1.3.0
+# ------------------------------------------------------------------------------
+#
+# Notes:
+#   DESC is the text that will show up as tooltip.
+#   TITLE is the title of the new window / dialog.
+
+# general
+
+General.CATEGORY          = 类别
+General.CREATED           = 已创建
+General.MODIFIED          = 已修改
+General.EXPIRES           = 过期
+General.LAST_TEST         = 上次测试
+General.DECK              = 卡片组
+General.DECKS             = 卡片组
+General.FRONTSIDE         = 正面
+General.FLIPSIDE          = 背面
+General.OKAY              = 好的
+General.APPLY             = 应用
+General.CANCEL            = 取消
+General.ROOT_CATEGORY     = 全部
+General.GENERAL           = 常规
+General.PASSED            = 通过
+General.UNLEARNED         = 未学
+General.EXPIRED           = 过期的
+
+General.EMPTY_SIDES_ALERT       = 您应该写上卡的两面。
+General.EMPTY_SIDES_ALERT_TITLE = 错误的卡面。
+
+# main frame
+
+MainFrame.ABOUT              = 关于
+MainFrame.ABOUT_DESC         = 关于本程序
+
+MainFrame.ADD_CARD           = 添加卡片
+MainFrame.ADD_CARD_DESC      = 添加新卡片
+
+MainFrame.ADD_CATEGORY       = 添加类别
+MainFrame.ADD_CATEGORY_DESC  = 添加新类别
+MainFrame.ADD_CATEGORY_INPUT = 输入您想创建的新类别。
+
+MainFrame.CATEGORY_TREE      = 分类树
+MainFrame.CATEGORY_TREE_DESC = 显示/隐藏分类树
+
+MainFrame.COPY               = 复制
+MainFrame.CUT                = 剪切
+MainFrame.PASTE              = 粘贴
+MainFrame.DELETE             = 删除
+
+MainFrame.DELETE_CARDS_WARN       = 您将删除 {0} 张卡片，继续吗？
+MainFrame.DELETE_CARDS_WARN_TITLE = 删除卡片
+MainFrame.DELETE_CATEGORY_WARN  = 删除类别 {0} 将删除 {1} 张卡片，继续吗？
+
+MainFrame.EDIT_CARD             = 编辑卡片
+MainFrame.EDIT_CARD_DESC        = 编辑并察看卡片
+
+MainFrame.ERROR_TITLE           = 错误
+MainFrame.ERROR_LOAD            = 载入文件 {0} 时出错了。
+MainFrame.ERROR_SAVE            = 保存文件 {0} 时出错了，课程未被保存。
+
+MainFrame.EXIT                  = 退出
+MainFrame.EXIT_DESC             = 退出程序
+
+MainFrame.FILE_FILTER_DESC      = jMemorize 课程
+MainFrame.PDF_FILE_FILTER_DESC	= PDF - Portable Document Format (.pdf)
+
+MainFrame.FIND                  = 查找
+MainFrame.FIND_DESC             = 查找卡片
+
+MainFrame.LEARN                 = 学习
+MainFrame.LEARN_DESC            = 开始学习所有未学和过期的卡片
+
+MainFrame.MENU_FILE             = 文件
+MainFrame.MENU_EDIT             = 编辑
+MainFrame.MENU_HELP             = 帮助
+MainFrame.MENU_LESSON           = 课程
+
+MainFrame.NEW                   = 新建
+MainFrame.NEW_DESC              = 创建空白课程
+
+MainFrame.UNNAMED_LESSON        = 新课程
+
+MainFrame.OPEN                  = 打开
+MainFrame.OPEN_DESC             = 打开课程文件
+
+MainFrame.REMOVE_CATEGORY_TITLE = 删除类别
+MainFrame.REMOVE_DESC           = 删除选定的项目
+
+MainFrame.RESET                 = 重置卡片
+MainFrame.RESET_DESC            = 重置卡片统计
+MainFrame.RESET_WARN            = 您将删除 {0} 张卡片，继续吗？
+
+MainFrame.SAVE                  = 保存
+MainFrame.SAVE_DESC             = 保存课程
+MainFrame.SAVE_AS               = 另存为..
+MainFrame.SAVE_AS_DESC          = 另存课程为..
+MainFrame.SAVE_MODIFIED         = 课程已被修改，退出前要保存吗？
+
+MainFrame.IMPORT                = 导入
+
+MainFrame.EXPORT                = 导出
+MainFrame.EXPORT_PDF            = Portable Document Format (*.pdf)
+MainFrame.EXPORT_RTF            = Rich Text Format (*.rtf)
+MainFrame.EXPORT_PDF_DESC       = 导出为 *.pdf
+MainFrame.EXPORT_RTF_DESC       = 导出为 *.rtf
+MainFrame.EXPORT_CLEAN          = 不含个人学习数据的课程
+
+MainFrame.PREFERENCES           = 选项
+MainFrame.PREFERENCES_DESC      = 设定您的使用偏好
+
+MainFrame.CONFIRM_OVERWRITE_TITLE = 覆盖文件？
+MainFrame.CONFIRM_OVERWRITE = 文件已存在，是否覆盖？
+
+MainFrame.SELECT_CHARACTER_SET  = 请选择文件的字符集。
+MainFrame.CHARACTER_SET         = 字符集
+
+# files
+
+File.CSV                     = Comma Separated Values (*.csv)
+File.TSV                     = Tabular Separated Values (*.tsv)
+
+# web sites
+
+URL.HOMEPAGE                 = 主页
+URL.MANUAL                   = 用户手册
+URL.FEATURE_TRACKER          = 功能需求
+URL.BUG_TRACKER              = Bug 报告
+
+# preferences
+
+Preferences.USE_GZIP            = 将课程压缩成 GZIP 格式。
+Preferences.LANGUAGE            = 语言
+Preferences.RESTART             = 新的语言设定将在下次程序启动时生效。
+
+Preferences.FONT_SETTINGS       = 字体设置
+Preferences.FONT                = 字体
+Preferences.SIZE                = 大小
+Preferences.PREVIEW             = 预览
+
+# card table
+
+CardTable.COLUMNS               = 列
+CardTable.NO_DATE_DESC          = 这张卡片从未被测试。
+CardTable.NOT_LEARNED           = 未学
+CardTable.PATH                  = 路径
+CardTable.SELECTED_CARDS        = 选定的卡片
+
+# deck chart
+
+DeckChart.CARDS              = 卡片
+DeckChart.START_DECK         = 初始卡片组
+DeckChart.SUMMARY            = 总计
+DeckChart.EXPIRED_CARDS      = 过期的卡片
+DeckChart.LEARNED_CARDS      = 已学的卡片
+DeckChart.UNLEARNED_CARDS    = 未学的卡片
+
+Summary.LEARNED              = 已学的
+Summary.FAILED               = 失败的
+Summary.RELEARNED            = 重学的
+Summary.SKIPPED              = 跳过的
+
+# deck table
+
+DeckTable.NEXT_DECK          = 下个卡片组
+DeckTable.NEXT_DECK_DESC     = 显示下个卡片组
+DeckTable.PREV_DECK          = 前一个卡片组
+DeckTable.PREV_DECK_DESC     = 显示前一个卡片组
+
+# card editting
+
+EditCard.DETAILS_RATIO       = 通过率
+EditCard.DETAILS_HISTORY     = 学习历程
+
+EditCard.MODIFIED_WARN       = 卡片条目已被修改，立即应用吗？
+EditCard.MODIFIED_WARN_TITLE = 卡片已被修改
+
+EditCard.NEXT_CARD         = 下一张卡片
+EditCard.NEXT_CARD_DESC    = 显示下一张卡片
+
+EditCard.PREV_CARD         = 前一张卡片
+EditCard.PREV_CARD_DESC    = 显示前一张卡片
+
+EditCard.REMOVE_CARD       = 移除卡片
+EditCard.REMOVE_CARD_DESC  = 移除当前卡片
+
+EditCard.REMOVE_CARD_WARN  = 您确定要删除这张卡片吗？
+EditCard.REMOVE_CARD_WARN_TITLE = 卡片删除
+
+EditCard.RESET_CARD        = 重置卡片
+EditCard.RESET_CARD_DESC   = 重置当前卡片
+EditCard.RESET_CARD_WARN   = 重置这张卡片会将它移至第一个卡片组。\n确定吗？
+
+EditCard.TAB_SIDES         = 面
+EditCard.TAB_PROPERTIES    = 属性
+
+# find tool
+
+FindTool.FIND          = 搜索
+FindTool.BOTH_SIDES    = 两面
+FindTool.MATCH_CASE    = 全字匹配
+FindTool.RESULTS       = 结果
+FindTool.SEARCH_TEXT   = 搜索文本
+FindTool.SETTINGS      = 设定
+
+# learn
+
+
+Learn.REMEMBER_THE_ANSWER    = 试着回想这个答案
+Learn.DID_YOU_KNOW_ANSWER    = 你知道正确的答案吗？
+Learn.YES                    = 是
+Learn.NO                     = 否
+
+Learn.CARD_COUNTER           = 卡片计数
+Learn.FLIPPED_CARD_SIDES     = 给卡片翻面
+Learn.SHOW_ANSWER            = 显示答案
+Learn.SHOW_CATEGORY          = 显示类别
+Learn.SKIP_CARD              = 跳过卡片
+Learn.STOP                   = 停止学习
+Learn.TIMER                  = 计时器
+
+Learn.SESSION_RESULTS        = 测试结果
+Learn.CARD_PROGRESS          = 卡片进程
+Learn.SESSION_PROGRESS       = 测试进程
+
+# learn settings
+
+LearnSettings.ADVANCED          = 高级
+LearnSettings.SCHEDULING        = 时间表
+
+LearnSettings.CARDS_TO_LEARN    = 要学的卡片
+LearnSettings.LEARN_UNLEARNED_EXPIRED = 学习所有未学和过期的卡片。
+LearnSettings.LEARN_UNLEARNED   = 只学未学的卡片。
+LearnSettings.LEARN_EXPIRED     = 只学过期的卡片。
+LearnSettings.LEARN_SELECTED    = 只学选定的卡片。
+
+LearnSettings.CARDS_ORDER       = 卡片顺序
+LearnSettings.SHUFFLE_CARDS     = 打乱所有卡片的顺序。
+LearnSettings.GROUP_CARDS       = 在学习中根据类别分组。
+LearnSettings.NATURAL_CATEGORY_ORDER = 以固定顺序显示类别。
+LearnSettings.RANDOM_CATEGORY_ORDER = 以随机顺序显示类别。
+
+LearnSettings.DELIMITERS          = 分割符
+LearnSettings.CARD_LIMIT          = 卡片限制
+LearnSettings.CARD_LIMIT_TEXT     = 最多要学的卡片数。
+LearnSettings.TIME_LIMIT          = 时间限制
+LearnSettings.TIME_LIMIT_TEXT     = 到达时间限制后结束测试。
+LearnSettings.DONT_RETEST_FAILED  = 并不重新测试在本次测试中失败的卡片。
+
+LearnSettings.SCHEDULE_PRESETS    = 预置方案
+LearnSettings.DELAY_AFTER_LEVEL   = 学过 {0} 次后的过期时间
+LearnSettings.DAYS                = 天
+LearnSettings.HOURS               = 小时
+LearnSettings.MINUTES             = 分钟
+
+LearnSettings.SIDE_MODE           = 翻面模式
+LearnSettings.NORMAL_MODE         = 以一般模式学习。
+LearnSettings.FLIP_MODE           = 以背面模式学习。
+LearnSettings.RANDOM_MODE         = 以随机模式学习，卡片将会被随机的翻面。
+LearnSettings.BOTH_MODE           = 以指定的次数学习卡片的两面。
+
+LearnSettings.START         = 开始测试！
+LearnSettings.TITLE         = 学习设置
+
+# new card
+
+NewCard.ADD                 = 添加
+NewCard.ADD_AND_NEXT        = 添加并创建下一个
+
+NewCard.EDIT_RECENTLY       = 编辑最近的
+NewCard.EDIT_RECENTLY_DESC  = 编辑最近创建的卡片
+
+NewCard.NEW_WINDOW          = 新窗口
+NewCard.NEW_WINDOW_DESC     = 打开另一个添加卡片的窗口
+
+NewCard.TITLE               = 创建卡片
+
+NewCard.CLOSE_WARN          = 警告
+NewCardManager.DISMISSED_WARN = 卡片中的数据将被丢弃。在关闭窗口前创建这张卡片？
+
+# status bar
+
+StatusBar.CARDS             = 卡片
+StatusBar.EXPIRED           = 未学的
+StatusBar.LEARNED           = 已学
+StatusBar.UNLEARNED         = 未学
+StatusBar.PARTIAL           = 部分已学
+
+StatusBar.LEARNING_CATEGORY = 分类学习
+StatusBar.CARDS_LEFT        = 剩下的卡片
+
+# strategy
+
+Strategy.LINEAR_DEFAULT_SCHEDULE  = 线性模式（默认）
+Strategy.CONSTANT_SCHEDULE        = 常数模式
+Strategy.EXPONENTIAL_SCHEDULE     = 指数模式
+Strategy.QUADRATIC_SCHEDULE       = 二次模式
+Strategy.CRAM_SCHEDULE            = 考前模式
+Strategy.CUSTOM_SCHEDULE          = 自定义
+
+# time related
+
+Time.DAYS               = 天
+Time.ONE_DAY            = 一天
+Time.HOURS              = 小时
+Time.ONE_HOUR           = 一小时
+Time.MINUTES            = 分钟
+Time.ONE_MINUTE         = 一分钟
+Time.SECONDS            = 秒
+
+Time.PASSED             = 通过
+
+Time.IN                 = 在 {0}
+Time.AGO                = {0} 之前
+
+# learn history
+
+History.TITLE = 历史
+History.ACTION = 显示历史
+History.RECENT = 最近的测试
+History.BY_DATE = 按天
+History.BY_WEEK = 按周
+History.BY_MONTH = 按月
+History.BY_YEAR = 按年
+History.SESSION_DURATION = 测试用时

@@ -1,0 +1,351 @@
+#
+# This is a translation file for jMemorize (http://www.riad.de/jmemorize)
+#
+# ------------------------------------------------------------------------------
+# Authors:            MILLE.ca / P.-A. Loizeau
+# Language:           French (fr)
+# jMemorize-Version:  1.3.0
+# ------------------------------------------------------------------------------
+#
+# Notes:
+#   DESC is the text that will show up as tooltip.
+#   TITLE is the title of the new window / dialog.
+
+# general
+
+General.CATEGORY          = Cat�gorie
+General.CREATED           = Cr��
+General.MODIFIED          = Modifi�
+General.EXPIRES           = Expiration
+General.LAST_TEST         = Dernier exercice effectu�
+General.DECK              = Paquet
+General.DECKS             = Paquets
+General.FRONTSIDE         = Recto
+General.FLIPSIDE          = Verso
+General.OKAY              = Ok
+General.APPLY             = Appliquer
+General.CANCEL            = Annuler
+General.ROOT_CATEGORY     = Toutes
+General.GENERAL           = G�n�ral
+General.PASSED            = R�ussies
+General.UNLEARNED         = Non appris
+General.EXPIRED           = Expir�
+General.IMAGE             = Image
+
+
+General.EMPTY_SIDES_ALERT       = Vous devez sp�cifier les deux c�t�s de la carte.
+General.EMPTY_SIDES_ALERT_TITLE = Mauvais c�t� de la carte
+
+# main frame
+
+MainFrame.ABOUT              = � propos
+MainFrame.ABOUT_DESC         = � propos de cette application
+
+MainFrame.ADD_CARD           = Ajouter une carte
+MainFrame.ADD_CARD_DESC      = Ajouter une nouvelle carte
+
+MainFrame.ADD_CATEGORY       = Ajouter une cat�gorie
+MainFrame.ADD_CATEGORY_DESC  = Ajouter une nouvelle cat�gorie
+MainFrame.ADD_CATEGORY_INPUT = Entrez le nom de la nouvelle cat�gorie � cr�er.
+
+MainFrame.CATEGORY_TREE      = Arbre
+MainFrame.CATEGORY_TREE_DESC = Afficher/Cacher l'arbre des cat�gories
+
+MainFrame.COPY               = Copier
+MainFrame.CUT                = Couper
+MainFrame.PASTE              = Coller
+MainFrame.DELETE             = Supprimer
+
+MainFrame.DELETE_CARDS_WARN       = Vous �tes sur le point de supprimer {0} carte(s). Voulez-vous continuer?
+MainFrame.DELETE_CARDS_WARN_TITLE = Suppression de carte
+
+MainFrame.DELETE_CATEGORY_WARN  = La suppression de la cat�gorie {0} supprimera {1} carte(s). Voulez-vous continuer?
+
+MainFrame.EDIT_CARD             = �diter la carte
+MainFrame.EDIT_CARD_DESC        = �diter et afficher les d�tails de la carte
+
+MainFrame.ERROR_TITLE           = Erreur
+MainFrame.ERROR_LOAD            = Une erreur est survenue lors du chargement du fichier {0}.
+MainFrame.ERROR_SAVE            = Une erreur est survenue lors de la sauvegarde du fichier {0}. La le�on n'a pas �t� sauvegard�e.
+
+MainFrame.EXIT                  = Quitter
+MainFrame.EXIT_DESC             = Quitter l'application
+
+MainFrame.FILE_FILTER_DESC      = Les le�ons de jMemorize
+MainFrame.PDF_FILE_FILTER_DESC  = PDF - Portable Document Format (.pdf)
+MainFrame.IMG_FILTER_DESC       = Images
+
+MainFrame.FIND                  = Rechercher
+MainFrame.FIND_DESC             = Trouver une carte
+
+MainFrame.LEARN                 = Apprendre
+MainFrame.LEARN_DESC            = Commencer l'apprentissage avec toutes les cartes non apprises et expir�es
+
+MainFrame.MENU_FILE             = Fichier
+MainFrame.MENU_EDIT             = �diter
+MainFrame.MENU_HELP             = Aide
+MainFrame.MENU_LESSON           = Le�on
+
+MainFrame.NEW                   = Nouveau
+MainFrame.NEW_DESC              = Cr�er une le�on vide
+
+MainFrame.UNNAMED_LESSON        = Nouvelle le�on
+
+MainFrame.OPEN                  = Ouvrir
+MainFrame.OPEN_DESC             = Ouvrir le fichier de la le�on
+
+MainFrame.REMOVE_CATEGORY_TITLE = Suppression de la cat�gorie
+MainFrame.REMOVE_DESC           = Supprimer les item(s) actuellement s�lectionn�s
+
+MainFrame.RESET                 = R�initialiser la carte
+MainFrame.RESET_DESC            = R�initialiser les statistiques de la carte
+MainFrame.RESET_WARN            = Vous �tes sur le point de r�initialiser {0} carte(s). Voulez-vous continuer?
+
+MainFrame.SAVE                  = Sauvegarder
+MainFrame.SAVE_DESC             = Sauvegarder la le�on
+MainFrame.SAVE_AS               = Sauvegarder sous..
+MainFrame.SAVE_AS_DESC          = Sauvegarder la le�on sous..
+MainFrame.SAVE_MODIFIED         = La le�on a �t� modifi�e. Voulez-vous la sauvegarder avant de quitter?
+
+MainFrame.IMPORT                = Importer
+
+MainFrame.EXPORT                = Exporter en ...
+MainFrame.EXPORT_PDF            = Portable Document Format (*.pdf)
+MainFrame.EXPORT_RTF            = Rich Text Format (*.rtf)
+MainFrame.EXPORT_PDF_DESC       = Exporter en *.pdf
+MainFrame.EXPORT_RTF_DESC       = Exporter en *.rtf
+MainFrame.EXPORT_CLEAN          = Le�on sans donn�es personnelles d'apprentissage
+
+MainFrame.PREFERENCES           = Pr�f�rences
+MainFrame.PREFERENCES_DESC      = Choisissez vos pr�f�rences
+
+MainFrame.CONFIRM_OVERWRITE_TITLE = Ecraser le fichier?
+MainFrame.CONFIRM_OVERWRITE = Le fichier existe d�j�. Voulez-vous l'�craser?
+
+MainFrame.SELECT_CHARACTER_SET  = S�lectionnez le set de caract�res du fichier.
+MainFrame.CHARACTER_SET         = Set de caract�res
+
+MainFrame.RENAME                = Renommer
+MainFrame.RENAME_INPUT          = Entrez le nouveau nom.
+
+# files
+
+File.CSV                     = Valeurs s�par�es par une virgule (*.csv)
+File.TSV                     = Valeurs s�par�es par une tabulation (*.tsv)
+
+# web sites
+
+URL.HOMEPAGE                 = Site Web
+URL.MANUAL                   = Manuel de l'utilisateur
+URL.FEATURE_TRACKER          = Suivi des fonctions
+URL.BUG_TRACKER              = Suivi des bugs
+
+# preferences
+
+Preferences.USE_GZIP            = Compresser les le�ons au format GZIP.
+Preferences.LANGUAGE            = Langage
+Preferences.RESTART             = La nouvelle langue s�lectionn�e appara�tra au prochain d�marrage de l'application.
+
+Preferences.FONT_SETTINGS       = Configuration des polices
+Preferences.FONT                = Police
+Preferences.SIZE                = Dimension
+Preferences.PREVIEW             = Aper�u
+
+Preferences.ALIGNMENT           = Alignement
+Preferences.ALIGN_LEFT          = Gauche
+Preferences.ALIGN_CENTER        = Centre
+Preferences.ALIGN_RIGHT         = Droite
+Preferences.VERT_ALIGN          = Centrer verticalement
+
+# card table
+
+CardTable.COLUMNS               = Colonnes
+CardTable.NO_DATE_DESC          = Cette carte n'a jamais �t� test�e.
+CardTable.NOT_LEARNED           = Non apprise
+CardTable.PATH                  = Chemin
+CardTable.SELECTED_CARDS        = Cartes s�lectionn�es
+
+# deck chart
+
+DeckChart.CARDS              = Cartes
+DeckChart.START_DECK         = Commencer le paquet
+DeckChart.SUMMARY            = R�sum�
+DeckChart.EXPIRED_CARDS      = Cartes expir�es
+DeckChart.LEARNED_CARDS      = Cartes apprises
+DeckChart.UNLEARNED_CARDS    = Cartes non apprises
+
+Summary.LEARNED              = Apprises
+Summary.FAILED               = Rat�es
+Summary.RELEARNED            = R�apprises
+Summary.SKIPPED              = Saut�es
+
+# session chart
+
+SessionChart.THIS_SESSION    = Cette session
+SessionChart.AVERAGE_SESSION = Moyenne de la session
+
+# deck table
+
+DeckTable.NEXT_DECK          = Paquet suivant
+DeckTable.NEXT_DECK_DESC     = Afficher le paquet suivant.
+DeckTable.PREV_DECK          = Paquet pr�c�dent
+DeckTable.PREV_DECK_DESC     = Afficher le paquet pr�c�dent.
+
+# card editting
+
+EditCard.DETAILS_RATIO       = Performance
+EditCard.DETAILS_HISTORY     = Historique d'apprentissage
+
+EditCard.MODIFIED_WARN       = La carte a �t� modifi�e. Voulez-vous conserver les modifications avant de continuer?
+EditCard.MODIFIED_WARN_TITLE = La carte a �t� modifi�e.
+
+EditCard.NEXT_CARD         = Carte suivante
+EditCard.NEXT_CARD_DESC    = Afficher la carte suivante
+
+EditCard.PREV_CARD         = Carte pr�c�dente
+EditCard.PREV_CARD_DESC    = Afficher la carte pr�c�dente
+
+EditCard.REMOVE_CARD       = Retirer la carte
+EditCard.REMOVE_CARD_DESC  = Retirer la carte affich�e
+
+EditCard.REMOVE_CARD_WARN  = �tes-vous certain de vouloir supprimer cette carte?
+EditCard.REMOVE_CARD_WARN_TITLE = Suppression de carte
+
+EditCard.RESET_CARD        = R�initialiser la carte
+EditCard.RESET_CARD_DESC   = R�initialiser la carte affich�e
+EditCard.RESET_CARD_WARN   = R�initialiser cette carte la replacera dans le premier paquet.\nEtes-vous certain de vouloir le faire ?
+
+EditCard.TAB_SIDES         = C�t�s
+EditCard.TAB_PROPERTIES    = Propri�t�s
+
+# find tool
+
+FindTool.FIND          = Chercher
+FindTool.BOTH_SIDES    = Deux c�t�s
+FindTool.MATCH_CASE    = Cas similaire
+FindTool.RESULTS       = R�sultats
+FindTool.SEARCH_TEXT   = Rechercher le texte
+FindTool.SETTINGS      = Configuration
+
+# learn
+
+
+Learn.REMEMBER_THE_ANSWER    = Essayez de vous souvenir de la r�ponse
+Learn.DID_YOU_KNOW_ANSWER    = Connaissiez-vous la bonne r�ponse?
+Learn.YES                    = Oui
+Learn.NO                     = Non
+
+Learn.CARD_COUNTER           = Compteur de cartes
+Learn.FLIPPED_CARD_SIDES     = C�t� des cartes invers�
+Learn.SHOW_ANSWER            = Afficher la r�ponse
+Learn.SHOW_CATEGORY          = Afficher la cat�gorie
+Learn.SKIP_CARD              = Passer � la carte suivante
+Learn.STOP                   = Arr�ter l'apprentissage
+Learn.TIMER                  = Compteur
+
+Learn.SESSION_RESULTS        = R�sultats de la session
+Learn.CARD_PROGRESS          = Progression (cartes)
+Learn.SESSION_PROGRESS       = Progression (session)
+
+# learn settings
+
+LearnSettings.ADVANCED          = Avanc�
+LearnSettings.SCHEDULING        = Planification
+
+LearnSettings.CARDS_TO_LEARN    = Cartes � apprendre
+LearnSettings.LEARN_UNLEARNED_EXPIRED = Apprendre toutes les cartes non apprises et expir�es.
+LearnSettings.LEARN_UNLEARNED   = Apprendre seulement les cartes non apprises.
+LearnSettings.LEARN_EXPIRED     = Apprendre seulement les cartes expir�es.
+LearnSettings.LEARN_SELECTED    = Apprendre les cartes s�lectionn�es.
+
+LearnSettings.CARDS_ORDER       = Ordre des cartes
+LearnSettings.SHUFFLE_CARDS     = M�langer les cartes de tous les paquets et de toutes les cat�gories.
+LearnSettings.SHUFFLE_RATIO     = Pourcentage des cartes qui ne devraient pas �tre tri�es en fonction de leur position dans les paquets.
+LearnSettings.GROUP_CARDS       = Grouper les cartes par cat�gorie lors de l'apprentissage.
+LearnSettings.NATURAL_CATEGORY_ORDER = Afficher les cat�gories par ordre d'enregistrement.
+LearnSettings.RANDOM_CATEGORY_ORDER = Afficher les cat�gories al�atoirement.
+
+LearnSettings.DELIMITERS          = D�limiteurs
+LearnSettings.CARD_LIMIT          = Limite de la carte
+LearnSettings.CARD_LIMIT_TEXT     = Limiter le nombre de cartes � tester pendant cette session � la valeur limite de carte.
+LearnSettings.TIME_LIMIT          = Temps limite
+LearnSettings.TIME_LIMIT_TEXT     = Terminer la session lorsqu'une certaine limite de temps est atteinte.
+LearnSettings.DONT_RETEST_FAILED  = Ne pas r�apprendre les cartes qui ont �t� rat�e dans cette session.
+
+LearnSettings.SCHEDULE_PRESETS    = Pr�r�glages
+LearnSettings.DELAY_AFTER_LEVEL   = D�lai apr�s le niveau {0}
+LearnSettings.DAYS                = Jours
+LearnSettings.HOURS               = Heures
+LearnSettings.MINUTES             = Minutes
+LearnSettings.FIXED_EXPIRATION_TIME = Utiliser un temps fixe d'expiration (heures et minutes).
+
+LearnSettings.SIDE_MODE           = Choix du mode d'affichage du c�t�
+LearnSettings.NORMAL_MODE         = Apprendre en mode normal.
+LearnSettings.FLIP_MODE           = Apprendre en mode invers� (les c�t�s des cartes invers�s).
+LearnSettings.RANDOM_MODE         = Apprendre en mode al�atoire (les c�t�s des cartes affich�s al�atoirement).
+LearnSettings.BOTH_MODE           = Apprendre chaque c�t� de carte aussi souvent que sp�cifi�.
+
+LearnSettings.START         = Commencer la session\!
+LearnSettings.TITLE         = Param�tres d'apprentissage
+
+# new card
+
+NewCard.ADD                 = Ajouter
+NewCard.ADD_AND_NEXT        = Ajouter et cr�er une nouvelle carte
+
+NewCard.EDIT_RECENTLY       = �dit� r�cemment
+NewCard.EDIT_RECENTLY_DESC  = �diter la carte cr��e r�cemment
+
+NewCard.NEW_WINDOW          = Nouvelle fen�tre
+NewCard.NEW_WINDOW_DESC     = Ouvrir une nouvelle fen�tre ajout de carte
+
+NewCard.TITLE               = Cr�er une carte
+
+NewCard.CLOSE_WARN          = Avertissement
+NewCardManager.DISMISSED_WARN = Les modifications apport�s � cette carte sont sur le point d'�tre effac�es.\nVoulez-vous cr�er la carte avant la fermeture de la fen�tre ?
+
+# status bar
+
+StatusBar.CARDS             = Cartes
+StatusBar.EXPIRED           = Expir�es
+StatusBar.LEARNED           = Apprises
+StatusBar.UNLEARNED         = Non apprises
+StatusBar.PARTIAL           = Apprises partiellement
+
+StatusBar.LEARNING_CATEGORY = Cat�gorie d'apprentissage
+StatusBar.CARDS_LEFT        = Cartes restantes
+
+# strategy
+
+Strategy.LINEAR_DEFAULT_SCHEDULE  = Lin�aire (D�faut)
+Strategy.CONSTANT_SCHEDULE        = Constant
+Strategy.EXPONENTIAL_SCHEDULE     = Exponentiel
+Strategy.QUADRATIC_SCHEDULE       = Quadratique
+Strategy.CRAM_SCHEDULE            = Bourrage de cr�ne
+Strategy.CUSTOM_SCHEDULE          = Personnalis�
+
+# time related
+
+Time.DAYS               = jours
+Time.ONE_DAY            = une journ�e
+Time.HOURS              = heures
+Time.ONE_HOUR           = une heure
+Time.MINUTES            = minutes
+Time.ONE_MINUTE         = une minute
+Time.SECONDS            = secondes
+
+Time.PASSED             = termin�es
+
+Time.IN                 = dans {0}
+Time.AGO                = depuis {0}
+
+# learn history
+
+History.TITLE = Historique
+History.ACTION = Afficher l'historique
+History.RECENT = Sessions r�centes
+History.BY_DATE = Sessions par date
+History.BY_WEEK = Sessions par semaine
+History.BY_MONTH = Sessions par mois
+History.BY_YEAR = Sessions par ann�e
+History.SESSION_DURATION = Dur�e de la session

@@ -1,0 +1,313 @@
+#
+# This is a translation file for jMemorize (http://www.riad.de/jmemorize)
+#
+# ------------------------------------------------------------------------------
+# Authors:            Ali Baser <alibaser_marmara@yahoo.com>
+#                     Mert Nuhoglu <mert.nuhoglu@gmail.com>
+# Language:           Turkish (tr)
+# jMemorize-Version:  1.2.3
+# ------------------------------------------------------------------------------
+#
+
+# general
+
+General.CATEGORY          = Ulam
+General.CREATED           = Yaratılmış
+General.EXPIRES           = Sona Erenler
+General.LAST_TEST         = Son Test
+General.DECK              = Deste
+General.DECKS             = Desteler
+General.FRONTSIDE         = Önyüz
+General.FLIPSIDE          = Çevrilmiş yüz
+General.OKAY              = Tamam
+General.APPLY             = Uygula
+General.CANCEL            = İptal
+General.ROOT_CATEGORY     = Hepsi
+General.GENERAL           = Genel
+General.EMPTY_SIDES_ALERT       = Kartın her iki yanını da belirtmelisin.
+General.EMPTY_SIDES_ALERT_TITLE = Kötü kart yanları
+General.EXPIRED = Süresi Geçti
+General.MODIFIED = Değiştirilmiş
+General.PASSED = Geçti
+General.UNLEARNED = Öğrenilmemiş
+
+# main frame
+
+MainFrame.ABOUT              = Hakkında
+MainFrame.ABOUT_DESC         = Bu Uygulama Hakkında
+
+MainFrame.ADD_CARD           = Kart Ekle
+MainFrame.ADD_CARD_DESC      = Yeni Kart Ekle
+
+MainFrame.ADD_CATEGORY       = Ulam Ekle
+MainFrame.ADD_CATEGORY_DESC  = Yeni Ulam Ekle
+MainFrame.ADD_CATEGORY_INPUT = Oluşturmak İstediğin Yeni Ulamın İsmini gir
+
+MainFrame.CATEGORY_TREE      = Ulam agacı
+MainFrame.CATEGORY_TREE_DESC = Ulam agacını Göster/Gizle
+
+MainFrame.COPY               = Kopyala
+MainFrame.CUT                = Kes
+MainFrame.PASTE              = Yapıştır
+MainFrame.DELETE             = Sil
+
+MainFrame.DELETE_CARDS_WARN       = {0} Kart(lar)ı silmek üzeresiniz. Devam etmek istiyor musunuz?
+MainFrame.DELETE_CARDS_WARN_TITLE = Kart Silme
+
+MainFrame.DELETE_CATEGORY_WARN  = Ulam siliniyor {0} silinecek {1} kartlar. Devam etmek istiyor musunuz?
+
+MainFrame.EDIT_CARD             = Kart Düzenle
+MainFrame.EDIT_CARD_DESC        = Kartı Düzenle ve Ayrıntılarını Göster
+
+MainFrame.ERROR_TITLE           = Hata
+MainFrame.ERROR_LOAD            = Dosya Yüklenirken Bir Hata Oluştu{0}.
+MainFrame.ERROR_SAVE            = Dosya Kaydedilirken Bir Hata Oluştu {0}. Ders kaydedilmedi
+
+MainFrame.EXIT                  = Çıkış
+MainFrame.EXIT_DESC             = Çıkış Uygulaması
+
+MainFrame.FILE_FILTER_DESC      = jMemorize Dersleri
+
+MainFrame.FIND                  = Bul
+MainFrame.FIND_DESC             = Kartları Bul
+
+MainFrame.LEARN                 = Öğren
+MainFrame.LEARN_DESC            = Son ve öğrenilmemiş kartlar ile oturumu öğrenmeyhe başla.
+
+MainFrame.MENU_FILE             = Dosya
+MainFrame.MENU_EDIT             = Düzenle
+MainFrame.MENU_HELP             = Yardım
+MainFrame.MENU_LESSON           = Ders
+
+MainFrame.NEW                   = Yeni
+MainFrame.NEW_DESC              = Boş Bir Ders Oluştur
+
+MainFrame.UNNAMED_LESSON        = Yeni Ders
+
+MainFrame.OPEN                  = Aç
+MainFrame.OPEN_DESC             = Ders Dosyası Aç
+
+MainFrame.REMOVE_CATEGORY_TITLE = Ulam Silme
+MainFrame.REMOVE_DESC           = İşaretli olan öğeleri kaldır
+
+MainFrame.RESET                 = Kart Sıfırla
+MainFrame.RESET_DESC            = Kart İstatistiklerini Sıfırla
+MainFrame.RESET_WARN            = {0} Kartları sıfırlamak üzeresiniz . Devam etmek istiyor musunuz?
+
+MainFrame.SAVE                  = Kaydet
+MainFrame.SAVE_DESC             = Ders Kaydet
+MainFrame.SAVE_AS               = Farklı Kaydet
+MainFrame.SAVE_AS_DESC          = Ders Olarak Kaydet
+MainFrame.SAVE_MODIFIED         = Ders değiştirildi. Çıkmadan önce kaydetmek istiyor musunuz?
+
+MainFrame.PREFERENCES           = Özellikler
+MainFrame.PREFERENCES_DESC      = Özellikleri Belirle
+
+MainFrame.CHARACTER_SET = Harf kodlama
+MainFrame.CONFIRM_OVERWRITE = Dosya mevcut. Üzerine yazmak istiyor musunuz?
+MainFrame.CONFIRM_OVERWRITE_TITLE = Dosyanın üzerine yazılsın mı?
+MainFrame.EXPORT = Gönder
+MainFrame.EXPORT_CLEAN = Kişisel öğrenme verisi olmayan ders
+MainFrame.EXPORT_PDF = Portable Document Format (*.pdf)
+MainFrame.EXPORT_PDF_DESC = *.pdf üret
+MainFrame.EXPORT_RTF = Zengin Metin Formatı (*.rtf)
+MainFrame.EXPORT_RTF_DESC = *.rtf formatında kaydet
+MainFrame.IMPORT = Ekle
+MainFrame.PDF_FILE_FILTER_DESC = PDF - Portable Document Format (.pdf)
+MainFrame.SELECT_CHARACTER_SET = Lütfen dosyanın harf kodlamasını seçiniz.
+
+# preferences
+
+Preferences.USE_GZIP            = GZIP biçiminde dersleri sıkıştır.
+Preferences.LANGUAGES           = Diller
+Preferences.RESTART             = Uygulamayı başlattığında yeni dil seçimin görünecek.
+Preferences.FONT_SETTINGS       = Yazı Biçimleri
+Preferences.FONT                = Yazı
+Preferences.SIZE                = Boyut
+Preferences.PREVIEW             = Önizleme
+Preferences.LANGUAGE = Dil
+
+# card table
+
+CardTable.COLUMNS               = Sütunlar
+CardTable.NO_DATE_DESC          = Bu Kart Test Edilemez
+CardTable.NOT_LEARNED           = Öğrenilmemiş
+CardTable.PATH                  = Yol
+CardTable.SELECTED_CARDS        = Seçilmiş Kartlar
+
+# deck chart
+
+DeckChart.CARDS              = Kartlar
+DeckChart.START_DECK         = Deste Başlat
+DeckChart.SUMMARY            = Özet
+DeckChart.EXPIRED_CARDS      = Son Kartlar
+DeckChart.LEARNED_CARDS      = Öğrenilmiş Kartlar
+DeckChart.UNLEARNED_CARDS    = Öğrenilmemiş Kartlar
+
+# deck table
+
+DeckTable.NEXT_DECK          = Sonraki Deste
+DeckTable.NEXT_DECK_DESC     = Sonraki Desteyi Göster.
+DeckTable.PREV_DECK          = Önceki Deste
+DeckTable.PREV_DECK_DESC     = Önceki Desteyi Göster.
+
+# card editting
+
+EditCard.DETAILS_RATIO       = Başarı Oranı
+EditCard.DETAILS_HISTORY     = Tarih Öğren
+EditCard.MODIFIED_WARN       = Değiştirilmemiş kart girişleri. Devam etmeden önce bunları uygulamak istiyor musun?
+EditCard.MODIFIED_WARN_TITLE = Kart değiştirilmiş.
+EditCard.NEXT_CARD         = Sonraki Kart
+EditCard.NEXT_CARD_DESC    = Sonraki Kartı Göster
+EditCard.PREV_CARD         = Önceki Kart
+EditCard.PREV_CARD_DESC    = Önceki Kartı Göster
+EditCard.REMOVE_CARD       = Kartı Kaldır
+EditCard.REMOVE_CARD_DESC  = Yürürlükteki Kartı Kaldır
+EditCard.REMOVE_CARD_WARN  = Bu Kartı Silmek İstediğinizden Emin Misiniz?
+EditCard.REMOVE_CARD_WARN_TITLE = Kart Silme
+EditCard.RESET_CARD        = Kart Sıfırla
+EditCard.RESET_CARD_DESC   = Yürürlükteki Kartı Sıfırla
+EditCard.RESET_CARD_WARN   = Sıfırladığın bu kart ilk desteye taşınacak.\nEmin misiniz?
+EditCard.TAB_SIDES         = Taraflar
+EditCard.TAB_PROPERTIES    = Özellikler
+
+# find tool
+
+FindTool.FIND          = Arama
+FindTool.BOTH_SIDES    = Her iki yan
+FindTool.MATCH_CASE    = Büyük/Küçük Harfe Duyarlı
+FindTool.RESULTS       = Sonuçlar
+FindTool.SEARCH_TEXT   = Metin Arama
+FindTool.SETTINGS      = Ayarlar
+
+# learn
+
+Learn.REMEMBER_THE_ANSWER    = Cevabı Hatırlamaya Çalış
+Learn.DID_YOU_KNOW_ANSWER    = Doğru Cevabı Biliyor Muydun?
+Learn.YES                    = Evet
+Learn.NO                     = Hayır
+Learn.CARD_COUNTER           = Kart Sayıcı
+Learn.FLIPPED_CARD_SIDES     = Çevrilmiş Kart Yanları
+Learn.SHOW_ANSWER            = Doğru Cevabı Göster
+Learn.SHOW_CATEGORY          = Ulam Göster
+Learn.SKIP_CARD              = Kart Atlama
+Learn.STOP                   = Öğrenemyi Durdur
+Learn.TIMER                  = Zamanlayıcı
+Learn.CARD_PROGRESS = Kart İlerleme
+Learn.SESSION_PROGRESS = Oturum İlerleme
+Learn.SESSION_RESULTS = Oturum Sonuçları
+
+# learn settings
+
+LearnSettings.ADVANCED          = Gelişmiş
+LearnSettings.SCHEDULING        = Programlama
+
+LearnSettings.CARDS_TO_LEARN    = Kartların Öğrenilmesi
+LearnSettings.LEARN_UNLEARNED_EXPIRED = Öğrenilmemiş ve son kartların hepsini öğren.
+LearnSettings.LEARN_UNLEARNED   = Sadece öğrenilmemiş kartları öğren.
+LearnSettings.LEARN_EXPIRED     = Sadece son kartları öğren.
+
+LearnSettings.CARDS_ORDER       = Kartların Sıralanması
+LearnSettings.SHUFFLE_CARDS     = Bütün deste ve ulamlardaki kartları karıştır. 
+LearnSettings.GROUP_CARDS       = Kartları öğrenirken ulamlarına göre grupla.
+LearnSettings.NATURAL_CATEGORY_ORDER = Ulamları sabit sırasına göre göster.
+LearnSettings.RANDOM_CATEGORY_ORDER = Ulamları rastgele sıraya göre göster.
+
+LearnSettings.DELIMITERS          = Sınırlayıcılar
+LearnSettings.CARD_LIMIT          = Kart Limiti
+LearnSettings.CARD_LIMIT_TEXT     = Kart limiti dolduğu zaman oturumu sona erdir.
+LearnSettings.TIME_LIMIT          = Dakika limiti
+LearnSettings.TIME_LIMIT_TEXT     = Zaman limiti dolduğu zaman oturumu sona erdir.
+LearnSettings.DONT_RETEST_FAILED  = Oturumda başarısız olmuş kartları yeniden deneme.
+
+LearnSettings.SCHEDULE_PRESETS    = Belirlenmiş olanları programla
+LearnSettings.DELAY_AFTER_LEVEL   = Sonraki seviyeden sonra geciktir {0}
+LearnSettings.DAYS                = Günler
+LearnSettings.HOURS               = Saatler
+LearnSettings.MINUTES             = Dakikalar
+
+LearnSettings.SIDE_MODE           = Yan kipi.
+LearnSettings.NORMAL_MODE         = Normal Kipte Öğrenme.
+LearnSettings.FLIP_MODE           = Çevrilmiş kart yanlarını öğren.
+LearnSettings.RANDOM_MODE         = Kart yanları rasgele çevrilmiş olduğu halde rasgele modda öğren.
+LearnSettings.BOTH_MODE = Her kart yüzünü belirtilen sıklıkta öğren.
+
+LearnSettings.START         = Oturuma Başla\!
+LearnSettings.TITLE         = Ayarları Öğren
+
+# new card
+
+NewCard.ADD                 = Ekle
+NewCard.ADD_AND_NEXT        = Ekle ve Sonrakini Oluştur
+NewCard.EDIT_RECENTLY       = En son kartları düzenle
+NewCard.EDIT_RECENTLY_DESC  = Son yaratılmış kartları düzenle
+NewCard.NEW_WINDOW          = Yeni Pencere
+NewCard.NEW_WINDOW_DESC     = Eklenmiş Yeni Bir Kart Penceresi Aç
+NewCard.TITLE               = Kart Oluştur
+NewCard.CLOSE_WARN          = Uyarı
+NewCardManager.DISMISSED_WARN = Kart bilgileri atılmak üzere.\nKartı pencere kapanmadan önce oluşturmak ister misin?
+
+# status bar
+
+StatusBar.CARDS             = Kartlar
+StatusBar.EXPIRED           = Son Kalan
+StatusBar.LEARNED           = Öğrenilen
+StatusBar.UNLEARNED         = Öğrenilmemiş
+StatusBar.LEARNING_CATEGORY = Ulam Öğrenimi
+StatusBar.CARDS_LEFT        = Kalan kartlar
+StatusBar.PARTIAL = Kısmen öğrenilmiş
+
+# strategy
+
+Strategy.LINEAR_DEFAULT_SCHEDULE  = İlk değer
+Strategy.CONSTANT_SCHEDULE        = Sabit
+Strategy.EXPONENTIAL_SCHEDULE     = Üstel
+Strategy.QUADRATIC_SCHEDULE       = İkinci dereceden
+Strategy.CUSTOM_SCHEDULE          = Özel
+Strategy.CRAM_SCHEDULE = Yoğun Çalışma
+
+# summary
+
+Summary.FAILED = Kaldı
+Summary.LEARNED = Öğrenilmiş
+Summary.RELEARNED = Tekrar öğrenilmiş
+Summary.SKIPPED = Atlanıldı
+
+# url
+
+URL.BUG_TRACKER = Bug (hata) takibi
+URL.FEATURE_TRACKER = Özellik Takibi
+URL.HOMEPAGE = Ana sayfa
+URL.MANUAL = Kullanıcı kılavuzu
+
+# file
+
+File.CSV = Virgulle Ayrılmış Değerler (*.csv)
+File.TSV = Tabla Ayrılmış Değerler (*.tsv)
+
+# history
+
+History.ACTION = Tarihçeyi göster
+History.BY_DATE = Tarihe göre oturumlar
+History.BY_MONTH = Aylık oturumlar
+History.BY_WEEK = Haftalık oturumlar
+History.BY_YEAR = Yıllık oturumlar
+History.RECENT = Son oturumlar
+History.SESSION_DURATION = Oturum Uzunluğu
+History.TITLE = Tarihçe
+
+# time related
+
+Time.DAYS               = günler
+Time.ONE_DAY            = bir gün
+Time.HOURS              = saatler
+Time.ONE_HOUR           = bir saat
+Time.MINUTES            = dakikalar
+Time.ONE_MINUTE         = bir dakika
+Time.SECONDS            = saniyeler
+
+Time.PASSED             = geçen
+
+Time.IN                 = içinde {0}
+Time.AGO                = {0} önce
+

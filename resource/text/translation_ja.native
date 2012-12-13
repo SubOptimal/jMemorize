@@ -1,0 +1,326 @@
+# This is a translation file for jMemorize (http://www.riad.de/jmemorize)
+#
+# ------------------------------------------------------------------------------
+# Author:             Eberhard Herzog <ebiherzog@web.de>
+# Language:           Japanese (ja)
+# jMemorize-Version:  1.2
+# ------------------------------------------------------------------------------
+#
+# Notes:
+#   DESC is the text that will show up as tooltip.
+#   TITLE is the title of the new window / dialog.
+
+# general
+
+General.CATEGORY         = 分類
+General.CREATED          = 作成
+General.MODIFIED         = 変更された
+General.EXPIRES          = 期限
+General.LAST_TEST        = 最近のテスト
+General.DECK             = カード束
+General.DECKS            = カード束
+General.FRONTSIDE        = 表面
+General.FLIPSIDE         = 裏面
+General.OKAY             = Okay
+General.APPLY            = 確定
+General.CANCEL           = キャンセル
+General.ROOT_CATEGORY    = 全て
+General.GENERAL          = 一般
+General.PASSED           = 当たり
+
+General.EMPTY_SIDES_ALERT       = カードには、空の面が許されていない
+General.EMPTY_SIDES_ALERT_TITLE = カード面は空です
+
+# main frame
+
+MainFrame.ABOUT                 = バージョン
+MainFrame.ABOUT_DESC            = このソフトについて
+
+MainFrame.ADD_CARD              = 新カード
+MainFrame.ADD_CARD_DESC         = 新カードを追加する
+
+MainFrame.ADD_CATEGORY          = 新規分類
+MainFrame.ADD_CATEGORY_DESC     = 新しい分類を追加する
+MainFrame.ADD_CATEGORY_INPUT    = 新しい分類の名前を入力してください。
+
+MainFrame.CATEGORY_TREE         = 分類ツリー
+MainFrame.CATEGORY_TREE_DESC    = 分類ツリー表示・非表示
+
+MainFrame.COPY                  = コピー
+MainFrame.CUT                   = 切り取り
+MainFrame.PASTE                 = 貼り付け
+MainFrame.DELETE                = 削除
+
+MainFrame.DELETE_CARDS_WARN     = {0} カードを削除しました。続けますか。
+MainFrame.DELETE_CARDS_WARN_TITLE = カードの削除
+MainFrame.DELETE_CATEGORY_WARN  = 分類 {0} の削除によって {1} カードが削除される。続けますか。
+
+MainFrame.EDIT_CARD             = カードを編集する
+MainFrame.EDIT_CARD_DESC        = カードの詳細を見て、編集する
+
+MainFrame.ERROR_TITLE           = エラー
+MainFrame.ERROR_LOAD            = {0} の読み込み中にエラーが起きました
+MainFrame.ERROR_SAVE            = {0} の保存中にエラーが起きました。\n ファイルは保存されていません。
+
+MainFrame.EXIT                  = 終了
+MainFrame.EXIT_DESC             = ソフトを終了させる
+
+MainFrame.FILE_FILTER_DESC      = jMemorizeのレッスン
+MainFrame.PDF_FILE_FILTER_DESC  = PDF形式 - Portable Document Format (.pdf)
+
+MainFrame.FIND                  = 検索
+MainFrame.FIND_DESC             = カードを探す
+
+MainFrame.LEARN                 = 学習
+MainFrame.LEARN_DESC            = 学習セッションをはじめる
+
+MainFrame.MENU_FILE             = ファイル
+MainFrame.MENU_EDIT             = 編集
+MainFrame.MENU_HELP             = ヘルプ
+MainFrame.MENU_LESSON           = レッスン
+
+MainFrame.NEW                   = 新規
+MainFrame.NEW_DESC              = 新しいレッスンを作成する
+
+MainFrame.UNNAMED_LESSON        = 新レッスン
+
+MainFrame.OPEN                  = 開く
+MainFrame.OPEN_DESC             = レッスンを開く
+
+MainFrame.REMOVE_CATEGORY_TITLE = 分類を削除する
+MainFrame.REMOVE_DESC           = 選択された項目を削除する
+
+MainFrame.RESET              = カードを元に戻す
+MainFrame.RESET_DESC         = 全てのカード統計を削除する
+MainFrame.RESET_WARN         = {0} カードが元に戻されました。続けますか。
+
+MainFrame.SAVE               = 保存
+MainFrame.SAVE_DESC          = レッスンを保存する
+MainFrame.SAVE_AS            = 名前をつけて保存する
+MainFrame.SAVE_AS_DESC       = レッスンに名前をつけて保存する
+MainFrame.SAVE_MODIFIED      = レッスンが変更されました。終了する前にファイルを保存しますか。
+
+MainFrame.IMPORT             = インポート
+
+MainFrame.EXPORT                     = エキスポート
+MainFrame.EXPORT_PDF             = Portable Document Format (*.pdf)
+MainFrame.EXPORT_RTF             = Rich Text Format (*.rtf)
+MainFrame.EXPORT_PDF_DESC        = pdf形式へエキスポートする
+MainFrame.EXPORT_RTF_DESC        = rtf形式へエキスポートする
+MainFrame.EXPORT_CLEAN       = 個人学習データなしのレッスン
+
+MainFrame.PREFERENCES        = 設定
+MainFrame.PREFERENCES_DESC   = 設定をしてください
+
+MainFrame.CONFIRM_OVERWRITE_TITLE = ファイルの上書き
+MainFrame.CONFIRM_OVERWRITE = ファイルはすでに存在します。上書きしますか。
+
+MainFrame.SELECT_CHARACTER_SET = ファイルのエンコーディングを選んでください
+MainFrame.CHARACTER_SET = エンコーディング
+
+# files
+
+File.CSV                     = Comma Separated Values (*.csv)
+File.TSV                     = Tabular Separated Values (*.tsv)
+
+# web sites
+
+URL.HOMEPAGE                 = ホームページ
+URL.MANUAL                   = 説明書
+URL.FEATURE_TRACKER          = Feature tracker
+URL.BUG_TRACKER              = Bug tracker
+
+# preferences
+
+Preferences.USE_GZIP         = レッスンを GZIP で圧縮する
+Preferences.LANGUAGE         = 言語
+Preferences.RESTART          = 次回、立ち上げるときに、言語変更が有効になります。
+
+Preferences.FONT_SETTINGS    = フォントの設定
+Preferences.FONT             = フォント
+Preferences.SIZE             = サイズ
+Preferences.PREVIEW          = プレビュー
+
+# card table
+
+CardTable.COLUMNS            = 列
+CardTable.NO_DATE_DESC       = このカードは学習されていません
+CardTable.NOT_LEARNED        = 未学習
+CardTable.PATH               = パス
+CardTable.SELECTED_CARDS     = 選択されたカード
+
+# deck chart
+
+DeckChart.CARDS              = カード
+DeckChart.START_DECK         = 最初の束
+DeckChart.SUMMARY            = 全て
+DeckChart.EXPIRED_CARDS      = 期限が切れたカード
+DeckChart.LEARNED_CARDS      = 学習したカード
+DeckChart.UNLEARNED_CARDS    = 未学習カード
+
+Summary.LEARNED              = 学習した
+Summary.FAILED               = 間違い
+Summary.RELEARNED            = 復習した
+Summary.SKIPPED              = 飛ばした
+
+# deck table
+
+DeckTable.NEXT_DECK          = 次の束
+DeckTable.NEXT_DECK_DESC     = 次の束を表示します
+DeckTable.PREV_DECK          = 前の束
+DeckTable.PREV_DECK_DESC     = 前の束を表示します
+
+# card editting
+
+EditCard.DETAILS_RATIO       = 正解率
+EditCard.DETAILS_HISTORY     = 学習暦
+
+EditCard.MODIFIED_WARN       = カードが編集されました。続ける前に変更を確定しますか。
+EditCard.MODIFIED_WARN_TITLE = カードが変更されました
+
+EditCard.NEXT_CARD           = 次のカード
+EditCard.NEXT_CARD_DESC      = 次のカードを表示します
+
+EditCard.PREV_CARD           = 前のカード
+EditCard.PREV_CARD_DESC      = 前のカードを表示します
+
+EditCard.REMOVE_CARD         = カードの削除
+EditCard.REMOVE_CARD_DESC    = このカードを削除します
+
+EditCard.REMOVE_CARD_WARN    = このカードを本当に削除しますか。
+EditCard.REMOVE_CARD_WARN_TITLE = カードの削除
+
+EditCard.RESET_CARD          = カードを元に戻す
+EditCard.RESET_CARD_DESC     = このカードを最初の束に戻す
+EditCard.RESET_CARD_WARN     = このカードは最初の束に戻されます。\n良いですか。
+
+EditCard.TAB_SIDES           = カードの面
+EditCard.TAB_PROPERTIES      = プロパティー
+
+# find tool
+
+FindTool.FIND            = 検索
+FindTool.BOTH_SIDES      = 両面
+FindTool.MATCH_CASE      = 大文字・小文字を区別する
+FindTool.RESULTS         = 結果
+FindTool.SEARCH_TEXT     = 検索文字列
+FindTool.SETTINGS        = 設定
+
+# learn
+
+Learn.REMEMBER_THE_ANSWER    = 答えを思い出してください。
+Learn.DID_YOU_KNOW_ANSWER    = 正解でしたか。
+Learn.YES                    = はい
+Learn.NO                     = いいえ
+
+Learn.CARD_COUNTER           = カード数
+Learn.FLIPPED_CARD_SIDES     = カード面を入れ替える
+Learn.SHOW_ANSWER            = 答えを表示する
+Learn.SHOW_CATEGORY          = 分類を表示する
+Learn.SKIP_CARD              = 飛ばす
+Learn.STOP                   = 学習を中止する
+Learn.TIMER                  = ストップウオッチ
+
+Learn.SESSION_RESULTS        = セッションの結果
+Learn.CARD_PROGRESS          = カードの進み具合
+Learn.SESSION_PROGRESS       = セッションの進み具合
+
+# learn settings
+
+LearnSettings.ADVANCED            = アドバンスド
+LearnSettings.SCHEDULING          = スケジュール
+
+LearnSettings.CARDS_TO_LEARN      = 学習すべきカード
+LearnSettings.LEARN_UNLEARNED_EXPIRED = 全ての未学習カードと期限切れのカードを学習する
+LearnSettings.LEARN_UNLEARNED     = 未学習カードのみ学習する
+LearnSettings.LEARN_EXPIRED       = 期限切れのカードのみ学習する
+
+LearnSettings.CARDS_ORDER         = カード順
+LearnSettings.SHUFFLE_CARDS       = 全ての束と分類のカードをシャッフルする
+LearnSettings.GROUP_CARDS         = カードを分類で分ける
+LearnSettings.NATURAL_CATEGORY_ORDER = 分類を自然の順番で学習する
+LearnSettings.RANDOM_CATEGORY_ORDER = 分類をランダムで学習する
+
+LearnSettings.DELIMITERS          = 制限
+LearnSettings.CARD_LIMIT          = カード数の制限
+LearnSettings.CARD_LIMIT_TEXT     = 一定のカード数に達したらこのセッションを終了させる
+LearnSettings.TIME_LIMIT          = …分の時間制限
+LearnSettings.TIME_LIMIT_TEXT     = 一定の時間がたてばこのセッションを終了させる
+LearnSettings.DONT_RETEST_FAILED  = 間違えたカードをこのセッション中には復習しない
+
+LearnSettings.SCHEDULE_PRESETS    = スケジュールの設定
+LearnSettings.DELAY_AFTER_LEVEL   = 次の復習まで...レベル {0}
+LearnSettings.DAYS                = 日
+LearnSettings.HOURS               = 時間
+LearnSettings.MINUTES             = 分
+
+LearnSettings.SIDE_MODE           = 面を選ぶ
+LearnSettings.NORMAL_MODE         = 普通の面で学習する
+LearnSettings.FLIP_MODE           = 面を入れ替えて学習する
+LearnSettings.RANDOM_MODE         = 面をランダムに入れ替えて学習する
+LearnSettings.BOTH_MODE           = 両面を、指定された回数学習する
+
+LearnSettings.START               = セッションスタート
+LearnSettings.TITLE               = 学習の設定
+
+# new card
+
+NewCard.ADD                     = 作成
+NewCard.ADD_AND_NEXT            = 作成と次へ移動
+
+NewCard.EDIT_RECENTLY           = 最近のを編集する
+NewCard.EDIT_RECENTLY_DESC      = 最近作成したカードを編集する
+
+NewCard.NEW_WINDOW              = 新しいウインドウ
+NewCard.NEW_WINDOW_DESC         = 新しいカード作成ウインドウを開く
+
+NewCard.TITLE                   = 新しいカード
+
+NewCard.CLOSE_WARN              = 警告
+NewCardManager.DISMISSED_WARN   = カードは作成されていません。\nウインドウを閉じる前に作成しますか。
+
+# status bar
+
+StatusBar.CARDS                 = カード
+StatusBar.EXPIRED               = 期限切れ
+StatusBar.LEARNED               = 学習した
+StatusBar.UNLEARNED             = 未学習
+StatusBar.PARTIAL               = 一部学習
+
+StatusBar.LEARNING_CATEGORY     = 分類を学習する
+StatusBar.CARDS_LEFT            = 残りのカード
+
+# strategy
+
+Strategy.LINEAR_DEFAULT_SCHEDULE  = 直線的（標準）
+Strategy.CONSTANT_SCHEDULE        = 不変的
+Strategy.EXPONENTIAL_SCHEDULE     = 指数的
+Strategy.QUADRATIC_SCHEDULE       = 二次関数的
+Strategy.CRAM_SCHEDULE            = スパルタ
+Strategy.CUSTOM_SCHEDULE          = 自分のスケジュール
+
+# time
+
+Time.DAYS               = 日
+Time.ONE_DAY            = 一日
+Time.HOURS              = 時間
+Time.ONE_HOUR           = 一時間
+Time.MINUTES            = 分
+Time.ONE_MINUTE         = 一分間
+Time.SECONDS            = 秒
+
+Time.PASSED             = 経った
+
+Time.IN                 = {0} 後
+Time.AGO                = {0} 前
+
+# learn history
+
+History.RECENT = 最近のセッション
+History.BY_DATE = セッション（日にち）
+History.BY_WEEK = セッション（週）
+History.BY_MONTH = セッション（月）
+History.BY_YEAR = セッション（年）
+History.SESSION_DURATION = セッションの長さ
+
+

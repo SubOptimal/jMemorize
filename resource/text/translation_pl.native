@@ -1,0 +1,333 @@
+#
+# This is a translation file for jMemorize (http://www.riad.de/jmemorize)
+#
+# ------------------------------------------------------------------------------
+# Author:             Tomek Pedzimaz <tomektomek(at)tlen.pl>
+#                     Radek Ostrowski <dest.hawaii(at)gmail.com> 
+# Language:           Polski (pl)
+# jMemorize-Version:  1.0.0
+# ------------------------------------------------------------------------------
+#
+# Notes:
+#   DESC is the text that will show up as tooltip.
+#   TITLE is the title of the new window / dialog.
+#   Still there is on phrase for some untagged english sentences
+
+# general
+
+General.CATEGORY          = Kategoria
+General.CREATED           = stworzona
+General.EXPIRES           = Wygasła
+General.LAST_TEST         = Ostatni test
+General.DECK              = Talia
+General.DECKS             = Talie
+General.FRONTSIDE         = Przód
+General.FLIPSIDE          = Tył
+General.OKAY              = Ok
+General.APPLY             = Zastosuj
+General.CANCEL            = Anuluj
+General.ROOT_CATEGORY     = Wszystkie
+General.GENERAL           = Ogólne
+General.PASSED            = Zaliczone
+General.EXPIRED           = Wygasłe
+General.MODIFIED          = Zmienione
+General.UNLEARNED         = Nie nauczone
+
+General.EMPTY_SIDES_ALERT       = Musisz określić treść obu stron karty.
+General.EMPTY_SIDES_ALERT_TITLE = Bad card sides
+
+# main frame
+
+MainFrame.ABOUT              = O programie
+MainFrame.ABOUT_DESC         = O programie
+
+MainFrame.ADD_CARD           = Dodaj kartę
+MainFrame.ADD_CARD_DESC      = Dodaj nową kartę
+
+MainFrame.ADD_CATEGORY       = Dodaj kategorię
+MainFrame.ADD_CATEGORY_DESC  = Dodaj nową kategorię
+MainFrame.ADD_CATEGORY_INPUT = Wpisz nazwę nowej kategorii, którą chcesz stworzyć.
+
+MainFrame.CATEGORY_TREE      = Kategorie
+MainFrame.CATEGORY_TREE_DESC = Pokaż/Ukryj drzewo kategorii
+
+MainFrame.COPY               = Kopiuj
+MainFrame.CUT                = Wytnij
+MainFrame.PASTE              = Wklej
+MainFrame.DELETE             = Usuń
+
+MainFrame.DELETE_CARDS_WARN       = Naciśnięcie przycisku spowoduje usunięcie {0} kart(y). Czy na pewno chcesz kontynuować?
+MainFrame.DELETE_CARDS_WARN_TITLE = Usunięcie karty
+MainFrame.DELETE_CATEGORY_WARN  = Usunięcie kategorii {0} spowoduje usunięcie {1} kart. Czy na pewno chcesz kontynuować?
+
+MainFrame.EDIT_CARD             = Edytuj kartę
+MainFrame.EDIT_CARD_DESC        = Edytuj właściwości karty.
+
+MainFrame.ERROR_TITLE           = Błąd
+MainFrame.ERROR_LOAD            = W trakice ładowania pliku {0} wystąpił błąd.
+MainFrame.ERROR_SAVE            = W trakcie zapisu pliku {0} wystąpił bład. Lekcja nie może być zapisana.
+
+MainFrame.EXIT                  = Wyjście
+MainFrame.EXIT_DESC             = Wyjście z aplikacji
+
+MainFrame.FILE_FILTER_DESC      = Lekcje jMemorize
+MainFrame.PDF_FILE_FILTER_DESC	= PDF - Portable Document Format (.pdf)
+
+MainFrame.FIND                  = Znajdź
+MainFrame.FIND_DESC             = Znajdź karty
+
+MainFrame.LEARN                 = Nauka
+MainFrame.LEARN_DESC            = Rozpocznij lekcję z wszystkimi nienauczonymi i wygasłymi kartami.
+
+MainFrame.MENU_FILE             = Plik
+MainFrame.MENU_EDIT             = Edycja
+MainFrame.MENU_HELP             = Pomoc
+MainFrame.MENU_LESSON           = Lekcja
+
+MainFrame.NEW                   = Nowy
+MainFrame.NEW_DESC              = Stwórz pustą lekcję
+
+MainFrame.UNNAMED_LESSON        = Nowa lekcja
+
+MainFrame.OPEN                  = Otwórz
+MainFrame.OPEN_DESC             = Otwórz plik lekcji
+
+MainFrame.REMOVE_CATEGORY_TITLE = Usunięcie kategorii
+MainFrame.REMOVE_DESC           = Usuń zaznaczone pozycje.
+
+MainFrame.RESET                 = Reset karty
+MainFrame.RESET_DESC            = Przywrócenie wartości domyślnych karty.
+MainFrame.RESET_WARN            = Chcesz przywrócić wartości domyślne dla {0} kart. Czy na pewno chcesz kontynuować?
+
+MainFrame.SAVE                  = Zapisz
+MainFrame.SAVE_DESC             = Zapisz lekcję
+MainFrame.SAVE_AS               = Zapisz jako..
+MainFrame.SAVE_AS_DESC          = Zapisz lekcję jako..
+MainFrame.SAVE_MODIFIED         = Lekcja została zmodyfikowana. Czy chcesz ją zapisać przed wyjściem z programu?
+
+MainFrame.IMPORT                = Importuj
+MainFrame.EXPORT                = Eksportuj do ... 
+MainFrame.EXPORT_DESC           = Eksportuj lekcję
+MainFrame.EXPORT_PDF            = Portable Document Format (*.pdf)
+MainFrame.EXPORT_RTF            = Rich Text Format (*.rtf)
+MainFrame.EXPORT_PDF_DESC       = Eksportuj do *.pdf
+MainFrame.EXPORT_RTF_DESC       = Eksportuj do *.rtf
+MainFrame.EXPORT_CLEAN          = Eksportuj do pliku lekcji bez zachowania prywatnych danych
+
+MainFrame.PREFERENCES           = Opcje
+MainFrame.PREFERENCES_DESC      = Ustaw opcje
+
+MainFrame.CONFIRM_OVERWRITE_TITLE = Nadpisać plik?
+MainFrame.CONFIRM_OVERWRITE = Plik istnieje. Czy chcesz go nadpisać?
+
+MainFrame.CHARACTER_SET = Kodowanie
+MainFrame.SELECT_CHARACTER_SET = Proszę wybrać kodowanie pliku.
+
+# file
+
+File.CSV = Wartości oddzielone przecinkami
+File.TSV = Wartości oddzielone tabulatorami
+
+# preferences
+
+Preferences.USE_GZIP            = Spakuj lekcje do formatu GZIP.
+Preferences.LANGUAGE            = Język
+Preferences.RESTART             = Twój nowy język pojawi się przy ponownym uruchomieniu programu.
+
+Preferences.FONT_SETTINGS       = Ustawienia czcionki
+Preferences.FONT                = Czcionka
+Preferences.SIZE                = Rozmiar
+Preferences.PREVIEW             = Podgląd
+
+# card table
+
+CardTable.COLUMNS               = Kolumny
+CardTable.NO_DATE_DESC          = Ta karta nigdy nie była testowana.
+CardTable.NOT_LEARNED           = nie nauczona
+CardTable.PATH                  = Ścieżka
+CardTable.SELECTED_CARDS        = Zaznaczone karty
+
+# deck chart
+
+DeckChart.CARDS              = Karty
+DeckChart.START_DECK         = Talia początkowa
+DeckChart.SUMMARY            = Podsumowanie
+DeckChart.EXPIRED_CARDS      = Wygasłe
+DeckChart.LEARNED_CARDS      = Nauczone
+DeckChart.UNLEARNED_CARDS    = Nienauczone
+
+# summary
+
+Summary.FAILED = Niezdane
+Summary.LEARNED = Nauczone
+Summary.RELEARNED = Nauczone ponownie
+Summary.SKIPPED = Opuszczone
+
+# deck table
+
+DeckTable.NEXT_DECK          = Następna talia
+DeckTable.NEXT_DECK_DESC     = Wyświetl kolejną talię.
+DeckTable.PREV_DECK          = Poprzednia talia
+DeckTable.PREV_DECK_DESC     = Wyświetl poprzednią talię.
+
+# card editting
+
+EditCard.DETAILS_RATIO       = Procent skuteczności
+EditCard.DETAILS_HISTORY     = Historia nauki
+
+EditCard.MODIFIED_WARN       = Zawartość karty została zmodyfikowana. Czy chcesz ją zapisać?
+EditCard.MODIFIED_WARN_TITLE = Karta została zmodyfikowana.
+
+EditCard.NEXT_CARD         = Następna karta
+EditCard.NEXT_CARD_DESC    = Wyświetl następną kartę
+
+EditCard.PREV_CARD         = Poprzednia karta
+EditCard.PREV_CARD_DESC    = Wyświetl poprzednią kartę
+
+EditCard.REMOVE_CARD       = Usuń kartę
+EditCard.REMOVE_CARD_DESC  = Usuń bieżącą kartę
+
+EditCard.REMOVE_CARD_WARN  = Czy na pewno chcesz usunąć tę kartę?
+EditCard.REMOVE_CARD_WARN_TITLE = Usunięcie karty
+
+EditCard.RESET_CARD        = Reset karty
+EditCard.RESET_CARD_DESC   = Rest bieżącej karty
+EditCard.RESET_CARD_WARN   = Przywrócenie wartości domyślnych karty przeniesie ją na pierwszą talię.\nJesteś tego pewny?
+
+EditCard.TAB_SIDES         = Strony
+EditCard.TAB_PROPERTIES    = Właściwości
+
+# find tool
+
+FindTool.FIND          = Szukaj
+FindTool.BOTH_SIDES    = Obie strony
+FindTool.MATCH_CASE    = Uwzględnij wielkość liter
+FindTool.RESULTS       = Wyniki
+FindTool.SEARCH_TEXT   = Szukany tekst
+FindTool.SETTINGS      = Ustawienia
+
+# learn
+
+
+Learn.REMEMBER_THE_ANSWER    = Spróbuj zapamiętać odpowiedź
+Learn.DID_YOU_KNOW_ANSWER    = Czy znałe(a)ś? poprawną odpowiedź?
+Learn.YES                    = Tak
+Learn.NO                     = Nie
+
+Learn.CARD_COUNTER           = Licznik kart
+Learn.FLIPPED_CARD_SIDES     = Odwrócone strony karty
+Learn.SHOW_ANSWER            = Pokaż odpowiedź
+Learn.SHOW_CATEGORY          = Pokaż kategorię
+Learn.SKIP_CARD              = Pomiń kartę
+Learn.STOP                   = Zakończ naukę
+Learn.TIMER                  = Stoper
+
+Learn.CARD_PROGRESS = Postęp karty
+Learn.SESSION_PROGRESS = Postęp sesji
+Learn.SESSION_RESULTS = Rezultat Sesji
+
+# learn settings
+
+LearnSettings.ADVANCED          = Dodatkowe
+LearnSettings.SCHEDULING        = Harmonogram
+
+LearnSettings.CARDS_TO_LEARN    = Karty do nauki
+LearnSettings.LEARN_UNLEARNED_EXPIRED = Ucz się wszystkich nienauczonych i wygasłych kart.
+LearnSettings.LEARN_UNLEARNED   = Rozpocznij naukę tylko z nienauczonymi kartami.
+LearnSettings.LEARN_EXPIRED     = Rozpocznij naukę tylko z wygasłych kartami.
+
+LearnSettings.CARDS_ORDER       = Kolejność kart
+LearnSettings.SHUFFLE_CARDS     = Losuj karty ze wszystkich talii i kategorii.
+LearnSettings.GROUP_CARDS       = Grupuj karty kategoriami w trakcie nauki.
+LearnSettings.NATURAL_CATEGORY_ORDER = Pokaż kategorie w porządku rosnącym.
+LearnSettings.RANDOM_CATEGORY_ORDER = Pokaż kategorię w kolejności losowej.
+
+LearnSettings.DELIMITERS          = Ograniczenia
+LearnSettings.CARD_LIMIT          = Limit kart
+LearnSettings.CARD_LIMIT_TEXT     = Zakończ naukę kiedy ilość kart osiągnie ustalony limit.
+LearnSettings.TIME_LIMIT          = Limit minut
+LearnSettings.TIME_LIMIT_TEXT     = Zakończ sesję po upłynięciu określonego limitu czasu.
+LearnSettings.DONT_RETEST_FAILED  = W danej sesji nie pokazuj ponownie kart, na które udzielono niepopoprawnej odpowiedzi.
+
+LearnSettings.SCHEDULE_PRESETS    = Ustawienia harmonogramu
+LearnSettings.DELAY_AFTER_LEVEL   = Opóźnienie po osiągnięciu poziomu {0}
+LearnSettings.DAYS                = Dni
+LearnSettings.HOURS               = Godziny
+LearnSettings.MINUTES             = Minuty
+
+LearnSettings.SIDE_MODE           = Tryb przełączania stron kart
+LearnSettings.NORMAL_MODE         = Ucz w trybie normalnym.
+LearnSettings.FLIP_MODE           = W trakcie nauki pokazuj drugą stronę karty.
+LearnSettings.RANDOM_MODE         = W trakcie naki odwracaj karty losowo.
+LearnSettings.BOTH_MODE           = W trakcie nauki odwracaj karty tak często jak ustalono.
+
+LearnSettings.START         = Rozpocznij lekcję\!
+LearnSettings.TITLE         = Ustawienia nauki
+
+# new card
+
+NewCard.ADD                 = Dodaj
+NewCard.ADD_AND_NEXT        = Dodaj i stwórz kolejną
+
+NewCard.EDIT_RECENTLY       = Edytuj poprzednią
+NewCard.EDIT_RECENTLY_DESC  = Edytuj ostatnio stworzoną kartę
+
+NewCard.NEW_WINDOW          = Nowe okno
+NewCard.NEW_WINDOW_DESC     = Otwórz nowe okno dodawania kart
+
+NewCard.TITLE               = Twórz kartę
+
+NewCard.CLOSE_WARN          = Ostrzeżenie
+NewCardManager.DISMISSED_WARN = Dane zapisane w karcie zostaną utracone.\n Czy chcesz stworzyć kartę przed zamknięciem okna?
+
+# status bar
+
+StatusBar.CARDS             = Karty
+StatusBar.EXPIRED           = Wygasłe
+StatusBar.LEARNED           = Nauczone
+StatusBar.UNLEARNED         = Nienauczone
+StatusBar.PARTIAL           = Częściowo nauczone
+
+StatusBar.LEARNING_CATEGORY = Aktualna kategoria
+StatusBar.CARDS_LEFT        = Pozostało kart
+
+# strategy
+
+Strategy.LINEAR_DEFAULT_SCHEDULE  = Liniowy (standardowy)
+Strategy.CONSTANT_SCHEDULE        = Stały
+Strategy.EXPONENTIAL_SCHEDULE     = Wykładniczy
+Strategy.QUADRATIC_SCHEDULE       = Kwadratowy
+Strategy.INTENSIVE_SCHEDULE       = Intensywny
+Strategy.CRAM_SCHEDULE          = Zakuwanie
+Strategy.CUSTOM_SCHEDULE          = Własny
+
+# time related
+
+Time.DAYS               = dni
+Time.ONE_DAY            = jeden dzień
+Time.HOURS              = godziny
+Time.ONE_HOUR           = jedna godzina
+Time.MINUTES            = minuty
+Time.ONE_MINUTE         = jedna minuta
+Time.SECONDS            = sekundy
+Time.PASSED             = minęło
+Time.IN                 = in {0}
+Time.AGO = {0} temu
+
+# history
+
+History.ACTION = Pokaż historię
+History.BY_DATE = Sesje według daty
+History.BY_MONTH = Sesje według miesiąca
+History.BY_WEEK = Sesje według tygodnia
+History.BY_YEAR = Sesje według roku
+History.RECENT = Niedawne sesje
+History.SESSION_DURATION = Długość sesji
+History.TITLE = Historia
+
+# url 
+
+URL.BUG_TRACKER = Bug tracker
+URL.FEATURE_TRACKER = Feature tracker
+URL.HOMEPAGE = Strona głowna
+URL.MANUAL = Podręcznik użytkownika
